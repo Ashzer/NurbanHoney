@@ -34,7 +34,7 @@ fun SplashScreen(navController: NavHostController) {
         )
         if (logoAnimationState.isAtEnd && logoAnimationState.isPlaying) {
             navController.popBackStack()
-            navController.navigate(Screen.Home.route)
+            navController.navigate(Screen.Home.route){launchSingleTop = true}
         }
     }
 }

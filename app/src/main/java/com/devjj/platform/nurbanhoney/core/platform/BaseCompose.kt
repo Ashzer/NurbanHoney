@@ -10,7 +10,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
@@ -79,6 +78,10 @@ fun DrawerContent(
         }
 
     }
+}
+
+@Composable
+fun DrawTabs(navController: NavHostController){
 
 }
 
@@ -87,7 +90,11 @@ fun DrawBottomNavigation(navController: NavHostController) {
     BottomAppBar() {
         BottomNavigationItem(
             selected = true,
-            onClick = { navController.navigate(Screen.Home.route) },
+            onClick = {
+                with(Screen.Home.route){
+                    navController.clearBackStack(this)
+                    navController.navigate(this){launchSingleTop = true} }
+            },
             icon = {
                 Image(
                     painter = painterResource(
@@ -99,7 +106,11 @@ fun DrawBottomNavigation(navController: NavHostController) {
         )
         BottomNavigationItem(
             selected = true,
-            onClick = { },
+            onClick = {
+                with(Screen.Rank.route){
+                    navController.clearBackStack(this)
+                    navController.navigate(this){launchSingleTop = true} }
+            },
             icon = {
                 Image(
                     painter = painterResource(
@@ -111,7 +122,11 @@ fun DrawBottomNavigation(navController: NavHostController) {
         )
         BottomNavigationItem(
             selected = true,
-            onClick = {},
+            onClick = {
+                with(Screen.Profile.route){
+                    navController.clearBackStack(this)
+                    navController.navigate(this){launchSingleTop = true} }
+            },
             icon = {
                 Image(
                     painter = painterResource(
