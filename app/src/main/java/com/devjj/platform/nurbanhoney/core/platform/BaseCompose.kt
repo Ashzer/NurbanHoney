@@ -1,6 +1,7 @@
 package com.devjj.platform.nurbanhoney.core.platform
 
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.offset
 import androidx.compose.material.*
@@ -48,7 +49,7 @@ fun MainToolBar(drawerState: DrawerState, scope: CoroutineScope) {
                     Icon(
                         imageVector = Icons.Filled.Menu,
                         contentDescription = "drawer",
-                        tint = Color.White
+                        tint = Color.Black
                     )
                 },
                 onClick = {
@@ -87,7 +88,7 @@ fun DrawTabs(navController: NavHostController){
 
 @Composable
 fun DrawBottomNavigation(navController: NavHostController) {
-    BottomAppBar() {
+    BottomAppBar(modifier = Modifier.border(width = 1.dp, color = Color(0xFFD5D5D5))) {
         BottomNavigationItem(
             selected = true,
             onClick = {
