@@ -79,7 +79,7 @@ fun HomeScreen(navController: NavHostController) {
                                             .width(200.dp)
                                             .height(120.dp),
                                         backgroundColor = Color(0x33F6B748),
-                                        shape = RoundedCornerShape(10)
+                                        shape = RoundedCornerShape(30.dp)
                                     ) {
                                     }
                                 }
