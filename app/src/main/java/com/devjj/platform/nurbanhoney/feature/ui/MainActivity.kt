@@ -12,9 +12,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.compose.rememberNavController
 import com.devjj.platform.nurbanhoney.core.navigation.SetupNavGraph
+import com.devjj.platform.nurbanhoney.core.platform.BaseActivity
 import com.devjj.platform.nurbanhoney.core.theme.NurbanHoneyTheme
 
-class MainActivity : ComponentActivity() {
+class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
