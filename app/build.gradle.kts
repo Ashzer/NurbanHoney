@@ -56,6 +56,9 @@ dependencies {
     implementation(composeBom)
     androidTestImplementation(composeBom)
 
+    //include module name nurbanhoney:network
+    implementation(project(":nurbanhoney:network"))
+
     // Choose one of the following:
     // Material Design 3
     implementation("androidx.compose.material3:material3")
