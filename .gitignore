@@ -86,3 +86,4 @@ lint/tmp/
 
 # ignores
 /app/src/main/res/values/keys.xml
+/nurbanhoney/network/src/main/res/values/keys.xml
