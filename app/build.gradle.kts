@@ -58,6 +58,7 @@ dependencies {
 
     //include module name nurbanhoney:network
     implementation(project(":nurbanhoney:network"))
+    implementation(project(":Domain"))
 
     // Choose one of the following:
     // Material Design 3

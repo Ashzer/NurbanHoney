@@ -1,6 +1,6 @@
 package com.devjj.platform.nurbanhoney.network.api
 
-import com.devjj.platform.nurbanhoney.network.entities.BoardEntity
+import com.devjj.platform.nurbanhoney.network.entities.BoardNetworkResponse
 import retrofit2.Call
 import retrofit2.http.GET
 
@@ -12,5 +12,5 @@ internal interface BoardApi {
     }
 
     @GET("$BASE_BOARD")
-    fun getBoards() : Call<List<BoardEntity>>
+    fun getBoards(): Call<List<BoardNetworkResponse>>
 }

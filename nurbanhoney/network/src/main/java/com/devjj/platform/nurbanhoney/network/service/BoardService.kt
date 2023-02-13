@@ -1,8 +1,6 @@
 package com.devjj.platform.nurbanhoney.network.service
 
 import com.devjj.platform.nurbanhoney.network.api.BoardApi
-import com.devjj.platform.nurbanhoney.network.entities.BoardEntity
-import retrofit2.Call
 import retrofit2.Retrofit
 import javax.inject.Inject
 import javax.inject.Singleton
