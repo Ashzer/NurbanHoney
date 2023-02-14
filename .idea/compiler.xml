@@ -6,6 +6,8 @@
       <module name="NurbanHoney.buildSrc" target="11" />
       <module name="NurbanHoney.buildSrc.main" target="11" />
       <module name="NurbanHoney.buildSrc.test" target="11" />
+      <module name="NurbanHoney.Data" target="11" />
+      <module name="NurbanHoney.DI" target="11" />
     </bytecodeTargetLevel>
   </component>
 </project>

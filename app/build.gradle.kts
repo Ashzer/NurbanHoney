@@ -43,8 +43,10 @@ android {
     packagingOptions {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
+            excludes += "META-INF/gradle/incremental.annotation.processors"
         }
     }
+
 }
 
 dependencies {
@@ -55,9 +57,9 @@ dependencies {
     val composeBom = platform("androidx.compose:compose-bom:2022.10.00")
     implementation(composeBom)
     androidTestImplementation(composeBom)
+    implementation(project(":Data"))
 
     //include module name nurbanhoney:network
-    implementation(project(":nurbanhoney:network"))
     implementation(project(":Domain"))
 
     // Choose one of the following:
@@ -89,7 +91,7 @@ dependencies {
     implementation("androidx.compose.material3:material3-window-size-class")
 
     // Optional - Integration with activities
-    implementation("androidx.activity:activity-compose:1.5.1")
+    implementation("androidx.activity:activity-compose:1.6.1")
     // Optional - Integration with ViewModels
     implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.5.1")
     // Optional - Integration with LiveData

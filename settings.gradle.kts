@@ -14,6 +14,7 @@ dependencyResolutionManagement {
 }
 rootProject.name = "NurbanHoney"
 include(":app")
-include(":nurbanhoney:network")
+include(":Data")
 include(":Domain")
 include(":ErrorHandler")
+include(":DI")

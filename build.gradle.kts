@@ -10,6 +10,13 @@ plugins {
 
 }
 
-tasks.register("clean", Delete::class){
+//configurations.all { resolutionStrategy { exclude group : "org.jetbrains.kotlinx", module: "kotlinx-coroutines-debug" } }
+configurations.all() {
+    resolutionStrategy {
+        exclude(group = "org.jetbrains.kotlinx", module = "kotlinx-coroutines-debug")
+    }
+}
+
+tasks.register("clean", Delete::class) {
     delete(rootProject.buildDir)
 }

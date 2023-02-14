@@ -1,12 +1,12 @@
-package com.devjj.platform.nurbanhoney.network.di
+package com.devjj.platform.nurbanhoney.di
 
 import android.content.Context
+import com.devjj.platform.nerbanhoney.di.R
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
-import fake.`package`.name.`for`.sync.R
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -15,7 +15,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-class NetworkModule {
+class ApplicationModule {
 
     @Provides
     @Singleton
