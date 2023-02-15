@@ -1,5 +1,6 @@
 package com.devjj.platform.nurbanhoney.feature.ui
 
+import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
@@ -14,6 +15,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import androidx.navigation.NavHostController
 import com.devjj.platform.nurbanhoney.core.extension.AlignLeft
 import com.devjj.platform.nurbanhoney.core.extension.AlignRight
@@ -30,6 +32,7 @@ fun HomeScreen(navController: NavHostController) {
     val contextForToast = LocalContext.current.applicationContext
     val drawerState = scaffoldState.drawerState
     val scope = coroutineScope
+
     AlignRight {
         MaterialTheme {
             Scaffold(
@@ -125,8 +128,14 @@ fun HomeScreen(navController: NavHostController) {
 
 @Preview
 @Composable
-fun ArticleItem(){
-    Box(modifier = Modifier.border(width = 10.dp, color = Color.Magenta, shape = RoundedCornerShape(10))){
+fun ArticleItem() {
+    Box(
+        modifier = Modifier.border(
+            width = 10.dp,
+            color = Color.Magenta,
+            shape = RoundedCornerShape(10)
+        )
+    ) {
 
     }
 }

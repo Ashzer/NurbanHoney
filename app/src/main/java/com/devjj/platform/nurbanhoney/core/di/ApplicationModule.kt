@@ -3,6 +3,8 @@ package com.devjj.platform.nurbanhoney.core.di
 import android.content.Context
 import com.devjj.platform.nurbanhoney.BuildConfig
 import com.devjj.platform.nurbanhoney.R
+import com.devjj.platform.nurbanhoney.domain.BoardRepository
+import com.devjj.platform.nurbanhoney.network.repositories.BoardRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -19,21 +21,5 @@ import javax.inject.Singleton
 class ApplicationModule {
     @Provides
     @Singleton
-    fun provideRetrofit(@ApplicationContext context: Context): Retrofit {
-        return Retrofit.Builder()
-            .baseUrl(context.getString(R.string.server_address))
-            .client(createClient())
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-    }
-
-    private fun createClient(): OkHttpClient {
-        val okHttpClientBuilder: OkHttpClient.Builder = OkHttpClient.Builder()
-        if (BuildConfig.DEBUG) {
-            val loggingInterceptor =
-                HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
-            okHttpClientBuilder.addInterceptor(loggingInterceptor)
-        }
-        return okHttpClientBuilder.build()
-    }
+    fun provideBoardRepository(dataSource : BoardRepositoryImpl) : BoardRepository = dataSource
 }

@@ -58,8 +58,6 @@ dependencies {
     implementation(composeBom)
     androidTestImplementation(composeBom)
     implementation(project(":Data"))
-
-    //include module name nurbanhoney:network
     implementation(project(":Domain"))
 
     // Choose one of the following:
