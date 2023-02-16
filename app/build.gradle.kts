@@ -59,6 +59,11 @@ dependencies {
     androidTestImplementation(composeBom)
     implementation(project(":Data"))
     implementation(project(":Domain"))
+    implementation(project(":ErrorHandler"))
+
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1")
+    //livedata
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.5.1")
 
     // Choose one of the following:
     // Material Design 3

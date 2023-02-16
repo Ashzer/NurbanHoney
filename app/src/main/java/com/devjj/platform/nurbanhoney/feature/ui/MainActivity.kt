@@ -25,13 +25,7 @@ class MainActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         val viewModel by viewModels<BoardViewModel>()
         setContent {
-
-            viewModel.getBoards().fold(
-                { boards ->
-                    Log.d("HomeScreen", "boards : $boards")
-                },
-                { error -> }
-            )
+            viewModel.getBoards()
             NurbanHoneyTheme {
                 val navController = rememberNavController()
                 SetupNavGraph(navController = navController)

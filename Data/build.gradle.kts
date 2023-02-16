@@ -6,7 +6,7 @@ plugins {
 }
 
 android {
-    namespace = "com.devjj.platform.nerbanhoney.data"
+    namespace = "com.devjj.platform.nurbanhoney.data"
     compileSdk = 33
 
     defaultConfig {
@@ -44,6 +44,7 @@ dependencies {
 
     implementation(project(mapOf("path" to ":Domain")))
     implementation(project(mapOf("path" to ":ErrorHandler")))
+    implementation(project(mapOf("path" to ":DI")))
 
     //dagger
     implementation("com.google.dagger:hilt-android:2.44.1")
