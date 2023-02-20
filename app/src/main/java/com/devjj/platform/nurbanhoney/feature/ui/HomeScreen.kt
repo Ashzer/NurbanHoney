@@ -57,7 +57,7 @@ fun HomeScreen(navController: NavHostController) {
                             )
                             BoardsTab(
                                 tabs = tabs,
-                                selectedTabIndex = selectedTabIndex
+                                selectedTabIndex = selectedTabIndex,
                             ) { tabIndex ->
                                 selectedTabIndex = tabIndex
                             }
@@ -126,16 +126,3 @@ fun HomeScreen(navController: NavHostController) {
     }
 }
 
-@Preview
-@Composable
-fun ArticleItem() {
-    Box(
-        modifier = Modifier.border(
-            width = 10.dp,
-            color = Color.Magenta,
-            shape = RoundedCornerShape(10)
-        )
-    ) {
-
-    }
-}

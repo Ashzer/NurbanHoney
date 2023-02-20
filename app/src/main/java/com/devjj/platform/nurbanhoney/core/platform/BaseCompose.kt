@@ -7,6 +7,10 @@ import androidx.compose.foundation.layout.offset
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
+import androidx.compose.material.DrawerState
+import androidx.compose.material.Icon
+import androidx.compose.material.IconButton
+import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -82,7 +86,7 @@ fun DrawerContent(
 }
 
 @Composable
-fun DrawTabs(navController: NavHostController){
+fun DrawTabs(navController: NavHostController) {
 
 }
 
@@ -92,9 +96,10 @@ fun DrawBottomNavigation(navController: NavHostController) {
         BottomNavigationItem(
             selected = true,
             onClick = {
-                with(Screen.Home.route){
+                with(Screen.Home.route) {
                     navController.clearBackStack(this)
-                    navController.navigate(this){launchSingleTop = true} }
+                    navController.navigate(this) { launchSingleTop = true }
+                }
             },
             icon = {
                 Image(
@@ -108,9 +113,10 @@ fun DrawBottomNavigation(navController: NavHostController) {
         BottomNavigationItem(
             selected = true,
             onClick = {
-                with(Screen.Rank.route){
+                with(Screen.Rank.route) {
                     navController.clearBackStack(this)
-                    navController.navigate(this){launchSingleTop = true} }
+                    navController.navigate(this) { launchSingleTop = true }
+                }
             },
             icon = {
                 Image(
@@ -124,9 +130,10 @@ fun DrawBottomNavigation(navController: NavHostController) {
         BottomNavigationItem(
             selected = true,
             onClick = {
-                with(Screen.Profile.route){
+                with(Screen.Profile.route) {
                     navController.clearBackStack(this)
-                    navController.navigate(this){launchSingleTop = true} }
+                    navController.navigate(this) { launchSingleTop = true }
+                }
             },
             icon = {
                 Image(

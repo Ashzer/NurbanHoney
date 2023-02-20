@@ -48,6 +48,7 @@ dependencies {
 
     //dagger
     implementation("com.google.dagger:hilt-android:2.44.1")
+    implementation("androidx.core:core-ktx:+")
     //dagger compiler
     kapt("com.google.dagger:hilt-android-compiler:2.44.1")
     //dagger hilt compiler
