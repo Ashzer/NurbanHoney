@@ -7,9 +7,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.ScrollableTabRow
-import androidx.compose.material3.Tab
-import androidx.compose.material3.Text
+import androidx.compose.material.ScrollableTabRow
+import androidx.compose.material.Tab
+import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -23,7 +23,7 @@ fun BoardsTab(
     selectedTabIndex: Int,
     onTabClick: (Int) -> Unit
 ) {
-    ScrollableTabRow(selectedTabIndex = selectedTabIndex, edgePadding = 0.dp, containerColor = Color(0xFFFFFFFF),indicator = {}) {
+    ScrollableTabRow(selectedTabIndex = selectedTabIndex, edgePadding = 0.dp, indicator = {}) {
         tabs.forEachIndexed { tabIndex, tab ->
             val selected = selectedTabIndex == tabIndex
             Tab(

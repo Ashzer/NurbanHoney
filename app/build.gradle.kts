@@ -52,12 +52,8 @@ android {
 dependencies {
 
     implementation("androidx.core:core-ktx:1.9.0")
-    implementation("androidx.core:core-ktx:+")
+    implementation("androidx.appcompat:appcompat:1.6.1")
 
-    //compose
-    val composeBom = platform("androidx.compose:compose-bom:2022.12.00")
-    implementation(composeBom)
-    androidTestImplementation(composeBom)
     implementation(project(":Data"))
     implementation(project(":Domain"))
     implementation(project(":ErrorHandler"))
@@ -66,21 +62,20 @@ dependencies {
     //livedata
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.5.1")
 
-    // Choose one of the following:
-    // Material Design 3
-    implementation("androidx.compose.material3:material3")
-    // or Material Design 2
+
+    //compose
+    val composeBom = platform("androidx.compose:compose-bom:2022.12.00")
+    implementation(composeBom)
+    androidTestImplementation(composeBom)
+
     implementation("androidx.compose.material:material")
-    // or skip Material Design and build directly on top of foundational components
-    implementation("androidx.compose.foundation:foundation")
-    // or only import the main APIs for the underlying toolkit systems,
-    // such as input and measurement/layout
     implementation("androidx.compose.ui:ui")
 
     // Android Studio Preview support
     implementation("androidx.compose.ui:ui-tooling-preview")
     debugImplementation("androidx.compose.ui:ui-tooling")
 
+    implementation("androidx.compose.compiler:compiler:1.4.2")
     // UI Tests
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
@@ -92,7 +87,7 @@ dependencies {
     // Optional - Add full set of material icons
     implementation("androidx.compose.material:material-icons-extended")
     // Optional - Add window size utils
-    implementation("androidx.compose.material3:material3-window-size-class")
+    //implementation("androidx.compose.material3:material3-window-size-class")
 
     // Optional - Integration with activities
     implementation("androidx.activity:activity-compose:1.6.1")
@@ -102,13 +97,13 @@ dependencies {
     implementation("androidx.compose.runtime:runtime-livedata")
     // Optional - Integration with RxJava
     implementation("androidx.compose.runtime:runtime-rxjava2")
+    implementation("androidx.activity:activity:1.6.1")
 
     //dagger-hilt
     implementation("com.google.dagger:hilt-android:2.44.1")
     kapt("com.google.dagger:hilt-android-compiler:2.44.1")
 
     implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.5.1")
-    implementation ("androidx.activity:activity-compose:1.6.1")
 
     implementation("androidx.core:core-splashscreen:1.0.0")
     implementation("com.airbnb.android:lottie-compose:5.2.0")
