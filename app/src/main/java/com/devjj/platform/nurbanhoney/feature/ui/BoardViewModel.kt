@@ -1,6 +1,10 @@
 package com.devjj.platform.nurbanhoney.feature.ui
 
 import android.util.Log
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.toMutableStateList
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.devjj.platform.nurbanhoney.domain.BoardEntity
@@ -18,6 +22,10 @@ class BoardViewModel
 @Inject constructor(
     private val getBoardUseCase: GetBoardUseCase
 ) : ViewModel() {
+
+    var boardsState = mutableStateListOf<Board>()
+
+
     fun getBoards() {
         getBoardUseCase(UseCase.None(), viewModelScope) {
             it.fold(
@@ -31,6 +39,8 @@ class BoardViewModel
         boards.forEach {
             Log.d("boards_check__", it.toString())
         }
+
+        boardsState = boards.map { Board(it.id, it.name, it.address) }.toMutableStateList()
     }
 
     private fun handleFailure(failure: Throwable) {

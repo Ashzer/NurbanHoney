@@ -65,10 +65,10 @@ fun ArticleItem(order: String, imageURL: String) {
 fun ArticleItemPre() {
 
     LazyColumn() {
-        for (i in 0..10) {
+        for (i in 1..10) {
             item {
                 ArticleItem(
-                    order = "1",
+                    order = (i*2+1).toString(),
                     imageURL = "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"
                 )
                 Divider(color = Color.Red, thickness = 1.dp)
@@ -76,7 +76,7 @@ fun ArticleItemPre() {
 
             item {
                 ArticleItem(
-                    order = "1",
+                    order = (i*2+2).toString(),
                     imageURL = ""
                 )
                 Divider(color = Color.Red, thickness = 1.dp)

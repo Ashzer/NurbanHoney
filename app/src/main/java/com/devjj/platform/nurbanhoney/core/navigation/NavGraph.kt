@@ -8,6 +8,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -17,10 +18,9 @@ import com.devjj.platform.nurbanhoney.feature.ui.RankScreen
 import com.devjj.platform.nurbanhoney.feature.ui.SplashScreen
 
 @Composable
-fun SetupNavGraph(navController: NavHostController){
+fun SetupNavGraph(navController: NavHostController) {
     NavHost(
-        navController = navController,
-        startDestination = Screen.Splash.route
+        navController = navController, startDestination = Screen.Splash.route
     ) {
         composable(route = Screen.Splash.route) {
             SplashScreen(navController = navController)
@@ -28,11 +28,17 @@ fun SetupNavGraph(navController: NavHostController){
         composable(route = Screen.Home.route) {
             HomeScreen(navController = navController)
         }
-        composable(route = Screen.Rank.route){
+        composable(route = Screen.Rank.route) {
             RankScreen(navController = navController)
         }
-        composable(route = Screen.Profile.route){
+        composable(route = Screen.Profile.route) {
             ProfileScreen(navController = navController)
         }
     }
+}
+
+@Preview
+@Composable
+fun Test() {
+    Text("What's wrong with you?")
 }

@@ -2,15 +2,14 @@ package com.devjj.platform.nurbanhoney.feature.ui
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.ScrollableTabRow
 import androidx.compose.material.Tab
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -19,7 +18,7 @@ import androidx.compose.ui.unit.sp
 
 @Composable
 fun BoardsTab(
-    tabs: List<String>,
+    tabs: SnapshotStateList<Board>,
     selectedTabIndex: Int,
     onTabClick: (Int) -> Unit
 ) {
@@ -31,7 +30,7 @@ fun BoardsTab(
                 onClick = { onTabClick(tabIndex) },
                 text = {
                     Text(
-                        text = tab,
+                        text = tab.name,
                         color = if (selected) Color(0xFFF6B748) else Color(0xFFD4D4D4),
                         fontSize = 15.sp
                     )

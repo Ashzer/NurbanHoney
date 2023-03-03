@@ -1,21 +1,18 @@
 package com.devjj.platform.nurbanhoney.feature.ui
 
-import android.util.Log
 import android.widget.Toast
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
-import androidx.compose.material.ButtonDefaults.textButtonColors
 import androidx.compose.runtime.*
+import androidx.compose.runtime.snapshots.SnapshotStateList
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.devjj.platform.nurbanhoney.core.extension.AlignLeft
 import com.devjj.platform.nurbanhoney.core.extension.AlignRight
@@ -26,12 +23,14 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 @Composable
-fun HomeScreen(navController: NavHostController) {
+fun HomeScreen(navController: NavHostController, boardViewModel: BoardViewModel = hiltViewModel()) {
     val scaffoldState = rememberScaffoldState()
     val coroutineScope = rememberCoroutineScope()
     val contextForToast = LocalContext.current.applicationContext
     val drawerState = scaffoldState.drawerState
     val scope = coroutineScope
+
+    val boards  = boardViewModel.boardsState
 
     AlignRight {
         MaterialTheme {
@@ -41,29 +40,7 @@ fun HomeScreen(navController: NavHostController) {
 
                 //Align left
                 topBar = {
-                    Column {
-                        AlignLeft {
-                            MainToolBar(scaffoldState.drawerState, coroutineScope)
-                        }
-                        AlignLeft {
-                            var selectedTabIndex by remember { mutableStateOf(0) }
-                            val tabs = listOf(
-                                "전체",
-                                "인기",
-                                "너반꿀",
-                                "자유",
-                                "음악",
-                                "스포츠"
-                            )
-                            BoardsTab(
-                                tabs = tabs,
-                                selectedTabIndex = selectedTabIndex,
-                            ) { tabIndex ->
-                                selectedTabIndex = tabIndex
-                            }
-                        }
-
-                    }
+                    MainTopBar(boards)
                 },
                 bottomBar = {
                     AlignLeft {
@@ -126,3 +103,27 @@ fun HomeScreen(navController: NavHostController) {
     }
 }
 
+@Composable
+fun MainTopBar(boards: SnapshotStateList<Board>){
+    val scaffoldState = rememberScaffoldState()
+    val coroutineScope = rememberCoroutineScope()
+
+
+
+    Column {
+        AlignLeft {
+            MainToolBar(scaffoldState.drawerState, coroutineScope)
+        }
+        AlignLeft {
+            var selectedTabIndex by remember { mutableStateOf(0) }
+
+            BoardsTab(
+                tabs = boards,
+                selectedTabIndex = selectedTabIndex,
+            ) { tabIndex ->
+                selectedTabIndex = tabIndex
+            }
+        }
+
+    }
+}
