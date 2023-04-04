@@ -36,9 +36,3 @@ fun SetupNavGraph(navController: NavHostController) {
         }
     }
 }
-
-@Preview
-@Composable
-fun Test() {
-    Text("What's wrong with you?")
-}

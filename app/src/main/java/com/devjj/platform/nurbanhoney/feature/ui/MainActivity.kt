@@ -23,10 +23,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val viewModel by viewModels<BoardViewModel>()
-
         setContent {
-            viewModel.getBoards()
             NurbanHoneyTheme {
                 val navController = rememberNavController()
                 SetupNavGraph(navController = navController)

@@ -1,8 +1,8 @@
 plugins {
     id("com.android.application")
-    id("org.jetbrains.kotlin.android")
+    kotlin("android")
+    kotlin("kapt")
     id("com.google.dagger.hilt.android")
-    id("kotlin-kapt")
 }
 
 android {
@@ -61,63 +61,56 @@ dependencies {
     implementation(project(":Domain"))
     implementation(project(":ErrorHandler"))
 
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1")
-    //livedata
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.5.1")
+    //lifeCycle
+    val lifecycle = rootProject.extra["lifecycle_version"] as String
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle")
 
 
     //compose
-    val composeBom = platform("androidx.compose:compose-bom:2022.12.00")
+    val composeBom = platform("androidx.compose:compose-bom:2023.03.00")
     implementation(composeBom)
     androidTestImplementation(composeBom)
-
     implementation("androidx.compose.material:material")
     implementation("androidx.compose.ui:ui")
-
     // Android Studio Preview support
     implementation("androidx.compose.ui:ui-tooling-preview")
     debugImplementation("androidx.compose.ui:ui-tooling")
-
-    implementation("androidx.compose.compiler:compiler:1.4.3")
+    implementation("androidx.compose.compiler:compiler:1.4.4")
     // UI Tests
     androidTestImplementation("androidx.compose.ui:ui-test-junit4")
     debugImplementation("androidx.compose.ui:ui-test-manifest")
-
-    // Optional - Included automatically by material, only add when you need
-    // the icons but not the material library (e.g. when using Material3 or a
-    // custom design system based on Foundation)
     implementation("androidx.compose.material:material-icons-core")
-    // Optional - Add full set of material icons
     implementation("androidx.compose.material:material-icons-extended")
-    // Optional - Add window size utils
-    //implementation("androidx.compose.material3:material3-window-size-class")
 
     // Optional - Integration with activities
-    implementation("androidx.activity:activity-compose:1.6.1")
+    implementation("androidx.activity:activity-compose:1.7.0")
     // Optional - Integration with ViewModels
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.5.1")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycle")
     // Optional - Integration with LiveData
     implementation("androidx.compose.runtime:runtime-livedata")
     // Optional - Integration with RxJava
-    implementation("androidx.compose.runtime:runtime-rxjava2")
-    implementation("androidx.activity:activity:1.6.1")
+//    implementation("androidx.compose.runtime:runtime-rxjava2")
+//    implementation("androidx.activity:activity:1.6.1")
 
 
     //dagger-hilt
-    implementation("com.google.dagger:hilt-android:2.44.1")
-    kapt("com.google.dagger:hilt-android-compiler:2.44.1")
+    val hilt = rootProject.extra["hilt_version"] as String
+    implementation("com.google.dagger:hilt-android:$hilt")
+    kapt("com.google.dagger:hilt-android-compiler:$hilt")
 
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.5.1")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle")
 
     implementation("androidx.core:core-splashscreen:1.0.0")
-    implementation("com.airbnb.android:lottie-compose:5.2.0")
+    implementation("com.airbnb.android:lottie-compose:6.0.0")
     implementation("androidx.navigation:navigation-compose:2.5.3")
 //hilt navigation
     implementation("androidx.hilt:hilt-navigation-compose:1.1.0-alpha01")
 
     //okhttp
     // define a BOM and its version
-    implementation(platform("com.squareup.okhttp3:okhttp-bom:4.10.0"))
+    val okhttpBom = platform("com.squareup.okhttp3:okhttp-bom:4.10.0")
+    implementation(okhttpBom)
 
     // define any required OkHttp artifacts without version
     implementation("com.squareup.okhttp3:okhttp")
@@ -125,16 +118,27 @@ dependencies {
     implementation("com.squareup.okhttp3:okhttp-urlconnection")
 
     //retrofit
-    implementation("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
+    val retrofit = rootProject.extra["retrofit_version"] as String
+    implementation("com.squareup.retrofit2:retrofit:$retrofit")
+    implementation("com.squareup.retrofit2:converter-gson:$retrofit")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.4")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.0")
 
     //coil
-    implementation("io.coil-kt:coil-compose:2.0.0")
+    implementation("io.coil-kt:coil-compose:2.3.0")
 
+
+    val orbit = rootProject.extra["orbit_version"] as String
+    implementation("org.orbit-mvi:orbit-core:$orbit")
+// or, if on Android:
+    implementation("org.orbit-mvi:orbit-viewmodel:$orbit")
+// If using Jetpack Compose include
+    implementation("org.orbit-mvi:orbit-compose:$orbit")
+
+// Tests
+    testImplementation("org.orbit-mvi:orbit-test:$orbit")
 
 }
 

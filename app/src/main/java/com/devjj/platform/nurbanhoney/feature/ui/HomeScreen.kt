@@ -1,5 +1,6 @@
 package com.devjj.platform.nurbanhoney.feature.ui
 
+import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -7,7 +8,7 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.*
-import androidx.compose.runtime.snapshots.SnapshotStateList
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
@@ -30,8 +31,10 @@ fun HomeScreen(navController: NavHostController, boardViewModel: BoardViewModel 
     val drawerState = scaffoldState.drawerState
     val scope = coroutineScope
 
-    val boards  = boardViewModel.boardsState
-
+    val boards by boardViewModel.boardsState.collectAsState()
+    boardViewModel.getBoards()
+    Log.d("viewmodel_check",boardViewModel.toString())
+    Log.d("Tap","HomeScreen $boards")
     AlignRight {
         MaterialTheme {
             Scaffold(
@@ -41,6 +44,7 @@ fun HomeScreen(navController: NavHostController, boardViewModel: BoardViewModel 
                 //Align left
                 topBar = {
                     MainTopBar(boards)
+
                 },
                 bottomBar = {
                     AlignLeft {
@@ -104,11 +108,14 @@ fun HomeScreen(navController: NavHostController, boardViewModel: BoardViewModel 
 }
 
 @Composable
-fun MainTopBar(boards: SnapshotStateList<Board>){
+fun MainTopBar(boards: List<Board>){
     val scaffoldState = rememberScaffoldState()
     val coroutineScope = rememberCoroutineScope()
 
-
+    if(boards.isNotEmpty())
+        Log.d("Tap","MainTopBar $boards : ${boards[0]}")
+    else
+        Log.d("Tap","MainTopBar empty boards")
 
     Column {
         AlignLeft {

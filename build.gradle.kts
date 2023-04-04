@@ -1,5 +1,12 @@
 buildscript {
-    val compose_version by extra("1.4.0")
+    extra.apply {
+        set("compose_version", "1.4.0")
+        set("orbit_version", "4.6.1")
+        set("retrofit_version", "2.9.0")
+        set("lifecycle_version", "2.6.1")
+        set("hilt_version", "2.45")
+    }
+
 }// Top-level build file where you can add configuration options common to all sub-projects/modules.
 plugins {
     id("com.android.application") version "7.4.0" apply false
@@ -10,7 +17,6 @@ plugins {
 
 }
 
-//configurations.all { resolutionStrategy { exclude group : "org.jetbrains.kotlinx", module: "kotlinx-coroutines-debug" } }
 configurations.all() {
     resolutionStrategy {
         exclude(group = "org.jetbrains.kotlinx", module = "kotlinx-coroutines-debug")

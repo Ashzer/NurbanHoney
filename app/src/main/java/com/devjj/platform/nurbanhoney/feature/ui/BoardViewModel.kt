@@ -1,10 +1,7 @@
 package com.devjj.platform.nurbanhoney.feature.ui
 
 import android.util.Log
-import androidx.compose.runtime.MutableState
-import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.toMutableStateList
+import androidx.compose.runtime.*
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.devjj.platform.nurbanhoney.domain.BoardEntity
@@ -14,6 +11,8 @@ import com.devjj.platform.nurbanhoney.domain.interactor.UseCase
 import com.devjj.platform.nurbanhoney.errorhandler.Failure
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -23,8 +22,8 @@ class BoardViewModel
     private val getBoardUseCase: GetBoardUseCase
 ) : ViewModel() {
 
-    var boardsState = mutableStateListOf<Board>()
-
+    private var _boardsState = MutableStateFlow<List<Board>>(listOf())
+    val boardsState : StateFlow<List<Board>> = _boardsState
 
     fun getBoards() {
         getBoardUseCase(UseCase.None(), viewModelScope) {
@@ -37,13 +36,24 @@ class BoardViewModel
 
     private fun handleBoards(boards: List<BoardEntity>) {
         boards.forEach {
-            Log.d("boards_check__", it.toString())
+            Log.d("handleBoards1", it.toString())
         }
 
-        boardsState = boards.map { Board(it.id, it.name, it.address) }.toMutableStateList()
+        _boardsState.value = boards.map { Board(it.id, it.name, it.address) }.toList()
+        Log.d("handleBoards2", boardsState.value.toString())
     }
 
     private fun handleFailure(failure: Throwable) {
-        Log.d("boards_check__", failure.toString())
+        Log.d("handleFailure", failure.toString())
     }
+}
+
+data class MainState(
+    val boards: List<Board> = listOf(),
+    //val articles : List<Article> = listOf()
+)
+
+sealed class MainSideEffect {
+    data class ShowToast(val message: String) : MainSideEffect()
+    data class GetBoards(val boards: List<Board>) : MainSideEffect()
 }
