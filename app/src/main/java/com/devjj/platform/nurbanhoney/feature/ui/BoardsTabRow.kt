@@ -10,13 +10,11 @@ import androidx.compose.material.ScrollableTabRow
 import androidx.compose.material.Tab
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.State
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.hilt.navigation.compose.hiltViewModel
 
 @Composable
 fun BoardsTab(
@@ -25,11 +23,10 @@ fun BoardsTab(
     onTabClick: (Int) -> Unit
 
 ) {
-
-    Log.d("Tap_test","$tabs")
+    Log.d("Tap_test", "$tabs")
     ScrollableTabRow(selectedTabIndex = selectedTabIndex, edgePadding = 0.dp, indicator = {}) {
-        tabs.forEachIndexed { tabIndex, tab->
-            Log.d("Tap_test","$tabIndex : $tab")
+        tabs.forEachIndexed { tabIndex, tab ->
+            Log.d("Tap_test", "$tabIndex : $tab")
             val selected = selectedTabIndex == tabIndex
             Tab(
                 selected = selected,
@@ -41,18 +38,21 @@ fun BoardsTab(
                         fontSize = 15.sp
                     )
                 },
-                modifier = if (selected) Modifier
-                    .padding(1.dp)
-                    .wrapContentSize()
-                    .clip(shape = RoundedCornerShape(50))
-                    .border(width = 2.dp, color = Color(0xFFF6B748), shape = RoundedCornerShape(50))
-                    .background(Color.Transparent)
-                else Modifier
-                    .padding(1.dp)
-                    .wrapContentSize()
-                    .clip(RoundedCornerShape(50))
-                    .border(width = 2.dp, color = Color(0xFFD4D4D4), shape = RoundedCornerShape(50))
-                    .background(Color.Transparent)
+                modifier = if (selected) {
+                    Modifier
+                        .padding(1.dp)
+                        .wrapContentSize()
+                        .clip(shape = RoundedCornerShape(50))
+                        .border(width = 2.dp, color = Color(0xFFF6B748), shape = RoundedCornerShape(50))
+                        .background(Color.Transparent)
+                } else {
+                    Modifier
+                        .padding(1.dp)
+                        .wrapContentSize()
+                        .clip(RoundedCornerShape(50))
+                        .border(width = 2.dp, color = Color(0xFFD4D4D4), shape = RoundedCornerShape(50))
+                        .background(Color.Transparent)
+                }
             )
         }
     }

@@ -2,7 +2,6 @@ package com.devjj.platform.nurbanhoney.feature.ui
 
 import android.widget.Toast
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
@@ -30,7 +29,7 @@ fun ProfileScreen(navController: NavHostController) {
                 scaffoldState = scaffoldState,
                 backgroundColor = Color.Blue,
 
-                //Align left
+                // Align left
                 topBar = {
                     AlignLeft {
                         MainToolBar(scaffoldState.drawerState, coroutineScope)
@@ -43,7 +42,7 @@ fun ProfileScreen(navController: NavHostController) {
                 },
                 content = { paddingValues ->
                     AlignLeft {
-                        Box{
+                        Box {
                             TextField(value = "profile screen $paddingValues", onValueChange = {})
                         }
                     }

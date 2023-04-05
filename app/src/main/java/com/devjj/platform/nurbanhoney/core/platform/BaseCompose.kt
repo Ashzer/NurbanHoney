@@ -5,12 +5,12 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.offset
 import androidx.compose.material.*
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Menu
 import androidx.compose.material.DrawerState
 import androidx.compose.material.Icon
 import androidx.compose.material.IconButton
 import androidx.compose.material.TopAppBar
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Menu
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -39,7 +39,7 @@ fun MainToolBar(drawerState: DrawerState, scope: CoroutineScope) {
                 content = {
                     Image(
                         painter = painterResource(
-                            id = R.drawable.ic_appbar_icon,
+                            id = R.drawable.ic_appbar_icon
                         ),
                         contentDescription = null
                     )
@@ -58,7 +58,7 @@ fun MainToolBar(drawerState: DrawerState, scope: CoroutineScope) {
                 },
                 onClick = {
                     scope.launch { if (drawerState.isOpen) drawerState.close() else drawerState.open() }
-                },
+                }
             )
         }
     )
@@ -68,7 +68,6 @@ fun MainToolBar(drawerState: DrawerState, scope: CoroutineScope) {
 fun DrawerContent(
     itemClick: (String) -> Unit
 ) {
-
     Column() {
         AlignLeft {
             Button(
@@ -81,13 +80,11 @@ fun DrawerContent(
                 Text("Button2")
             }
         }
-
     }
 }
 
 @Composable
 fun DrawTabs(navController: NavHostController) {
-
 }
 
 @Composable
@@ -104,11 +101,11 @@ fun DrawBottomNavigation(navController: NavHostController) {
             icon = {
                 Image(
                     painter = painterResource(
-                        id = R.drawable.ic_menu_home,
+                        id = R.drawable.ic_menu_home
                     ),
                     contentDescription = null
                 )
-            },
+            }
         )
         BottomNavigationItem(
             selected = true,
@@ -121,11 +118,11 @@ fun DrawBottomNavigation(navController: NavHostController) {
             icon = {
                 Image(
                     painter = painterResource(
-                        id = R.drawable.ic_menu_ranking,
+                        id = R.drawable.ic_menu_ranking
                     ),
                     contentDescription = null
                 )
-            },
+            }
         )
         BottomNavigationItem(
             selected = true,
@@ -138,11 +135,11 @@ fun DrawBottomNavigation(navController: NavHostController) {
             icon = {
                 Image(
                     painter = painterResource(
-                        id = R.drawable.ic_menu_profile,
+                        id = R.drawable.ic_menu_profile
                     ),
                     contentDescription = null
                 )
-            },
+            }
         )
     }
 }

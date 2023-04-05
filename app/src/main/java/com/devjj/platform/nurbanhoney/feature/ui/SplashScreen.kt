@@ -8,14 +8,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
-import androidx.navigation.NavOptions
 import com.airbnb.lottie.compose.LottieAnimation
 import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.animateLottieCompositionAsState
 import com.airbnb.lottie.compose.rememberLottieComposition
 import com.devjj.platform.nurbanhoney.R
 import com.devjj.platform.nurbanhoney.core.navigation.Screen
-
 
 @Composable
 fun SplashScreen(navController: NavHostController) {
@@ -25,7 +23,7 @@ fun SplashScreen(navController: NavHostController) {
             .background(MaterialTheme.colors.primary)
     ) {
         val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.logo))
-        //https://lottiefiles.com/animation/free-download
+        // https://lottiefiles.com/animation/free-download
         val logoAnimationState =
             animateLottieCompositionAsState(composition = composition)
         LottieAnimation(
@@ -34,7 +32,7 @@ fun SplashScreen(navController: NavHostController) {
         )
         if (logoAnimationState.isAtEnd && logoAnimationState.isPlaying) {
             navController.popBackStack()
-            navController.navigate(Screen.Home.route){launchSingleTop = true}
+            navController.navigate(Screen.Home.route) { launchSingleTop = true }
         }
     }
 }

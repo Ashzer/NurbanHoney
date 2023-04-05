@@ -9,7 +9,7 @@ data class BoardNetworkResponse(
     @SerializedName("address") val address: String
 ) {
     companion object {
-        val empty = BoardEntity(-1, "", "")
+        val empty = BoardNetworkResponse(-1, "", "")
     }
 
     fun toBoardEntity() = BoardEntity(id, name, address)

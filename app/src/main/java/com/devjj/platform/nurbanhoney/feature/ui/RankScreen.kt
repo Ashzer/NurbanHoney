@@ -32,7 +32,7 @@ fun RankScreen(navController: NavHostController) {
                 scaffoldState = scaffoldState,
                 backgroundColor = Color.Blue,
 
-                //Align left
+                // Align left
                 topBar = {
                     AlignLeft {
                         MainToolBar(scaffoldState.drawerState, coroutineScope)
@@ -45,7 +45,7 @@ fun RankScreen(navController: NavHostController) {
                 },
                 content = { paddingValues ->
                     AlignLeft {
-                        Box{
+                        Box {
                             TextField(value = "rank screen $paddingValues", onValueChange = {})
                         }
                     }

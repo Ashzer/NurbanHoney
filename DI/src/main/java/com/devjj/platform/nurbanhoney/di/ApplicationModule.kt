@@ -2,6 +2,8 @@ package com.devjj.platform.nurbanhoney.di
 
 import android.content.Context
 import com.devjj.platform.nerbanhoney.di.R
+import com.devjj.platform.nurbanhoney.domain.BoardRepository
+import com.devjj.platform.nurbanhoney.network.repositories.BoardRepositoryImpl
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -16,7 +18,9 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 class ApplicationModule {
-
+    @Provides
+    @Singleton
+    fun provideBoardRepository(dataSource : BoardRepositoryImpl) : BoardRepository = dataSource
     @Provides
     @Singleton
     fun provideRetrofit(@ApplicationContext context : Context) : Retrofit {

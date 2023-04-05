@@ -12,4 +12,3 @@ fun AlignRight(content: @Composable () -> Unit) =
 @Composable
 fun AlignLeft(content: @Composable () -> Unit) =
     CompositionLocalProvider(LocalLayoutDirection provides LayoutDirection.Ltr) { content() }
-

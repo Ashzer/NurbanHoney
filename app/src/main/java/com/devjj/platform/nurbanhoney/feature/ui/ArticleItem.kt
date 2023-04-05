@@ -1,10 +1,8 @@
 package com.devjj.platform.nurbanhoney.feature.ui
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Divider
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -18,7 +16,6 @@ import coil.compose.AsyncImage
 
 @Composable
 fun ArticleItem(order: String, imageURL: String) {
-
     Row(
         modifier = Modifier
             .width(360.dp)
@@ -57,18 +54,16 @@ fun ArticleItem(order: String, imageURL: String) {
             }
         }
     }
-
 }
 
 @Preview
 @Composable
 fun ArticleItemPre() {
-
     LazyColumn() {
         for (i in 1..10) {
             item {
                 ArticleItem(
-                    order = (i*2+1).toString(),
+                    order = (i * 2 + 1).toString(),
                     imageURL = "https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__480.jpg"
                 )
                 Divider(color = Color.Red, thickness = 1.dp)
@@ -76,7 +71,7 @@ fun ArticleItemPre() {
 
             item {
                 ArticleItem(
-                    order = (i*2+2).toString(),
+                    order = (i * 2 + 2).toString(),
                     imageURL = ""
                 )
                 Divider(color = Color.Red, thickness = 1.dp)

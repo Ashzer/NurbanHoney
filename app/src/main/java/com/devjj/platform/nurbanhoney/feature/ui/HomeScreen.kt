@@ -8,7 +8,6 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.*
-import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
@@ -33,18 +32,17 @@ fun HomeScreen(navController: NavHostController, boardViewModel: BoardViewModel 
 
     val boards by boardViewModel.boardsState.collectAsState()
     boardViewModel.getBoards()
-    Log.d("viewmodel_check",boardViewModel.toString())
-    Log.d("Tap","HomeScreen $boards")
+    Log.d("viewmodel_check", boardViewModel.toString())
+    Log.d("Tap", "HomeScreen $boards")
     AlignRight {
         MaterialTheme {
             Scaffold(
                 scaffoldState = scaffoldState,
                 backgroundColor = Color.Transparent,
 
-                //Align left
+                // Align left
                 topBar = {
                     MainTopBar(boards)
-
                 },
                 bottomBar = {
                     AlignLeft {
@@ -53,7 +51,7 @@ fun HomeScreen(navController: NavHostController, boardViewModel: BoardViewModel 
                 },
                 content = { paddingValues ->
                     AlignLeft {
-                        //MainDrawer(scaffoldState.drawerState)
+                        // MainDrawer(scaffoldState.drawerState)
                         Column {
                             LazyRow() {
                                 items(500) {
@@ -69,7 +67,6 @@ fun HomeScreen(navController: NavHostController, boardViewModel: BoardViewModel 
                                 }
                             }
 
-
                             LazyColumn(content = {
                                 items(500) {
                                     Button(
@@ -83,7 +80,6 @@ fun HomeScreen(navController: NavHostController, boardViewModel: BoardViewModel 
                                     }
                                 }
                             })
-
                         }
                         paddingValues.calculateTopPadding()
                     }
@@ -108,14 +104,15 @@ fun HomeScreen(navController: NavHostController, boardViewModel: BoardViewModel 
 }
 
 @Composable
-fun MainTopBar(boards: List<Board>){
+fun MainTopBar(boards: List<Board>) {
     val scaffoldState = rememberScaffoldState()
     val coroutineScope = rememberCoroutineScope()
 
-    if(boards.isNotEmpty())
-        Log.d("Tap","MainTopBar $boards : ${boards[0]}")
-    else
-        Log.d("Tap","MainTopBar empty boards")
+    if (boards.isNotEmpty()) {
+        Log.d("Tap", "MainTopBar $boards : ${boards[0]}")
+    } else {
+        Log.d("Tap", "MainTopBar empty boards")
+    }
 
     Column {
         AlignLeft {
@@ -126,11 +123,10 @@ fun MainTopBar(boards: List<Board>){
 
             BoardsTab(
                 tabs = boards,
-                selectedTabIndex = selectedTabIndex,
+                selectedTabIndex = selectedTabIndex
             ) { tabIndex ->
                 selectedTabIndex = tabIndex
             }
         }
-
     }
 }

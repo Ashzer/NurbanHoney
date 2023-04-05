@@ -40,8 +40,8 @@ android {
     }
 }
 
-dependencies{
-    implementation("com.google.dagger:hilt-android:2.44")
+dependencies {
+    implementation("com.google.dagger:hilt-android:2.45")
     implementation("androidx.core:core-ktx:1.9.0")
-    kapt("com.google.dagger:hilt-android-compiler:2.44")
+    kapt("com.google.dagger:hilt-android-compiler:2.45")
 }

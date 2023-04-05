@@ -18,9 +18,9 @@ private val LightColorPalette = lightColors(
     primary = Color(0xFFFFFFFF),
     primaryVariant = Color.Green,
     secondary = Color.Blue,
-    //background = Color(0xFFFFFFFF),
-    onBackground = Color.Red,
-    //surface = Color.Red
+    // background = Color(0xFFFFFFFF),
+    onBackground = Color.Red
+    // surface = Color.Red
     /* Other default colors to override
     background = Color.White,
     surface = Color.White,

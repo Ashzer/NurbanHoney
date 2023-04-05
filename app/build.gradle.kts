@@ -49,7 +49,7 @@ android {
             excludes += "META-INF/gradle/incremental.annotation.processors"
         }
     }
-
+    namespace = "com.devjj.platform.nurbanhoney"
 }
 
 dependencies {
@@ -57,17 +57,16 @@ dependencies {
     implementation("androidx.core:core-ktx:1.9.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
 
-    implementation(project(":Data"))
-    implementation(project(":Domain"))
     implementation(project(":ErrorHandler"))
+    implementation(project(":DI"))
+    implementation(project(":Domain"))
 
-    //lifeCycle
+    // lifeCycle
     val lifecycle = rootProject.extra["lifecycle_version"] as String
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle")
     implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle")
 
-
-    //compose
+    // compose
     val composeBom = platform("androidx.compose:compose-bom:2023.03.00")
     implementation(composeBom)
     androidTestImplementation(composeBom)
@@ -93,8 +92,7 @@ dependencies {
 //    implementation("androidx.compose.runtime:runtime-rxjava2")
 //    implementation("androidx.activity:activity:1.6.1")
 
-
-    //dagger-hilt
+    // dagger-hilt
     val hilt = rootProject.extra["hilt_version"] as String
     implementation("com.google.dagger:hilt-android:$hilt")
     kapt("com.google.dagger:hilt-android-compiler:$hilt")
@@ -104,10 +102,10 @@ dependencies {
     implementation("androidx.core:core-splashscreen:1.0.0")
     implementation("com.airbnb.android:lottie-compose:6.0.0")
     implementation("androidx.navigation:navigation-compose:2.5.3")
-//hilt navigation
+// hilt navigation
     implementation("androidx.hilt:hilt-navigation-compose:1.1.0-alpha01")
 
-    //okhttp
+    // okhttp
     // define a BOM and its version
     val okhttpBom = platform("com.squareup.okhttp3:okhttp-bom:4.10.0")
     implementation(okhttpBom)
@@ -117,7 +115,7 @@ dependencies {
     implementation("com.squareup.okhttp3:logging-interceptor")
     implementation("com.squareup.okhttp3:okhttp-urlconnection")
 
-    //retrofit
+    // retrofit
     val retrofit = rootProject.extra["retrofit_version"] as String
     implementation("com.squareup.retrofit2:retrofit:$retrofit")
     implementation("com.squareup.retrofit2:converter-gson:$retrofit")
@@ -126,9 +124,8 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:1.1.4")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.0")
 
-    //coil
+    // coil
     implementation("io.coil-kt:coil-compose:2.3.0")
-
 
     val orbit = rootProject.extra["orbit_version"] as String
     implementation("org.orbit-mvi:orbit-core:$orbit")
@@ -139,7 +136,6 @@ dependencies {
 
 // Tests
     testImplementation("org.orbit-mvi:orbit-test:$orbit")
-
 }
 
 kapt {

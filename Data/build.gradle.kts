@@ -2,7 +2,6 @@ plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
     kotlin("kapt")
-
 }
 
 android {
@@ -42,34 +41,19 @@ android {
 dependencies {
     implementation(kotlin("stdlib-jdk8"))
 
-    implementation(project(mapOf("path" to ":Domain")))
-    implementation(project(mapOf("path" to ":ErrorHandler")))
-    implementation(project(mapOf("path" to ":DI")))
+    implementation(project(":Domain"))
+    implementation(project(":ErrorHandler"))
 
-    //dagger
-    implementation("com.google.dagger:hilt-android:2.44.1")
+    // dagger
+    implementation("com.google.dagger:hilt-android:2.45")
+    kapt("com.google.dagger:hilt-android-compiler:2.45")
     implementation("androidx.core:core-ktx:1.9.0")
-    //dagger compiler
-    kapt("com.google.dagger:hilt-android-compiler:2.44.1")
-    //dagger hilt compiler
     kapt("androidx.hilt:hilt-compiler:1.0.0")
-    //dagger hilt android
-    implementation("com.google.dagger:hilt-android:2.44.1")
-    //dagger hilt android compiler
-    kapt("com.google.dagger:hilt-android-compiler:2.44.1")
-    //dagger hilt android testing
     androidTestImplementation("com.google.dagger:hilt-android-testing:2.44.1")
-    //dagger hilt android testing compiler
-    kaptAndroidTest("com.google.dagger:hilt-android-compiler:2.44.1")
-    //dagger hilt android testing compiler
     kaptAndroidTest("com.google.dagger:hilt-android-testing-compiler:2.44.1")
 
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
-    implementation("com.google.code.gson:gson:2.8.9")
+    implementation("com.google.code.gson:gson:2.10.1")
     implementation("com.squareup.okhttp3:logging-interceptor:4.10.0")
-
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
-    implementation("com.google.dagger:hilt-android:2.44.1")
-    implementation("com.google.dagger:hilt-android-compiler:2.44.1")
-
 }

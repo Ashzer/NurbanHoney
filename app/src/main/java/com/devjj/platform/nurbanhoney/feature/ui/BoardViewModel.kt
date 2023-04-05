@@ -5,15 +5,11 @@ import androidx.compose.runtime.*
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.devjj.platform.nurbanhoney.domain.BoardEntity
-import com.devjj.platform.nurbanhoney.domain.BoardRepository
 import com.devjj.platform.nurbanhoney.domain.GetBoardUseCase
 import com.devjj.platform.nurbanhoney.domain.interactor.UseCase
-import com.devjj.platform.nurbanhoney.errorhandler.Failure
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
@@ -23,7 +19,7 @@ class BoardViewModel
 ) : ViewModel() {
 
     private var _boardsState = MutableStateFlow<List<Board>>(listOf())
-    val boardsState : StateFlow<List<Board>> = _boardsState
+    val boardsState: StateFlow<List<Board>> = _boardsState
 
     fun getBoards() {
         getBoardUseCase(UseCase.None(), viewModelScope) {
@@ -49,8 +45,8 @@ class BoardViewModel
 }
 
 data class MainState(
-    val boards: List<Board> = listOf(),
-    //val articles : List<Article> = listOf()
+    val boards: List<Board> = listOf()
+    // val articles : List<Article> = listOf()
 )
 
 sealed class MainSideEffect {
