@@ -23,12 +23,15 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 @Composable
-fun HomeScreen(navController: NavHostController, boardViewModel: BoardViewModel = hiltViewModel()) {
+fun HomeScreen(
+    navController: NavHostController,
+    boardViewModel: BoardViewModel = hiltViewModel()
+) {
     val scaffoldState = rememberScaffoldState()
     val coroutineScope = rememberCoroutineScope()
-    val contextForToast = LocalContext.current.applicationContext
+    val contextForToast =
+        LocalContext.current.applicationContext
     val drawerState = scaffoldState.drawerState
-    val scope = coroutineScope
 
     val boards by boardViewModel.boardsState.collectAsState()
     boardViewModel.getBoards()
@@ -60,10 +63,13 @@ fun HomeScreen(navController: NavHostController, boardViewModel: BoardViewModel 
                                             .padding(5.dp)
                                             .width(200.dp)
                                             .height(120.dp),
-                                        backgroundColor = Color(0x33F6B748),
-                                        shape = RoundedCornerShape(30.dp)
-                                    ) {
-                                    }
+                                        backgroundColor = Color(
+                                            0x33F6B748
+                                        ),
+                                        shape = RoundedCornerShape(
+                                            30.dp
+                                        )
+                                    ) {}
                                 }
                             }
 
@@ -87,9 +93,11 @@ fun HomeScreen(navController: NavHostController, boardViewModel: BoardViewModel 
                 drawerContent = {
                     AlignLeft {
                         DrawerContent { itemLabel ->
-                            Toast
-                                .makeText(contextForToast, itemLabel, Toast.LENGTH_SHORT)
-                                .show()
+                            Toast.makeText(
+                                contextForToast,
+                                itemLabel,
+                                Toast.LENGTH_SHORT
+                            ).show()
                             coroutineScope.launch {
                                 // delay for the ripple effect
                                 delay(timeMillis = 250)
@@ -116,10 +124,17 @@ fun MainTopBar(boards: List<Board>) {
 
     Column {
         AlignLeft {
-            MainToolBar(scaffoldState.drawerState, coroutineScope)
+            MainToolBar(
+                scaffoldState.drawerState,
+                coroutineScope
+            )
         }
         AlignLeft {
-            var selectedTabIndex by remember { mutableStateOf(0) }
+            var selectedTabIndex by remember {
+                mutableStateOf(
+                    0
+                )
+            }
 
             BoardsTab(
                 tabs = boards,

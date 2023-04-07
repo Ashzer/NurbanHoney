@@ -25,7 +25,6 @@ fun RankScreen(navController: NavHostController) {
     val coroutineScope = rememberCoroutineScope()
     val contextForToast = LocalContext.current.applicationContext
     val drawerState = scaffoldState.drawerState
-    val scope = coroutineScope
     AlignRight {
         MaterialTheme {
             Scaffold(

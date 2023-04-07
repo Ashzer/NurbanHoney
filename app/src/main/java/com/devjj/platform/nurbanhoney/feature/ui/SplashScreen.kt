@@ -13,7 +13,7 @@ import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.animateLottieCompositionAsState
 import com.airbnb.lottie.compose.rememberLottieComposition
 import com.devjj.platform.nurbanhoney.R
-import com.devjj.platform.nurbanhoney.core.navigation.Screen
+import com.devjj.platform.nurbanhoney.core.navigation.Routes
 
 @Composable
 fun SplashScreen(navController: NavHostController) {
@@ -32,7 +32,7 @@ fun SplashScreen(navController: NavHostController) {
         )
         if (logoAnimationState.isAtEnd && logoAnimationState.isPlaying) {
             navController.popBackStack()
-            navController.navigate(Screen.Home.route) { launchSingleTop = true }
+            navController.navigate(Routes.Home.route) { launchSingleTop = true }
         }
     }
 }

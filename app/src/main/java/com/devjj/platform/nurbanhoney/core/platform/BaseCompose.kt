@@ -5,10 +5,6 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.offset
 import androidx.compose.material.*
-import androidx.compose.material.DrawerState
-import androidx.compose.material.Icon
-import androidx.compose.material.IconButton
-import androidx.compose.material.TopAppBar
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Menu
 import androidx.compose.runtime.Composable
@@ -20,7 +16,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.devjj.platform.nurbanhoney.R
 import com.devjj.platform.nurbanhoney.core.extension.AlignLeft
-import com.devjj.platform.nurbanhoney.core.navigation.Screen
+import com.devjj.platform.nurbanhoney.core.navigation.Routes
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
@@ -84,16 +80,12 @@ fun DrawerContent(
 }
 
 @Composable
-fun DrawTabs(navController: NavHostController) {
-}
-
-@Composable
 fun DrawBottomNavigation(navController: NavHostController) {
     BottomAppBar(modifier = Modifier.border(width = 1.dp, color = Color(0xFFD5D5D5))) {
         BottomNavigationItem(
             selected = true,
             onClick = {
-                with(Screen.Home.route) {
+                with(Routes.Home.route) {
                     navController.clearBackStack(this)
                     navController.navigate(this) { launchSingleTop = true }
                 }
@@ -110,7 +102,7 @@ fun DrawBottomNavigation(navController: NavHostController) {
         BottomNavigationItem(
             selected = true,
             onClick = {
-                with(Screen.Rank.route) {
+                with(Routes.Rank.route) {
                     navController.clearBackStack(this)
                     navController.navigate(this) { launchSingleTop = true }
                 }
@@ -127,7 +119,7 @@ fun DrawBottomNavigation(navController: NavHostController) {
         BottomNavigationItem(
             selected = true,
             onClick = {
-                with(Screen.Profile.route) {
+                with(Routes.Profile.route) {
                     navController.clearBackStack(this)
                     navController.navigate(this) { launchSingleTop = true }
                 }

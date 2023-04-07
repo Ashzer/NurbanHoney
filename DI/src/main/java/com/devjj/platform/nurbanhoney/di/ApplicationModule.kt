@@ -20,10 +20,11 @@ import javax.inject.Singleton
 class ApplicationModule {
     @Provides
     @Singleton
-    fun provideBoardRepository(dataSource : BoardRepositoryImpl) : BoardRepository = dataSource
+    fun provideBoardRepository(dataSource: BoardRepositoryImpl): BoardRepository = dataSource
+
     @Provides
     @Singleton
-    fun provideRetrofit(@ApplicationContext context : Context) : Retrofit {
+    fun provideRetrofit(@ApplicationContext context: Context): Retrofit {
         return Retrofit.Builder()
             .baseUrl(context.getString(R.string.server_address))
             .client(createClient())
@@ -31,8 +32,8 @@ class ApplicationModule {
             .build()
     }
 
-    private fun createClient() : OkHttpClient {
-        val okHttpClientBuilder : OkHttpClient.Builder = OkHttpClient.Builder()
+    private fun createClient(): OkHttpClient {
+        val okHttpClientBuilder: OkHttpClient.Builder = OkHttpClient.Builder()
         val loggingInterceptor = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
         okHttpClientBuilder.addInterceptor(loggingInterceptor)
 

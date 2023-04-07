@@ -60,7 +60,7 @@ fun ArticleItem(order: String, imageURL: String) {
 @Composable
 fun ArticleItemPre() {
     LazyColumn() {
-        for (i in 1..10) {
+        for (i in 0..10) {
             item {
                 ArticleItem(
                     order = (i * 2 + 1).toString(),

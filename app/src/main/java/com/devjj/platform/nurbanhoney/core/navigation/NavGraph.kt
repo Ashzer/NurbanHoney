@@ -13,18 +13,18 @@ import com.devjj.platform.nurbanhoney.feature.ui.SplashScreen
 fun SetupNavGraph(navController: NavHostController) {
     NavHost(
         navController = navController,
-        startDestination = Screen.Splash.route
+        startDestination = Routes.Splash.route
     ) {
-        composable(route = Screen.Splash.route) {
+        composable(route = Routes.Splash.route) {
             SplashScreen(navController = navController)
         }
-        composable(route = Screen.Home.route) {
+        composable(route = Routes.Home.route) {
             HomeScreen(navController = navController)
         }
-        composable(route = Screen.Rank.route) {
+        composable(route = Routes.Rank.route) {
             RankScreen(navController = navController)
         }
-        composable(route = Screen.Profile.route) {
+        composable(route = Routes.Profile.route) {
             ProfileScreen(navController = navController)
         }
     }

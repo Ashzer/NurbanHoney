@@ -44,4 +44,6 @@ dependencies {
     implementation("com.google.dagger:hilt-android:2.45")
     implementation("androidx.core:core-ktx:1.9.0")
     kapt("com.google.dagger:hilt-android-compiler:2.45")
+    implementation("com.jakewharton.threetenabp:threetenabp:1.3.0")
+    implementation("com.squareup.okhttp3:okhttp:4.10.0")
 }
