@@ -1,7 +1,7 @@
 package com.devjj.platform.nurbanhoney.network.entities
 
 import com.devjj.platform.nurbanhoney.LocalDateTimeUtils
-import com.devjj.platform.nurbanhoney.domain.profile.ProfileArticleEntity
+import com.devjj.platform.nurbanhoney.domain.profile.model.ProfileArticleEntity
 import com.devjj.platform.nurbanhoney.extension.empty
 import com.google.gson.annotations.SerializedName
 
@@ -30,6 +30,6 @@ data class ProfileArticleNetworkResponse(
         thumbnail,
         title,
         commentCount,
-        if(createAt.isNullOrEmpty()) null else LocalDateTimeUtils.parse(createAt)
+        if (createAt.isNullOrEmpty()) null else LocalDateTimeUtils.parse(createAt)
     )
 }

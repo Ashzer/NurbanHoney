@@ -25,22 +25,21 @@ internal interface ProfileApi {
     fun getMyArticles(
         @Header("token") token: String,
         @Query("offset") offset: Int,
-        @Query("limit") limit: Int,
+        @Query("limit") limit: Int
     ): Call<List<ProfileArticleNetworkResponse>>
 
     @GET(PROFILE_MYCOMMENT)
     fun getMyComments(
         @Header("token") token: String,
         @Query("offset") offset: Int,
-        @Query("limit") limit: Int,
-    ) : Call<List<ProfileCommentNetworkResponse>>
+        @Query("limit") limit: Int
+    ): Call<List<ProfileCommentNetworkResponse>>
 
     @DELETE(PROFILE_WITHDRAWAL)
     fun signOut(
         @Header("token") token: String,
-        @Query("id") id: Int,
+        @Query("id") id: Int
     ): Call<SimpleNetworkResponse>
-
 
     @FormUrlEncoded
     @PATCH(PROFILE_EDIT)
@@ -48,8 +47,8 @@ internal interface ProfileApi {
         @Header("token") token: String,
         @Field("nickname") nickname: String,
         @Field("description") description: String,
-        @Field("insignia") insignia: List<String>,
-    ) : Call<SimpleNetworkResponse>
+        @Field("insignia") insignia: List<String>
+    ): Call<SimpleNetworkResponse>
     /*POST
     @FormUrlEncoded
     @POST(ARTICLE_LIKE)

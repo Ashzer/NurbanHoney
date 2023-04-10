@@ -1,7 +1,7 @@
 package com.devjj.platform.nurbanhoney.network.entities
 
 import com.google.gson.annotations.SerializedName
-import org.devjj.platform.nurbanhoney.features.ui.login.TokenStatusEntity
+import com.devjj.platform.nurbanhoney.domain.login.model.TokenStatusEntity
 
 data class ValidationNetworkResponse(
     @SerializedName("result")

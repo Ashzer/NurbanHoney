@@ -3,8 +3,8 @@ package com.devjj.platform.nurbanhoney.feature.ui
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.devjj.platform.nurbanhoney.domain.BoardEntity
-import com.devjj.platform.nurbanhoney.domain.GetBoardUseCase
+import com.devjj.platform.nurbanhoney.domain.board.model.BoardEntity
+import com.devjj.platform.nurbanhoney.domain.board.GetBoardUseCase
 import com.devjj.platform.nurbanhoney.domain.interactor.UseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

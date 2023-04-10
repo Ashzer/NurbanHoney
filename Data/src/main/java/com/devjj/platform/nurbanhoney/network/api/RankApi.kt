@@ -11,12 +11,12 @@ internal interface RankApi {
         private const val POPUP = "/popup"
     }
 
-    @GET("$BASE_RANK")
-    fun getRanks() : Call<List<RankNetworkResponse>>
+    @GET(BASE_RANK)
+    fun getRanks(): Call<List<RankNetworkResponse>>
 
     @GET("$BASE_RANK$POPUP")
     fun getRanksTopThree(
-        @Query("offset") offset : Int,
-        @Query("limit") limit : Int
-    ) : Call<List<RankNetworkResponse>>
+        @Query("offset") offset: Int,
+        @Query("limit") limit: Int
+    ): Call<List<RankNetworkResponse>>
 }

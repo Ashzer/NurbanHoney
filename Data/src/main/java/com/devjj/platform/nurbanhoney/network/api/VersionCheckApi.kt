@@ -11,5 +11,5 @@ internal interface VersionCheckApi {
     }
 
     @GET(APP_VERSION)
-    fun appVersion(@Query("app") appName : String) : Call<AppVersionNetworkResponse>
+    fun appVersion(@Query("app") appName: String): Call<AppVersionNetworkResponse>
 }

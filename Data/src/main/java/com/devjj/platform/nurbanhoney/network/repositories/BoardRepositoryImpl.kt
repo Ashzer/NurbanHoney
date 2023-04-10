@@ -1,12 +1,11 @@
 package com.devjj.platform.nurbanhoney.network.repositories
 
-import com.devjj.platform.nurbanhoney.domain.BoardEntity
+import com.devjj.platform.nurbanhoney.domain.board.model.BoardEntity
 import com.devjj.platform.nurbanhoney.domain.BoardRepository
 import com.devjj.platform.nurbanhoney.errorhandler.Failure
 import com.devjj.platform.nurbanhoney.network.NetworkHandler
 import com.devjj.platform.nurbanhoney.network.request
 import com.devjj.platform.nurbanhoney.network.service.BoardService
-import retrofit2.Call
 import javax.inject.Inject
 
 class BoardRepositoryImpl
@@ -24,5 +23,4 @@ class BoardRepositoryImpl
             false -> Result.failure(Failure.NetworkFailure)
         }
     }
-
 }

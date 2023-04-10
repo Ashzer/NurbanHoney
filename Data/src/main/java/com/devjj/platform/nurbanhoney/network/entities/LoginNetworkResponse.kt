@@ -2,7 +2,7 @@
 package com.devjj.platform.nurbanhoney.network.entities
 
 import com.google.gson.annotations.SerializedName
-import org.devjj.platform.nurbanhoney.features.ui.login.NurbanTokenEntity
+import com.devjj.platform.nurbanhoney.domain.login.model.NurbanTokenEntity
 
 data class LoginNetworkResponse(
     @SerializedName("token") var token: String,
@@ -14,5 +14,5 @@ data class LoginNetworkResponse(
         val empty = LoginNetworkResponse("", -1, "")
     }
 
-    fun toNurbanToken() = NurbanTokenEntity(token, userId , error ?: "")
+    fun toNurbanToken() = NurbanTokenEntity(token, userId, error ?: "")
 }

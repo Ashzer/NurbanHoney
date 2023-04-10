@@ -1,16 +1,16 @@
 package com.devjj.platform.nurbanhoney.network.repositories
 
 import com.devjj.platform.nurbanhoney.domain.ArticleRepository
-import com.devjj.platform.nurbanhoney.domain.article.ArticleItemEntity
+import com.devjj.platform.nurbanhoney.domain.article.model.ArticleItemEntity
+import com.devjj.platform.nurbanhoney.domain.article.model.*
 import com.devjj.platform.nurbanhoney.errorhandler.Failure
 import com.devjj.platform.nurbanhoney.network.NetworkHandler
-import com.devjj.platform.nurbanhoney.network.request
-import com.devjj.platform.nurbanhoney.network.service.ArticleService
 import com.devjj.platform.nurbanhoney.network.entities.ArticleNetworkResponse
 import com.devjj.platform.nurbanhoney.network.entities.CommentNetworkResponse
 import com.devjj.platform.nurbanhoney.network.entities.RatingsNetworkResponse
 import com.devjj.platform.nurbanhoney.network.entities.SimpleNetworkResponse
-import org.devjj.platform.nurbanhoney.features.ui.article.model.*
+import com.devjj.platform.nurbanhoney.network.request
+import com.devjj.platform.nurbanhoney.network.service.ArticleService
 import javax.inject.Inject
 
 class ArticleRepositoryImpl
@@ -18,7 +18,6 @@ class ArticleRepositoryImpl
     private val networkHandler: NetworkHandler,
     private val articleService: ArticleService
 ) : ArticleRepository {
-
 
     override fun getArticles(
         board: String,

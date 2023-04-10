@@ -1,7 +1,7 @@
 package com.devjj.platform.nurbanhoney.network.entities
 
-import com.devjj.platform.nurbanhoney.domain.BoardEntity
-import com.devjj.platform.nurbanhoney.domain.article.ArticleItemEntity
+import com.devjj.platform.nurbanhoney.domain.board.model.BoardEntity
+import com.devjj.platform.nurbanhoney.domain.article.model.ArticleItemEntity
 import com.google.gson.annotations.SerializedName
 
 data class ArticlesRequestNetworkResponse(
@@ -18,21 +18,21 @@ data class ArticlesRequestNetworkResponse(
     data class User(
         @SerializedName("userId") val userId: Int,
         @SerializedName("badge") val profile: String,
-        @SerializedName("nickname") val nickname: String,
-        //@SerializedName("insignia") val insignia: String?
-        //@SerializedName("insignia") val insignia : List<String>
+        @SerializedName("nickname") val nickname: String
+        // @SerializedName("insignia") val insignia: String?
+        // @SerializedName("insignia") val insignia : List<String>
     )
 
     fun toNurbanHoneyArticle() = ArticleItemEntity(
-        id,
-        thumbnail ?: "",
-        title,
-        commentCount,
-        board?.toBoardEntity() ?: BoardEntity.empty,
-        user?.profile ?: "",
-        user?.nickname ?: "Empty Nickname",
-        likeCount,
-        createdAt
-        //user?.insignia ?: "No insignia"
+	    id,
+	    thumbnail ?: "",
+	    title,
+	    commentCount,
+	    board?.toBoardEntity() ?: BoardEntity.empty,
+	    user?.profile ?: "",
+	    user?.nickname ?: "Empty Nickname",
+	    likeCount,
+	    createdAt
+        // user?.insignia ?: "No insignia"
     )
 }

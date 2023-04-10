@@ -1,6 +1,6 @@
 package com.devjj.platform.nurbanhoney.network.entities
 
-import com.devjj.platform.nurbanhoney.domain.profile.ProfileEntity
+import com.devjj.platform.nurbanhoney.domain.profile.model.ProfileEntity
 import com.devjj.platform.nurbanhoney.extension.empty
 import com.google.gson.annotations.SerializedName
 
@@ -15,7 +15,7 @@ data class ProfileNetworkResponse(
     @SerializedName("insigniaOwn") val insigniaOwn: List<String>?,
     @SerializedName("myArticleCount") val myArticleCount: Int,
     @SerializedName("myCommentCount") val myCommentCount: Int,
-    @SerializedName("error") val error: String?,
+    @SerializedName("error") val error: String?
 ) {
     fun toProfile() =
         ProfileEntity(
@@ -33,7 +33,9 @@ data class ProfileNetworkResponse(
         )
 
     companion object {
-        val empty = ProfileNetworkResponse(0, String.empty(), String.empty(), String.empty(), String.empty(),
-            0, listOf(), listOf(), 0, 0, String.empty())
+        val empty = ProfileNetworkResponse(
+            0, String.empty(), String.empty(), String.empty(), String.empty(),
+            0, listOf(), listOf(), 0, 0, String.empty()
+        )
     }
 }

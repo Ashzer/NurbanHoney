@@ -8,8 +8,9 @@ import javax.inject.Singleton
 @Singleton
 class RankService
 @Inject constructor(retrofit: Retrofit) : RankApi {
-    private val rankApi by lazy{ retrofit.create(RankApi::class.java)}
+    private val rankApi by lazy { retrofit.create(RankApi::class.java) }
 
     override fun getRanks() = rankApi.getRanks()
-    override fun getRanksTopThree(offset: Int, limit: Int) = rankApi.getRanksTopThree(offset, limit)
+    override fun getRanksTopThree(offset: Int, limit: Int) =
+        rankApi.getRanksTopThree(offset, limit)
 }

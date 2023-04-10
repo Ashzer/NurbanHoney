@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         minSdk = 24
-        targetSdk = 33
+        targetSdk = compileSdk
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -52,9 +52,6 @@ dependencies {
     kaptAndroidTest("com.google.dagger:hilt-android-testing-compiler:$hilt")
     implementation("androidx.core:core-ktx:1.9.0")
     kapt("androidx.hilt:hilt-compiler:1.0.0")
-
-
-
 
     val retrofit = rootProject.extra["retrofit_version"] as String
     implementation("com.squareup.retrofit2:retrofit:$retrofit")

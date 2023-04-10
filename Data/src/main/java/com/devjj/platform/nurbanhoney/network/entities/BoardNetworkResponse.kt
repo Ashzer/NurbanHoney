@@ -1,6 +1,6 @@
 package com.devjj.platform.nurbanhoney.network.entities
 
-import com.devjj.platform.nurbanhoney.domain.BoardEntity
+import com.devjj.platform.nurbanhoney.domain.board.model.BoardEntity
 import com.google.gson.annotations.SerializedName
 
 data class BoardNetworkResponse(

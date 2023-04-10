@@ -1,8 +1,8 @@
 package com.devjj.platform.nurbanhoney.network.repositories
 
 import com.devjj.platform.nurbanhoney.domain.RankRepository
-import com.devjj.platform.nurbanhoney.domain.rank.RankEntity
-import com.devjj.platform.nurbanhoney.domain.rank.RankSimpleEntity
+import com.devjj.platform.nurbanhoney.domain.rank.model.RankEntity
+import com.devjj.platform.nurbanhoney.domain.rank.model.RankSimpleEntity
 import com.devjj.platform.nurbanhoney.errorhandler.Failure
 import com.devjj.platform.nurbanhoney.network.NetworkHandler
 import com.devjj.platform.nurbanhoney.network.request
@@ -25,7 +25,10 @@ class RankRepositoryImpl
         }
     }
 
-    override fun getTopRanks(offset: Int, limit: Int): Result<List<RankSimpleEntity>> {
+    override fun getTopRanks(
+        offset: Int,
+        limit: Int
+    ): Result<List<RankSimpleEntity>> {
         return when (networkHandler.isNetworkAvailable()) {
             true -> request(
                 rankService.getRanksTopThree(offset, limit),
@@ -35,6 +38,4 @@ class RankRepositoryImpl
             false -> Result.failure(Failure.NetworkFailure)
         }
     }
-
-
 }

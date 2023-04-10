@@ -1,9 +1,9 @@
 package com.devjj.platform.nurbanhoney.network.entities
 
+import com.devjj.platform.nurbanhoney.domain.rank.model.RankEntity
+import com.devjj.platform.nurbanhoney.domain.rank.model.RankSimpleEntity
 import com.devjj.platform.nurbanhoney.extension.empty
 import com.google.gson.annotations.SerializedName
-import com.devjj.platform.nurbanhoney.domain.rank.RankEntity
-import com.devjj.platform.nurbanhoney.domain.rank.RankSimpleEntity
 import java.math.BigInteger
 
 data class RankNetworkResponse(
@@ -41,8 +41,6 @@ data class RankNetworkResponse(
         user.nickname,
         user.insignia
     )
-
 }
 
-
-//"id" : "int", "totalLossCut" : "bigint", "totalLikeCount" : "int", "User" : { "userId" : "Int", "badge" : "string", "nickname" : "string", "insignia" : "json"
+// "id" : "int", "totalLossCut" : "bigint", "totalLikeCount" : "int", "User" : { "userId" : "Int", "badge" : "string", "nickname" : "string", "insignia" : "json"

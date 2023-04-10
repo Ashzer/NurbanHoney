@@ -1,7 +1,7 @@
 package com.devjj.platform.nurbanhoney.network.api
 
-import com.devjj.platform.nurbanhoney.network.entities.ArticlesRequestNetworkResponse
 import com.devjj.platform.nurbanhoney.network.entities.ArticleNetworkResponse
+import com.devjj.platform.nurbanhoney.network.entities.ArticlesRequestNetworkResponse
 import com.devjj.platform.nurbanhoney.network.entities.CommentNetworkResponse
 import com.devjj.platform.nurbanhoney.network.entities.RatingsNetworkResponse
 import com.devjj.platform.nurbanhoney.network.entities.SimpleNetworkResponse
@@ -10,7 +10,7 @@ import retrofit2.http.*
 
 internal interface ArticleApi {
     companion object {
-        private const val BASE_BOARD ="/board"
+        private const val BASE_BOARD = "/board"
         private const val ARTICLE = "/article"
         private const val LIKE = "/like"
         private const val DISLIKE = "/dislike"
@@ -27,7 +27,7 @@ internal interface ArticleApi {
         @Query("limit") limit: Int
     ): Call<List<ArticlesRequestNetworkResponse>>
 
-    //@GET(NURBAN_ARTICLE)
+    // @GET(NURBAN_ARTICLE)
     @GET("$BASE_BOARD/{board}$ARTICLE")
     fun getArticle(
         @Path("board") board: String,

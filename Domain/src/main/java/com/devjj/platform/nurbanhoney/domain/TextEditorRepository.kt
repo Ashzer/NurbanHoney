@@ -1,9 +1,9 @@
 package com.devjj.platform.nurbanhoney.domain
 
 import okhttp3.MultipartBody
-import org.devjj.platform.nurbanhoney.features.ui.article.model.ArticleEntity
-import org.devjj.platform.nurbanhoney.features.ui.textedit.ImageResponseEntity
-import org.devjj.platform.nurbanhoney.features.ui.textedit.ImageUploadResultEntity
+import com.devjj.platform.nurbanhoney.domain.article.model.ArticleEntity
+import com.devjj.platform.nurbanhoney.domain.textedit.model.ImageResponseEntity
+import com.devjj.platform.nurbanhoney.domain.textedit.model.ImageUploadResultEntity
 
 interface TextEditorRepository {
     fun uploadNurbanArticle(
@@ -59,5 +59,4 @@ interface TextEditorRepository {
     ): Result<ImageUploadResultEntity>
 
     fun deleteImages(board: String, token: String, uuid: String): Result<ImageResponseEntity>
-
 }

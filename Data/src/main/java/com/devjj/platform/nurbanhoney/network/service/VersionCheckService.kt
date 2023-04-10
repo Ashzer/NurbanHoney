@@ -8,7 +8,7 @@ import javax.inject.Singleton
 @Singleton
 class VersionCheckService
 @Inject constructor(retrofit: Retrofit) : VersionCheckApi {
-    private val versionCheckApi by lazy { retrofit.create(VersionCheckApi::class.java)}
+    private val versionCheckApi by lazy { retrofit.create(VersionCheckApi::class.java) }
 
-    override fun appVersion(appName : String) = versionCheckApi.appVersion(appName)
+    override fun appVersion(appName: String) = versionCheckApi.appVersion(appName)
 }

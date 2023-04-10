@@ -2,7 +2,7 @@ package com.devjj.platform.nurbanhoney.network.entities
 
 import com.devjj.platform.nurbanhoney.extension.empty
 import com.google.gson.annotations.SerializedName
-import org.devjj.platform.nurbanhoney.features.ui.article.model.CommentEntity
+import com.devjj.platform.nurbanhoney.domain.article.model.CommentEntity
 
 class CommentNetworkResponse(
     @SerializedName("id") val id: Int,
@@ -16,7 +16,6 @@ class CommentNetworkResponse(
         @SerializedName("nickname") val nickname: String,
         @SerializedName("insignia") val insignia: List<String>?
     )
-
 
     fun toComment() =
         CommentEntity(id, comment, articleId, user.userId, user.badge, user.nickname, user.insignia ?: listOf())

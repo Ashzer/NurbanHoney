@@ -6,6 +6,7 @@ abstract class UseCase<out Type, in Params> where Type : Any {
 
     abstract suspend fun run(params: Params): Result<Type>
 
+    @OptIn(DelicateCoroutinesApi::class)
     operator fun invoke(
         params: Params,
         scope: CoroutineScope = GlobalScope,

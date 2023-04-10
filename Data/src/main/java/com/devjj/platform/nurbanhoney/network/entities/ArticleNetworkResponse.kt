@@ -1,7 +1,7 @@
 package com.devjj.platform.nurbanhoney.network.entities
 
 import com.google.gson.annotations.SerializedName
-import org.devjj.platform.nurbanhoney.features.ui.article.model.ArticleEntity
+import com.devjj.platform.nurbanhoney.domain.article.model.ArticleEntity
 
 data class ArticleNetworkResponse(
     @SerializedName("id") val id: Int,
@@ -15,34 +15,34 @@ data class ArticleNetworkResponse(
     @SerializedName("likeCount") val likes: Int,
     @SerializedName("dislikeCount") val dislikes: Int,
     @SerializedName("updatedAt") val date: String?,
-    @SerializedName("userId") val userId : Int?,
+    @SerializedName("userId") val userId: Int?,
     @SerializedName("badge") val badge: String?,
     @SerializedName("nickname") val nickname: String?,
     @SerializedName("insignia") val insignia: List<String>?,
-    @SerializedName("myRating") val myRating: String?,
+    @SerializedName("myRating") val myRating: String?
 ) {
 
     fun toArticle() =
         ArticleEntity(
             id,
-            uuid?:"",
+            uuid ?: "",
             thumbnail ?: "",
             title ?: "",
             lossCut ?: -1,
             content ?: "",
             inquiries,
-            comments?:0,
+            comments ?: 0,
             likes,
             dislikes,
-            date?:"",
-            userId?:-1,
+            date ?: "",
+            userId ?: -1,
             badge ?: "",
-            nickname?:"who?",
-            insignia?: listOf(),
-            myRating ?: "",
+            nickname ?: "who?",
+            insignia ?: listOf(),
+            myRating ?: ""
         )
 
     companion object {
-        val empty = ArticleNetworkResponse(-1, "", "","", 0, "", 0, 0, 0, 0, "", 0,"", "", listOf(), "")
+        val empty = ArticleNetworkResponse(-1, "", "", "", 0, "", 0, 0, 0, 0, "", 0, "", "", listOf(), "")
     }
 }

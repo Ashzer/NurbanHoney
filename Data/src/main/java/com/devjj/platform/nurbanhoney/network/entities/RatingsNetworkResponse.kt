@@ -1,7 +1,7 @@
 package com.devjj.platform.nurbanhoney.network.entities
 
 import com.google.gson.annotations.SerializedName
-import org.devjj.platform.nurbanhoney.features.ui.article.model.RatingsEntity
+import com.devjj.platform.nurbanhoney.domain.article.model.RatingsEntity
 
 data class RatingsNetworkResponse(
     @SerializedName("likeCount") val likes: Int,

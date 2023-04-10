@@ -1,7 +1,6 @@
 package com.devjj.platform.nurbanhoney.network.service
 
 import com.devjj.platform.nurbanhoney.network.api.ArticleApi
-import retrofit2.Call
 import retrofit2.Retrofit
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -50,6 +49,4 @@ class ArticleService
 
     override fun getComment(board: String, commentId: Int) =
         articleApi.getComment(board, commentId)
-
-
 }
