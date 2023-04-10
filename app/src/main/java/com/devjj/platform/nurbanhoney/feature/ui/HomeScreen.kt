@@ -35,6 +35,7 @@ fun HomeScreen(
 
     val boards by boardViewModel.boardsState.collectAsState()
     boardViewModel.getBoards()
+    boardViewModel.getArticle()
     Log.d("viewmodel_check", boardViewModel.toString())
     Log.d("Tap", "HomeScreen $boards")
     AlignRight {

@@ -2,6 +2,7 @@ package com.devjj.platform.nurbanhoney.domain
 
 import okhttp3.MultipartBody
 import com.devjj.platform.nurbanhoney.domain.article.model.ArticleEntity
+import com.devjj.platform.nurbanhoney.domain.textedit.model.ArticleResponseEntity
 import com.devjj.platform.nurbanhoney.domain.textedit.model.ImageResponseEntity
 import com.devjj.platform.nurbanhoney.domain.textedit.model.ImageUploadResultEntity
 
@@ -14,7 +15,7 @@ interface TextEditorRepository {
         lossCut: Long,
         thumbnail: String?,
         content: String
-    ): Result<ArticleEntity>
+    ): Result<ArticleResponseEntity>
 
     fun uploadArticle(
         board: String,
@@ -23,7 +24,7 @@ interface TextEditorRepository {
         uuid: String,
         thumbnail: String?,
         content: String
-    ): Result<ArticleEntity>
+    ): Result<ArticleResponseEntity>
 
     fun modifyNurbanArticle(
         board: String,
@@ -33,7 +34,7 @@ interface TextEditorRepository {
         title: String,
         lossCut: Long,
         content: String
-    ): Result<ArticleEntity>
+    ): Result<ArticleResponseEntity>
 
     fun modifyArticle(
         board: String,
@@ -42,14 +43,14 @@ interface TextEditorRepository {
         thumbnail: String?,
         title: String,
         content: String
-    ): Result<ArticleEntity>
+    ): Result<ArticleResponseEntity>
 
     fun deleteArticle(
         board: String,
         token: String,
         articleId: Int,
         uuid: String
-    ): Result<ArticleEntity>
+    ): Result<ArticleResponseEntity>
 
     fun uploadImage(
         board: String,

@@ -2,8 +2,8 @@ package com.devjj.platform.nurbanhoney.di
 
 import android.content.Context
 import com.devjj.platform.nerbanhoney.di.R
-import com.devjj.platform.nurbanhoney.domain.BoardRepository
-import com.devjj.platform.nurbanhoney.network.repositories.BoardRepositoryImpl
+import com.devjj.platform.nurbanhoney.domain.*
+import com.devjj.platform.nurbanhoney.network.repositories.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -18,9 +18,30 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 class ApplicationModule {
+
+    @Provides
+    @Singleton
+    fun provideArticleRepository(dataSource: ArticleRepositoryImpl): ArticleRepository = dataSource
+
     @Provides
     @Singleton
     fun provideBoardRepository(dataSource: BoardRepositoryImpl): BoardRepository = dataSource
+
+    @Provides
+    @Singleton
+    fun LoginRepository(dataSource: LoginRepositoryImpl): LoginRepository = dataSource
+
+    @Provides
+    @Singleton
+    fun profileRepository(dataSource: ProfileRepositoryImpl): ProfileRepository = dataSource
+
+    @Provides
+    @Singleton
+    fun RankRepository(dataSource: RankRepositoryImpl): RankRepository = dataSource
+
+    @Provides
+    @Singleton
+    fun TextEditorRepository(dataSource: TextEditorRepositoryImpl): TextEditorRepository = dataSource
 
     @Provides
     @Singleton
@@ -34,7 +55,7 @@ class ApplicationModule {
 
     private fun createClient(): OkHttpClient {
         val okHttpClientBuilder: OkHttpClient.Builder = OkHttpClient.Builder()
-        val loggingInterceptor = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+        val loggingInterceptor = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.HEADERS)
         okHttpClientBuilder.addInterceptor(loggingInterceptor)
 
         return okHttpClientBuilder.build()

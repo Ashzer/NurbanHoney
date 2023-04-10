@@ -3,6 +3,10 @@ package com.devjj.platform.nurbanhoney.feature.ui
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.devjj.platform.nurbanhoney.domain.article.GetArticleUseCase
+import com.devjj.platform.nurbanhoney.domain.article.GetArticlesUseCase
+import com.devjj.platform.nurbanhoney.domain.article.model.ArticleEntity
+import com.devjj.platform.nurbanhoney.domain.article.model.ArticleItemEntity
 import com.devjj.platform.nurbanhoney.domain.board.model.BoardEntity
 import com.devjj.platform.nurbanhoney.domain.board.GetBoardUseCase
 import com.devjj.platform.nurbanhoney.domain.interactor.UseCase
@@ -14,7 +18,8 @@ import javax.inject.Inject
 @HiltViewModel
 class BoardViewModel
 @Inject constructor(
-    private val getBoardUseCase: GetBoardUseCase
+    private val getBoardUseCase: GetBoardUseCase,
+    private val getArticlesUseCase : GetArticlesUseCase
 ) : ViewModel() {
 
     private var _boardsState = MutableStateFlow<List<Board>>(listOf())
@@ -27,6 +32,20 @@ class BoardViewModel
                 ::handleFailure
             )
         }
+    }
+
+
+    fun getArticle(){
+        getArticlesUseCase(GetArticlesUseCase.Params("free",0,0,10), viewModelScope) {
+            it.fold(
+                ::handleArticles,
+                ::handleFailure
+            )
+        }
+    }
+
+    private fun handleArticles(article : List<ArticleItemEntity>){
+        Log.d("handleArticle", article.toString())
     }
 
     private fun handleBoards(boards: List<BoardEntity>) {

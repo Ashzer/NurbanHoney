@@ -3,12 +3,13 @@ package com.devjj.platform.nurbanhoney.domain.textedit
 import com.devjj.platform.nurbanhoney.domain.TextEditorRepository
 import com.devjj.platform.nurbanhoney.domain.article.model.ArticleEntity
 import com.devjj.platform.nurbanhoney.domain.interactor.UseCase
+import com.devjj.platform.nurbanhoney.domain.textedit.model.ArticleResponseEntity
 import javax.inject.Inject
 
 class UploadArticleUseCase
 @Inject constructor(
     private val repository: TextEditorRepository
-) : UseCase<ArticleEntity, UploadArticleUseCase.Params>() {
+) : UseCase<ArticleResponseEntity, UploadArticleUseCase.Params>() {
     override suspend fun run(params: Params) =
         repository.uploadArticle(
             params.board,
