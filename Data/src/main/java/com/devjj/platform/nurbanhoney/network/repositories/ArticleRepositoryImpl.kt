@@ -1,8 +1,8 @@
 package com.devjj.platform.nurbanhoney.network.repositories
 
 import com.devjj.platform.nurbanhoney.domain.ArticleRepository
-import com.devjj.platform.nurbanhoney.domain.article.model.ArticleItemEntity
 import com.devjj.platform.nurbanhoney.domain.article.model.*
+import com.devjj.platform.nurbanhoney.domain.article.model.ArticleItemEntity
 import com.devjj.platform.nurbanhoney.errorhandler.Failure
 import com.devjj.platform.nurbanhoney.network.NetworkHandler
 import com.devjj.platform.nurbanhoney.network.entities.ArticleNetworkResponse

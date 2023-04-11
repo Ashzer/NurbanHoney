@@ -19,6 +19,7 @@ import com.devjj.platform.nurbanhoney.core.extension.AlignRight
 import com.devjj.platform.nurbanhoney.core.platform.DrawBottomNavigation
 import com.devjj.platform.nurbanhoney.core.platform.DrawerContent
 import com.devjj.platform.nurbanhoney.core.platform.MainToolBar
+import com.devjj.platform.nurbanhoney.domain.board.model.BoardEntity
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -36,6 +37,7 @@ fun HomeScreen(
     val boards by boardViewModel.boardsState.collectAsState()
     boardViewModel.getBoards()
     boardViewModel.getArticle()
+    val articles by boardViewModel.articlesState.collectAsState()
     Log.d("viewmodel_check", boardViewModel.toString())
     Log.d("Tap", "HomeScreen $boards")
     AlignRight {
@@ -75,15 +77,9 @@ fun HomeScreen(
                             }
 
                             LazyColumn(content = {
-                                items(500) {
-                                    Button(
-                                        onClick = { /*TODO*/ },
-                                        modifier = Modifier
-                                            .padding(5.dp)
-                                            .height(100.dp)
-                                            .fillMaxWidth()
-                                    ) {
-                                        Text("ddddddd")
+                                items(articles.size) {
+                                    ArticleItem(articles[it]) { index ->
+                                        Log.d("articles", "at id = $index has clicked")
                                     }
                                 }
                             })
@@ -113,7 +109,7 @@ fun HomeScreen(
 }
 
 @Composable
-fun MainTopBar(boards: List<Board>) {
+fun MainTopBar(boards: List<BoardEntity>) {
     val scaffoldState = rememberScaffoldState()
     val coroutineScope = rememberCoroutineScope()
 

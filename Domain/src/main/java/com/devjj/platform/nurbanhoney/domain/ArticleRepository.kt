@@ -1,7 +1,7 @@
 package com.devjj.platform.nurbanhoney.domain
 
-import com.devjj.platform.nurbanhoney.domain.article.model.ArticleItemEntity
 import com.devjj.platform.nurbanhoney.domain.article.model.*
+import com.devjj.platform.nurbanhoney.domain.article.model.ArticleItemEntity
 
 interface ArticleRepository {
     fun getArticle(board: String, token: String, id: Int): Result<ArticleEntity>

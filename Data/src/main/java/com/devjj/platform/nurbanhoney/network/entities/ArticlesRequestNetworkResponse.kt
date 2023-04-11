@@ -1,7 +1,7 @@
 package com.devjj.platform.nurbanhoney.network.entities
 
-import com.devjj.platform.nurbanhoney.domain.board.model.BoardEntity
 import com.devjj.platform.nurbanhoney.domain.article.model.ArticleItemEntity
+import com.devjj.platform.nurbanhoney.domain.board.model.BoardEntity
 import com.google.gson.annotations.SerializedName
 
 data class ArticlesRequestNetworkResponse(
@@ -24,15 +24,15 @@ data class ArticlesRequestNetworkResponse(
     )
 
     fun toNurbanHoneyArticle() = ArticleItemEntity(
-	    id,
-	    thumbnail ?: "",
-	    title,
-	    commentCount,
-	    board?.toBoardEntity() ?: BoardEntity.empty,
-	    user?.profile ?: "",
-	    user?.nickname ?: "Empty Nickname",
-	    likeCount,
-	    createdAt
+        id,
+        thumbnail ?: "",
+        title,
+        commentCount,
+        board?.toBoardEntity() ?: BoardEntity.empty,
+        user?.profile ?: "",
+        user?.nickname ?: "Empty Nickname",
+        likeCount,
+        createdAt
         // user?.insignia ?: "No insignia"
     )
 }

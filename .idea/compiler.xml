@@ -1,14 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="CompilerConfiguration">
-    <bytecodeTargetLevel target="1.7">
-      <module name="NurbanHoney.app" target="11" />
-      <module name="NurbanHoney.buildSrc" target="11" />
-      <module name="NurbanHoney.buildSrc.main" target="11" />
-      <module name="NurbanHoney.buildSrc.test" target="11" />
-      <module name="NurbanHoney.Data" target="11" />
-      <module name="NurbanHoney.DI" target="11" />
-      <module name="NurbanHoney.Domain" target="11" />
-    </bytecodeTargetLevel>
+    <bytecodeTargetLevel target="11" />
   </component>
 </project>

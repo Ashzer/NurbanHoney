@@ -1,7 +1,7 @@
-import org.jetbrains.kotlin.kapt3.base.Kapt.kapt
-
+@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    id("com.android.library")
+    alias(libs.plugins.android.library)
+//    id("com.android.library")
     id("org.jetbrains.kotlin.android")
     kotlin("kapt")
     id("com.google.dagger.hilt.android")
@@ -40,7 +40,7 @@ dependencies {
     implementation(project(":Data"))
     implementation(project(":Domain"))
 
-    implementation("androidx.core:core-ktx:1.9.0")
+    implementation(libs.core.ktx)
     implementation("androidx.appcompat:appcompat:1.6.1")
     // implementation("com.google.android.material:material:1.8.0")
     testImplementation("junit:junit:4.13.2")

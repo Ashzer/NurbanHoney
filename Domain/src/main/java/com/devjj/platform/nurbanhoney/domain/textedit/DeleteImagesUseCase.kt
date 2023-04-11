@@ -15,6 +15,6 @@ class DeleteImagesUseCase
     data class Params(
         val board: String,
         val token: String,
-        val uuid: String,
+        val uuid: String
     )
 }

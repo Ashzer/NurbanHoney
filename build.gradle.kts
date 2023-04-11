@@ -1,22 +1,15 @@
-buildscript {
-    extra.apply {
-        set("compose_version", "1.4.3")
-        set("orbit_version", "4.6.1")
-        set("retrofit_version", "2.9.0")
-        set("lifecycle_version", "2.6.1")
-        set("hilt_version", "2.45")
-    }
-} // Top-level build file where you can add configuration options common to all sub-projects/modules.
+@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    id("com.android.application") version "7.4.1" apply false
-    id("com.android.library") version "7.4.1" apply false
-    id("org.jetbrains.kotlin.android") version "1.8.10" apply false
-    id("org.jetbrains.kotlin.jvm") version "1.7.20" apply false
-    id("com.google.dagger.hilt.android") version "2.45" apply false
-    id("org.jlleitschuh.gradle.ktlint") version "11.3.1"
-    id("io.gitlab.arturbosch.detekt") version "1.22.0"
+    alias(libs.plugins.android.application) apply false
+    alias(libs.plugins.android.library) apply false
+    alias(libs.plugins.kotlin.android) apply false
+    alias(libs.plugins.kotlin.kapt) apply false
+    alias(libs.plugins.kotlin.jvm) apply false
+    alias(libs.plugins.hilt.android) apply false
+    alias(libs.plugins.ktlint)
+    alias(libs.plugins.detekt)
+//    id("org.jetbrains.kotlin.jvm") version "1.7.20" apply false
 }
-
 allprojects {
     apply {
         plugin("org.jlleitschuh.gradle.ktlint")

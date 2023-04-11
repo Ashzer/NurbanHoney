@@ -1,7 +1,6 @@
 package com.devjj.platform.nurbanhoney.domain.textedit
 
 import com.devjj.platform.nurbanhoney.domain.TextEditorRepository
-import com.devjj.platform.nurbanhoney.domain.article.model.ArticleEntity
 import com.devjj.platform.nurbanhoney.domain.interactor.UseCase
 import com.devjj.platform.nurbanhoney.domain.textedit.model.ArticleResponseEntity
 import javax.inject.Inject
@@ -28,6 +27,6 @@ class UploadNurbanArticleUseCase
         val uuid: String,
         val lossCut: Long,
         val thumbnail: String?,
-        val content: String,
+        val content: String
     )
-} //token,title, uuid , lossCut , thumbnail  ,content
+} // token,title, uuid , lossCut , thumbnail  ,content

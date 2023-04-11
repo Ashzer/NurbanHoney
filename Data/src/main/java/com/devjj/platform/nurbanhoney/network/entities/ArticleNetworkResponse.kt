@@ -1,7 +1,7 @@
 package com.devjj.platform.nurbanhoney.network.entities
 
-import com.google.gson.annotations.SerializedName
 import com.devjj.platform.nurbanhoney.domain.article.model.ArticleEntity
+import com.google.gson.annotations.SerializedName
 
 data class ArticleNetworkResponse(
     @SerializedName("id") val id: Int,

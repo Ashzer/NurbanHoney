@@ -8,7 +8,7 @@ import javax.inject.Inject
 class LoginRequestUseCase
 @Inject constructor(
     private val loginRepository: LoginRepository
-    ) : UseCase<NurbanTokenEntity, LoginRequestUseCase.Params>(){
+) : UseCase<NurbanTokenEntity, LoginRequestUseCase.Params>() {
     override suspend fun run(params: Params) = loginRepository.getNurbanToken(params.type, params.kakaoKey)
-    data class Params(val type : String , val kakaoKey : String)
+    data class Params(val type: String, val kakaoKey: String)
 }

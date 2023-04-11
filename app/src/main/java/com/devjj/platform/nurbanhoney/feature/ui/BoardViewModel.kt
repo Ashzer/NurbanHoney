@@ -3,12 +3,10 @@ package com.devjj.platform.nurbanhoney.feature.ui
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.devjj.platform.nurbanhoney.domain.article.GetArticleUseCase
 import com.devjj.platform.nurbanhoney.domain.article.GetArticlesUseCase
-import com.devjj.platform.nurbanhoney.domain.article.model.ArticleEntity
 import com.devjj.platform.nurbanhoney.domain.article.model.ArticleItemEntity
-import com.devjj.platform.nurbanhoney.domain.board.model.BoardEntity
 import com.devjj.platform.nurbanhoney.domain.board.GetBoardUseCase
+import com.devjj.platform.nurbanhoney.domain.board.model.BoardEntity
 import com.devjj.platform.nurbanhoney.domain.interactor.UseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -19,12 +17,14 @@ import javax.inject.Inject
 class BoardViewModel
 @Inject constructor(
     private val getBoardUseCase: GetBoardUseCase,
-    private val getArticlesUseCase : GetArticlesUseCase
+    private val getArticlesUseCase: GetArticlesUseCase
 ) : ViewModel() {
 
-    private var _boardsState = MutableStateFlow<List<Board>>(listOf())
-    val boardsState: StateFlow<List<Board>> = _boardsState
+    private var _boardsState = MutableStateFlow<List<BoardEntity>>(listOf())
+    val boardsState: StateFlow<List<BoardEntity>> = _boardsState
 
+    private val _articlesState = MutableStateFlow<List<ArticleItemEntity>>(listOf())
+    val articlesState: StateFlow<List<ArticleItemEntity>> = _articlesState
     fun getBoards() {
         getBoardUseCase(UseCase.None(), viewModelScope) {
             it.fold(
@@ -34,9 +34,8 @@ class BoardViewModel
         }
     }
 
-
-    fun getArticle(){
-        getArticlesUseCase(GetArticlesUseCase.Params("free",0,0,10), viewModelScope) {
+    fun getArticle() {
+        getArticlesUseCase(GetArticlesUseCase.Params("nurban", 0, 0, 10), viewModelScope) {
             it.fold(
                 ::handleArticles,
                 ::handleFailure
@@ -44,8 +43,9 @@ class BoardViewModel
         }
     }
 
-    private fun handleArticles(article : List<ArticleItemEntity>){
-        Log.d("handleArticle", article.toString())
+    private fun handleArticles(articles: List<ArticleItemEntity>) {
+        Log.d("handleArticle", articles.toString())
+        _articlesState.value = articles
     }
 
     private fun handleBoards(boards: List<BoardEntity>) {
@@ -53,7 +53,7 @@ class BoardViewModel
             Log.d("handleBoards1", it.toString())
         }
 
-        _boardsState.value = boards.map { Board(it.id, it.name, it.address) }.toList()
+        _boardsState.value = boards
         Log.d("handleBoards2", boardsState.value.toString())
     }
 
@@ -63,11 +63,11 @@ class BoardViewModel
 }
 
 data class MainState(
-    val boards: List<Board> = listOf()
+    val boards: List<BoardEntity> = listOf()
     // val articles : List<Article> = listOf()
 )
 
 sealed class MainSideEffect {
     data class ShowToast(val message: String) : MainSideEffect()
-    data class GetBoards(val boards: List<Board>) : MainSideEffect()
+    data class GetBoards(val boards: List<BoardEntity>) : MainSideEffect()
 }

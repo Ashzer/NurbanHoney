@@ -44,20 +44,22 @@ dependencies {
     implementation(project(":Domain"))
     implementation(project(":ErrorHandler"))
 
-    // dagger
-    val hilt = rootProject.extra["hilt_version"] as String
-    implementation("com.google.dagger:hilt-android:$hilt")
-    kapt("com.google.dagger:hilt-android-compiler:$hilt")
-    androidTestImplementation("com.google.dagger:hilt-android-testing:$hilt")
-    kaptAndroidTest("com.google.dagger:hilt-android-testing-compiler:$hilt")
-    implementation("androidx.core:core-ktx:1.9.0")
-    kapt("androidx.hilt:hilt-compiler:1.0.0")
+    implementation(libs.core.ktx)
 
-    val retrofit = rootProject.extra["retrofit_version"] as String
-    implementation("com.squareup.retrofit2:retrofit:$retrofit")
-    implementation("com.squareup.retrofit2:converter-gson:$retrofit")
-    implementation("com.google.code.gson:gson:2.10.1")
-    implementation("com.squareup.okhttp3:logging-interceptor:4.10.0")
+    // dagger-hilt
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.android.compiler)
 
-    implementation("com.jakewharton.threetenabp:threetenabp:1.3.0")
+    // okhttp
+    // define a BOM and its version
+    implementation(platform(libs.okhttp.bom))
+    // define any required OkHttp artifacts without version
+    implementation(libs.okhttp.okhttp)
+    implementation(libs.okhttp.logging.interceptor)
+
+    // retrofit
+    implementation(libs.bundles.retrofit)
+
+    // threetenabp
+    implementation(libs.threetenabp)
 }

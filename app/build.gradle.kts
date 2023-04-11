@@ -1,8 +1,9 @@
+@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    id("com.android.application")
-    kotlin("android")
-    kotlin("kapt")
-    id("com.google.dagger.hilt.android")
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.kapt)
+    alias(libs.plugins.hilt.android)
 }
 
 android {
@@ -15,7 +16,8 @@ android {
         versionCode = 1
         versionName = "1.0"
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner =
+            "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
             useSupportLibrary = true
         }
@@ -41,7 +43,8 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = rootProject.extra["compose_version"] as String
+        kotlinCompilerExtensionVersion =
+            libs.versions.compose.get()
     }
     packagingOptions {
         resources {
@@ -54,88 +57,59 @@ android {
 
 dependencies {
 
-    implementation("androidx.core:core-ktx:1.9.0")
-    implementation("androidx.appcompat:appcompat:1.6.1")
-
     implementation(project(":ErrorHandler"))
     implementation(project(":DI"))
     implementation(project(":Domain"))
 
+    implementation(libs.core.ktx)
+    implementation(libs.appCompat)
+
     // lifeCycle
-    val lifecycle = rootProject.extra["lifecycle_version"] as String
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle")
+    implementation(libs.bundles.lifecycle)
 
     // compose
-    val composeBom = platform("androidx.compose:compose-bom:2023.03.00")
-    implementation(composeBom)
-    androidTestImplementation(composeBom)
-    implementation("androidx.compose.material:material")
-    implementation("androidx.compose.ui:ui")
+    implementation(platform(libs.compose.bom))
+    androidTestImplementation(platform(libs.compose.bom))
+    implementation(libs.compose.material)
+    implementation(libs.compose.ui)
     // Android Studio Preview support
-    implementation("androidx.compose.ui:ui-tooling-preview")
-    debugImplementation("androidx.compose.ui:ui-tooling")
-    implementation("androidx.compose.compiler:compiler:1.4.4")
+    implementation(libs.compose.ui.tooling)
+    implementation(libs.compose.ui.tooling.preview)
+    implementation(libs.compose.compiler)
+    implementation(libs.compose.material.icons.core)
+    implementation(libs.compose.material.icons.extended)
     // UI Tests
-    androidTestImplementation("androidx.compose.ui:ui-test-junit4")
-    debugImplementation("androidx.compose.ui:ui-test-manifest")
-    implementation("androidx.compose.material:material-icons-core")
-    implementation("androidx.compose.material:material-icons-extended")
+    androidTestImplementation(libs.compose.ui.test.junit4)
+    debugImplementation(libs.compose.ui.test.manifest)
 
     // Optional - Integration with activities
-    implementation("androidx.activity:activity-compose:1.7.0")
-    // Optional - Integration with ViewModels
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:$lifecycle")
+    implementation(libs.activity.compose)
     // Optional - Integration with LiveData
-    implementation("androidx.compose.runtime:runtime-livedata")
-    // Optional - Integration with RxJava
-//    implementation("androidx.compose.runtime:runtime-rxjava2")
-//    implementation("androidx.activity:activity:1.6.1")
+    implementation(libs.compose.runtime.livedata)
 
     // dagger-hilt
-    val hilt = rootProject.extra["hilt_version"] as String
-    implementation("com.google.dagger:hilt-android:$hilt")
-    kapt("com.google.dagger:hilt-android-compiler:$hilt")
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.android.compiler)
 
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:$lifecycle")
-
-    implementation("androidx.core:core-splashscreen:1.0.0")
-    implementation("com.airbnb.android:lottie-compose:6.0.0")
-    implementation("androidx.navigation:navigation-compose:2.5.3")
-// hilt navigation
-    implementation("androidx.hilt:hilt-navigation-compose:1.1.0-alpha01")
+    implementation(libs.core.splashscreen)
+    implementation(libs.lottie.compose)
+    implementation(libs.navigation.compose)
+    implementation(libs.hilt.navigation.compose)
 
     // okhttp
     // define a BOM and its version
-    val okhttpBom = platform("com.squareup.okhttp3:okhttp-bom:4.10.0")
-    implementation(okhttpBom)
-
+    implementation(platform(libs.okhttp.bom))
     // define any required OkHttp artifacts without version
-    implementation("com.squareup.okhttp3:okhttp")
-    implementation("com.squareup.okhttp3:logging-interceptor")
-    implementation("com.squareup.okhttp3:okhttp-urlconnection")
+    implementation(libs.okhttp.okhttp)
+    implementation(libs.okhttp.logging.interceptor)
 
     // retrofit
-    val retrofit = rootProject.extra["retrofit_version"] as String
-    implementation("com.squareup.retrofit2:retrofit:$retrofit")
-    implementation("com.squareup.retrofit2:converter-gson:$retrofit")
-
-    testImplementation("junit:junit:4.13.2")
-    androidTestImplementation("androidx.test.ext:junit:1.1.4")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.5.0")
+    implementation(libs.bundles.retrofit)
 
     // coil
-    implementation("io.coil-kt:coil-compose:2.3.0")
+    implementation(libs.coil.compose)
 
-    val orbit = rootProject.extra["orbit_version"] as String
-    implementation("org.orbit-mvi:orbit-core:$orbit")
-// or, if on Android:
-    implementation("org.orbit-mvi:orbit-viewmodel:$orbit")
-// If using Jetpack Compose include
-    implementation("org.orbit-mvi:orbit-compose:$orbit")
-
-// Tests
-    testImplementation("org.orbit-mvi:orbit-test:$orbit")
+    implementation(libs.bundles.orbit)
 }
 
 kapt {

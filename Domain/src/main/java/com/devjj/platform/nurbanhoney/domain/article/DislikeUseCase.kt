@@ -1,8 +1,8 @@
 package com.devjj.platform.nurbanhoney.domain.article
 
 import com.devjj.platform.nurbanhoney.domain.ArticleRepository
-import com.devjj.platform.nurbanhoney.domain.interactor.UseCase
 import com.devjj.platform.nurbanhoney.domain.article.model.RatingResponseEntity
+import com.devjj.platform.nurbanhoney.domain.interactor.UseCase
 import javax.inject.Inject
 
 class DislikeUseCase

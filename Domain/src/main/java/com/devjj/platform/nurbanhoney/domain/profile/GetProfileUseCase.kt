@@ -8,8 +8,8 @@ import javax.inject.Inject
 class GetProfileUseCase
 @Inject constructor(
     private val repository: ProfileRepository
-) : UseCase<ProfileEntity, GetProfileUseCase.Params>(){
+) : UseCase<ProfileEntity, GetProfileUseCase.Params>() {
     override suspend fun run(params: Params) = repository.getProfile(params.token)
 
-    data class Params(val token : String)
+    data class Params(val token: String)
 }

@@ -1,8 +1,8 @@
 package com.devjj.platform.nurbanhoney.network.entities
 
+import com.devjj.platform.nurbanhoney.domain.article.model.CommentEntity
 import com.devjj.platform.nurbanhoney.extension.empty
 import com.google.gson.annotations.SerializedName
-import com.devjj.platform.nurbanhoney.domain.article.model.CommentEntity
 
 class CommentNetworkResponse(
     @SerializedName("id") val id: Int,

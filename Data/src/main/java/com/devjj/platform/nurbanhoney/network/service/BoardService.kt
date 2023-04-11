@@ -60,7 +60,6 @@ class BoardService
     override fun deleteImage(board: String, token: String, uuid: String) =
         boardApi.deleteImage(board, token, uuid)
 
-
     override fun deleteArticle(board: String, token: String, articleId: Int, uuid: String) =
         boardApi.deleteArticle(board, token, articleId, uuid)
 }

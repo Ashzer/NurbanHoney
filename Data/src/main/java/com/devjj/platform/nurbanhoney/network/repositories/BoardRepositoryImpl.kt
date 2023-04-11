@@ -1,7 +1,7 @@
 package com.devjj.platform.nurbanhoney.network.repositories
 
-import com.devjj.platform.nurbanhoney.domain.board.model.BoardEntity
 import com.devjj.platform.nurbanhoney.domain.BoardRepository
+import com.devjj.platform.nurbanhoney.domain.board.model.BoardEntity
 import com.devjj.platform.nurbanhoney.errorhandler.Failure
 import com.devjj.platform.nurbanhoney.network.NetworkHandler
 import com.devjj.platform.nurbanhoney.network.request

@@ -10,5 +10,5 @@ class IsTokenValidUseCase
     private val loginRepository: LoginRepository
 ) : UseCase<TokenStatusEntity, IsTokenValidUseCase.Params>() {
     override suspend fun run(params: Params) = loginRepository.isTokenValid(params.token)
-    data class Params(val token : String)
+    data class Params(val token: String)
 }

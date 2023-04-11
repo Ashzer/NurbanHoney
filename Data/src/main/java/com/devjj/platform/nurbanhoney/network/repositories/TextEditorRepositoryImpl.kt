@@ -25,7 +25,7 @@ class TextEditorRepositoryImpl
 		uuid: String,
 		lossCut: Long,
 		thumbnail: String?,
-		content: String,
+		content: String
 	): Result<ArticleResponseEntity> {
 		return when (networkHandler.isNetworkAvailable()) {
 			true -> request(
@@ -131,10 +131,7 @@ class TextEditorRepositoryImpl
 		return when (networkHandler.isNetworkAvailable()) {
 			true -> request(
 				boardService.deleteArticle(
-					board,
-					token,
-					articleId,
-					uuid
+					board, token, articleId, uuid
 				),
 				{ it.toArticleResponse() },
 				SimpleNetworkResponse.empty
@@ -152,30 +149,22 @@ class TextEditorRepositoryImpl
 		return when (networkHandler.isNetworkAvailable()) {
 			true -> request(
 				boardService.uploadImage(
-					board,
-					token,
-					uuid,
-					image
-				),
+					board, token, uuid, image
+				 ),
 				{ it.toImageUploadResult() },
 				UploadImageNetworkResponse.empty
 			)
 			false -> Result.failure(Failure.NetworkFailure)
 		}
-
 	}
 
 	override fun deleteImages(
-		board: String,
-		token: String,
-		uuid: String
+		board: String, token: String, uuid: String
 	): Result<ImageResponseEntity> {
 		return when (networkHandler.isNetworkAvailable()) {
 			true -> request(
 				boardService.deleteImage(
-					board,
-					token,
-					uuid
+					board, token, uuid
 				),
 				{ it.toImageResponse() },
 				SimpleNetworkResponse.empty
@@ -183,5 +172,4 @@ class TextEditorRepositoryImpl
 			false -> Result.failure(Failure.NetworkFailure)
 		}
 	}
-
 }

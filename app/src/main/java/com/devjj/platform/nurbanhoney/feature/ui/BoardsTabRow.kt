@@ -15,10 +15,11 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.devjj.platform.nurbanhoney.domain.board.model.BoardEntity
 
 @Composable
 fun BoardsTab(
-    tabs: List<Board>,
+    tabs: List<BoardEntity>,
     selectedTabIndex: Int,
     onTabClick: (Int) -> Unit
 
