@@ -7,11 +7,12 @@ plugins {
 }
 
 android {
-    compileSdk = 33
+    namespace = libs.versions.namespace.get()
+    compileSdk =  Integer.parseInt(libs.versions.compileSdk.get())
 
     defaultConfig {
-        applicationId = "com.devjj.platform.nurbanhoney"
-        minSdk = 26
+        applicationId = libs.versions.applicationnId.get()
+        minSdk = Integer.parseInt(libs.versions.minSdk.get())
         targetSdk = compileSdk
         versionCode = 1
         versionName = "1.0"
@@ -52,7 +53,7 @@ android {
             excludes += "META-INF/gradle/incremental.annotation.processors"
         }
     }
-    namespace = "com.devjj.platform.nurbanhoney"
+
 }
 
 dependencies {

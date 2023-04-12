@@ -1,4 +1,9 @@
 [versions]
+#sdk
+compileSdk = "33"
+minSdk = "26"
+applicationnId = "com.devjj.platform.nurbanhoney"
+namespace = "com.devjj.platform.nurbanhoney"
 #plugins
 gradlePlugin = "7.4.1"
 kotlin = "1.8.10"

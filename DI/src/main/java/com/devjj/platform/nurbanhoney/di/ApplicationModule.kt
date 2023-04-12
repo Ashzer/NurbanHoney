@@ -1,7 +1,6 @@
 package com.devjj.platform.nurbanhoney.di
 
 import android.content.Context
-import com.devjj.platform.nerbanhoney.di.R
 import com.devjj.platform.nurbanhoney.domain.*
 import com.devjj.platform.nurbanhoney.network.repositories.*
 import dagger.Module

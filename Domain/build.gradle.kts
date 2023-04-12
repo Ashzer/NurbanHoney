@@ -1,49 +1,54 @@
+@Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    id("com.android.library")
-    id("org.jetbrains.kotlin.android")
-    kotlin("kapt")
-    id("com.google.dagger.hilt.android")
+	alias(libs.plugins.android.library)
+	alias(libs.plugins.kotlin.android)
+	alias(libs.plugins.kotlin.kapt)
+	alias(libs.plugins.hilt.android)
 }
 
 android {
-    namespace = "com.devjj.platform.nurbanhoney.domain"
-    compileSdk = 33
+	namespace = libs.versions.namespace.get() + ".domain"
+	compileSdk =
+		Integer.parseInt(libs.versions.compileSdk.get())
 
-    defaultConfig {
-        minSdk = 24
-        targetSdk = 33
+	defaultConfig {
+		minSdk =
+			Integer.parseInt(libs.versions.minSdk.get())
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
-    }
+		testInstrumentationRunner =
+			"androidx.test.runner.AndroidJUnitRunner"
+	}
 
-    buildTypes {
-        release {
-            isMinifyEnabled = false
-            proguardFiles(
-                getDefaultProguardFile("proguard-android-optimize.txt"),
-                "proguard-rules.pro"
-            )
-        }
-    }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
-    kotlinOptions {
-        jvmTarget = "1.8"
-    }
+	buildTypes {
+		release {
+			isMinifyEnabled = false
+			proguardFiles(
+				getDefaultProguardFile("proguard-android-optimize.txt"),
+				"proguard-rules.pro"
+			)
+		}
+	}
+	compileOptions {
+		sourceCompatibility = JavaVersion.VERSION_1_8
+		targetCompatibility = JavaVersion.VERSION_1_8
+	}
+	kotlinOptions {
+		jvmTarget = "1.8"
+	}
 
-    packagingOptions {
-        resources {
-            excludes += "META-INF/gradle/incremental.annotation.processors"
-        }
-    }
+	packagingOptions {
+		resources {
+			excludes += "META-INF/gradle/incremental.annotation.processors"
+		}
+	}
 }
 
 dependencies {
-    implementation("com.google.dagger:hilt-android:2.45")
-    implementation("androidx.core:core-ktx:1.9.0")
-    kapt("com.google.dagger:hilt-android-compiler:2.45")
-    implementation("com.jakewharton.threetenabp:threetenabp:1.3.0")
-    implementation("com.squareup.okhttp3:okhttp:4.10.0")
+    implementation(libs.hilt.android)
+    kapt(libs.hilt.android.compiler)
+    implementation(libs.core.ktx)
+    // threetenabp
+    implementation(libs.threetenabp)
+	implementation(platform(libs.okhttp.bom))
+	implementation(libs.okhttp.okhttp)
 }
