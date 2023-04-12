@@ -1,7 +1,7 @@
 plugins {
 	`kotlin-dsl`
 	`kotlin-dsl-precompiled-script-plugins`
-	kotlin("jvm") version "1.3.50" apply false
+//	kotlin("jvm") version "1.3.50" apply false
 }
 repositories {
 	google()

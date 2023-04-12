@@ -36,7 +36,7 @@ fun HomeScreen(
 
     val boards by boardViewModel.boardsState.collectAsState()
     boardViewModel.getBoards()
-    boardViewModel.getArticle()
+//    boardViewModel.getArticle()
     val articles by boardViewModel.articlesState.collectAsState()
     Log.d("viewmodel_check", boardViewModel.toString())
     Log.d("Tap", "HomeScreen $boards")

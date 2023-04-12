@@ -22,7 +22,6 @@ fun BoardsTab(
 	tabs: List<Board>,
 	selectedTabIndex: Int,
 	onTabClick: (Int) -> Unit
-
 ) {
     Log.d("Tap_test", "$tabs")
     ScrollableTabRow(selectedTabIndex = selectedTabIndex, edgePadding = 0.dp, indicator = {}) {
