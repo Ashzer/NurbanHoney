@@ -1,7 +1,7 @@
 package com.devjj.platform.nurbanhoney.network.api
 
-import com.devjj.platform.nurbanhoney.network.entities.LoginNetworkResponse
-import com.devjj.platform.nurbanhoney.network.entities.ValidationNetworkResponse
+import com.devjj.platform.nurbanhoney.network.entities.LoginInfoEntity
+import com.devjj.platform.nurbanhoney.network.entities.ValidateInfoEntity
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -16,8 +16,8 @@ internal interface LoginApi {
     fun loginRequest(
         @Field("loginType") type: String,
         @Field("key") key: String
-    ): Call<LoginNetworkResponse>
+    ): Call<LoginInfoEntity>
 
     @GET(VALIDATION)
-    fun validationCheck(@Header("token") token: String): Call<ValidationNetworkResponse>
+    fun validationCheck(@Header("token") token: String): Call<ValidateInfoEntity>
 }

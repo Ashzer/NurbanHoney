@@ -2,13 +2,13 @@ package com.devjj.platform.nurbanhoney.network.repositories
 
 import com.devjj.platform.nurbanhoney.domain.ArticleRepository
 import com.devjj.platform.nurbanhoney.domain.article.model.*
-import com.devjj.platform.nurbanhoney.domain.article.model.ArticleItemEntity
+import com.devjj.platform.nurbanhoney.domain.article.model.ArticlePreview
 import com.devjj.platform.nurbanhoney.errorhandler.Failure
 import com.devjj.platform.nurbanhoney.network.NetworkHandler
-import com.devjj.platform.nurbanhoney.network.entities.ArticleNetworkResponse
-import com.devjj.platform.nurbanhoney.network.entities.CommentNetworkResponse
-import com.devjj.platform.nurbanhoney.network.entities.RatingsNetworkResponse
-import com.devjj.platform.nurbanhoney.network.entities.SimpleNetworkResponse
+import com.devjj.platform.nurbanhoney.network.entities.ArticleEntity
+import com.devjj.platform.nurbanhoney.network.entities.CommentEntity
+import com.devjj.platform.nurbanhoney.network.entities.RatingsEntity
+import com.devjj.platform.nurbanhoney.network.entities.SimpleResponseEntity
 import com.devjj.platform.nurbanhoney.network.request
 import com.devjj.platform.nurbanhoney.network.service.ArticleService
 import javax.inject.Inject
@@ -24,7 +24,7 @@ class ArticleRepositoryImpl
         flag: Int,
         offset: Int,
         limit: Int
-    ): Result<List<ArticleItemEntity>> {
+    ): Result<List<ArticlePreview>> {
         return when (networkHandler.isNetworkAvailable()) {
             true -> request(
                 articleService.getArticles(
@@ -48,12 +48,12 @@ class ArticleRepositoryImpl
         board: String,
         token: String,
         id: Int
-    ): Result<ArticleEntity> {
+    ): Result<Article> {
         return when (networkHandler.isNetworkAvailable()) {
             true -> request(
                 articleService.getArticle(board, token, id),
                 { it.toArticle() },
-                ArticleNetworkResponse.empty
+                ArticleEntity.empty
             )
             false -> Result.failure(Failure.NetworkFailure)
         }
@@ -63,12 +63,12 @@ class ArticleRepositoryImpl
         board: String,
         token: String,
         id: Int
-    ): Result<RatingResponseEntity> {
+    ): Result<RatingResponse> {
         return when (networkHandler.isNetworkAvailable()) {
             true -> request(
                 articleService.postLike(board, token, id),
                 { it.toRatingResponse() },
-                SimpleNetworkResponse.empty
+                SimpleResponseEntity.empty
             )
             false -> Result.failure(Failure.NetworkFailure)
         }
@@ -78,12 +78,12 @@ class ArticleRepositoryImpl
         board: String,
         token: String,
         id: Int
-    ): Result<RatingResponseEntity> {
+    ): Result<RatingResponse> {
         return when (networkHandler.isNetworkAvailable()) {
             true -> request(
                 articleService.cancelLike(board, token, id),
                 { it.toRatingResponse() },
-                SimpleNetworkResponse.empty
+                SimpleResponseEntity.empty
             )
             false -> Result.failure(Failure.NetworkFailure)
         }
@@ -93,7 +93,7 @@ class ArticleRepositoryImpl
         board: String,
         token: String,
         id: Int
-    ): Result<RatingResponseEntity> {
+    ): Result<RatingResponse> {
         return when (networkHandler.isNetworkAvailable()) {
             true -> request(
                 articleService.postDislike(
@@ -102,7 +102,7 @@ class ArticleRepositoryImpl
                     id
                 ),
                 { it.toRatingResponse() },
-                SimpleNetworkResponse.empty
+                SimpleResponseEntity.empty
             )
             false -> Result.failure(Failure.NetworkFailure)
         }
@@ -112,7 +112,7 @@ class ArticleRepositoryImpl
         board: String,
         token: String,
         id: Int
-    ): Result<RatingResponseEntity> {
+    ): Result<RatingResponse> {
         return when (networkHandler.isNetworkAvailable()) {
             true -> request(
                 articleService.cancelDislike(
@@ -121,7 +121,7 @@ class ArticleRepositoryImpl
                     id
                 ),
                 { it.toRatingResponse() },
-                SimpleNetworkResponse.empty
+                SimpleResponseEntity.empty
             )
             false -> Result.failure(Failure.NetworkFailure)
         }
@@ -131,7 +131,7 @@ class ArticleRepositoryImpl
         board: String,
         token: String,
         articleId: Int
-    ): Result<RatingsEntity> {
+    ): Result<Ratings> {
         return when (networkHandler.isNetworkAvailable()) {
             true -> request(
                 articleService.getRatings(
@@ -140,7 +140,7 @@ class ArticleRepositoryImpl
                     articleId
                 ),
                 { it.toRatings() },
-                RatingsNetworkResponse.empty
+                RatingsEntity.empty
             )
             false -> Result.failure(Failure.NetworkFailure)
         }
@@ -151,7 +151,7 @@ class ArticleRepositoryImpl
         token: String,
         comment: String,
         id: Int
-    ): Result<CommentResponseEntity> {
+    ): Result<CommentResponse> {
         return when (networkHandler.isNetworkAvailable()) {
             true -> request(
                 articleService.postComment(
@@ -161,7 +161,7 @@ class ArticleRepositoryImpl
                     id
                 ),
                 { it.toCommentResponse() },
-                SimpleNetworkResponse.empty
+                SimpleResponseEntity.empty
             )
             false -> Result.failure(Failure.NetworkFailure)
         }
@@ -172,7 +172,7 @@ class ArticleRepositoryImpl
         articleId: Int,
         offset: Int,
         limit: Int
-    ): Result<List<CommentEntity>> {
+    ): Result<List<Comment>> {
         return when (networkHandler.isNetworkAvailable()) {
             true -> request(
                 articleService.getComments(
@@ -191,12 +191,12 @@ class ArticleRepositoryImpl
     override fun getComment(
         board: String,
         commentId: Int
-    ): Result<CommentEntity> {
+    ): Result<Comment> {
         return when (networkHandler.isNetworkAvailable()) {
             true -> request(
                 articleService.getComment(board, commentId),
                 { it.toComment() },
-                CommentNetworkResponse.empty
+                CommentEntity.empty
             )
             false -> Result.failure(Failure.NetworkFailure)
         }
@@ -207,7 +207,7 @@ class ArticleRepositoryImpl
         token: String,
         id: Int,
         articleId: Int
-    ): Result<CommentResponseEntity> {
+    ): Result<CommentResponse> {
         return when (networkHandler.isNetworkAvailable()) {
             true -> request(
                 articleService.deleteComment(
@@ -217,7 +217,7 @@ class ArticleRepositoryImpl
                     articleId
                 ),
                 { it.toCommentResponse() },
-                SimpleNetworkResponse.empty
+                SimpleResponseEntity.empty
             )
             false -> Result.failure(Failure.NetworkFailure)
         }
@@ -228,7 +228,7 @@ class ArticleRepositoryImpl
         token: String,
         id: Int,
         comment: String
-    ): Result<CommentResponseEntity> {
+    ): Result<CommentResponse> {
         return when (networkHandler.isNetworkAvailable()) {
             true -> request(
                 articleService.updateComment(
@@ -238,7 +238,7 @@ class ArticleRepositoryImpl
                     comment
                 ),
                 { it.toCommentResponse() },
-                SimpleNetworkResponse.empty
+                SimpleResponseEntity.empty
             )
             false -> Result.failure(Failure.NetworkFailure)
         }

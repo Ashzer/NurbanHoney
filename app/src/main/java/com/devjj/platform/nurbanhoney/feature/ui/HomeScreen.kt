@@ -19,7 +19,7 @@ import com.devjj.platform.nurbanhoney.core.extension.AlignRight
 import com.devjj.platform.nurbanhoney.core.platform.DrawBottomNavigation
 import com.devjj.platform.nurbanhoney.core.platform.DrawerContent
 import com.devjj.platform.nurbanhoney.core.platform.MainToolBar
-import com.devjj.platform.nurbanhoney.domain.board.model.BoardEntity
+import com.devjj.platform.nurbanhoney.domain.board.model.Board
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -109,7 +109,7 @@ fun HomeScreen(
 }
 
 @Composable
-fun MainTopBar(boards: List<BoardEntity>) {
+fun MainTopBar(boards: List<Board>) {
     val scaffoldState = rememberScaffoldState()
     val coroutineScope = rememberCoroutineScope()
 

@@ -1,6 +1,6 @@
 package com.devjj.platform.nurbanhoney.network.api
 
-import com.devjj.platform.nurbanhoney.network.entities.RankNetworkResponse
+import com.devjj.platform.nurbanhoney.network.entities.RankEntity
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -12,11 +12,11 @@ internal interface RankApi {
     }
 
     @GET(BASE_RANK)
-    fun getRanks(): Call<List<RankNetworkResponse>>
+    fun getRanks(): Call<List<RankEntity>>
 
     @GET("$BASE_RANK$POPUP")
     fun getRanksTopThree(
         @Query("offset") offset: Int,
         @Query("limit") limit: Int
-    ): Call<List<RankNetworkResponse>>
+    ): Call<List<RankEntity>>
 }

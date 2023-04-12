@@ -3,28 +3,28 @@ package com.devjj.platform.nurbanhoney.domain
 import com.devjj.platform.nurbanhoney.domain.profile.model.*
 
 interface ProfileRepository {
-    fun getProfile(token: String): Result<ProfileEntity>
+    fun getProfile(token: String): Result<Profile>
     fun getMyArticles(
         token: String,
         offset: Int,
         limit: Int
-    ): Result<List<ProfileArticleEntity>>
+    ): Result<List<ProfileArticle>>
 
     fun getMyComments(
         token: String,
         offset: Int,
         limit: Int
-    ): Result<List<ProfileCommentEntity>>
+    ): Result<List<ProfileComment>>
 
     fun signOut(
         token: String,
         id: Int
-    ): Result<SignOutResponseEntity>
+    ): Result<SignOutResponse>
 
     fun editProfile(
         token: String,
         nickname: String,
         description: String,
         insignia: List<String>
-    ): Result<EditProfileResponseEntity>
+    ): Result<EditProfileResponse>
 }

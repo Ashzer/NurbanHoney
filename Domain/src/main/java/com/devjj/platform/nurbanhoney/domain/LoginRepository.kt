@@ -1,9 +1,9 @@
 package com.devjj.platform.nurbanhoney.domain
 
-import com.devjj.platform.nurbanhoney.domain.login.model.NurbanTokenEntity
-import com.devjj.platform.nurbanhoney.domain.login.model.TokenStatusEntity
+import com.devjj.platform.nurbanhoney.domain.login.model.NurbanToken
+import com.devjj.platform.nurbanhoney.domain.login.model.TokenStatus
 
 interface LoginRepository {
-    fun getNurbanToken(type: String, kakaoKey: String): Result<NurbanTokenEntity>
-    fun isTokenValid(token: String): Result<TokenStatusEntity>
+    fun getNurbanToken(type: String, kakaoKey: String): Result<NurbanToken>
+    fun isTokenValid(token: String): Result<TokenStatus>
 }

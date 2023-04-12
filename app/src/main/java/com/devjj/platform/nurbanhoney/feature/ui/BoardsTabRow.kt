@@ -15,13 +15,13 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.devjj.platform.nurbanhoney.domain.board.model.BoardEntity
+import com.devjj.platform.nurbanhoney.domain.board.model.Board
 
 @Composable
 fun BoardsTab(
-    tabs: List<BoardEntity>,
-    selectedTabIndex: Int,
-    onTabClick: (Int) -> Unit
+	tabs: List<Board>,
+	selectedTabIndex: Int,
+	onTabClick: (Int) -> Unit
 
 ) {
     Log.d("Tap_test", "$tabs")

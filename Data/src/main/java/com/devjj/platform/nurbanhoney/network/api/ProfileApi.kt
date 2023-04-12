@@ -1,9 +1,9 @@
 package com.devjj.platform.nurbanhoney.network.api
 
-import com.devjj.platform.nurbanhoney.network.entities.ProfileArticleNetworkResponse
-import com.devjj.platform.nurbanhoney.network.entities.ProfileCommentNetworkResponse
-import com.devjj.platform.nurbanhoney.network.entities.ProfileNetworkResponse
-import com.devjj.platform.nurbanhoney.network.entities.SimpleNetworkResponse
+import com.devjj.platform.nurbanhoney.network.entities.ProfileArticleEntity
+import com.devjj.platform.nurbanhoney.network.entities.ProfileCommentEntity
+import com.devjj.platform.nurbanhoney.network.entities.ProfileEntity
+import com.devjj.platform.nurbanhoney.network.entities.SimpleResponseEntity
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -19,27 +19,27 @@ internal interface ProfileApi {
     @GET(PROFILE)
     fun getProfile(
         @Header("token") token: String
-    ): Call<ProfileNetworkResponse>
+    ): Call<ProfileEntity>
 
     @GET(PROFILE_MYARTCIEL)
     fun getMyArticles(
         @Header("token") token: String,
         @Query("offset") offset: Int,
         @Query("limit") limit: Int
-    ): Call<List<ProfileArticleNetworkResponse>>
+    ): Call<List<ProfileArticleEntity>>
 
     @GET(PROFILE_MYCOMMENT)
     fun getMyComments(
         @Header("token") token: String,
         @Query("offset") offset: Int,
         @Query("limit") limit: Int
-    ): Call<List<ProfileCommentNetworkResponse>>
+    ): Call<List<ProfileCommentEntity>>
 
     @DELETE(PROFILE_WITHDRAWAL)
     fun signOut(
         @Header("token") token: String,
         @Query("id") id: Int
-    ): Call<SimpleNetworkResponse>
+    ): Call<SimpleResponseEntity>
 
     @FormUrlEncoded
     @PATCH(PROFILE_EDIT)
@@ -48,7 +48,7 @@ internal interface ProfileApi {
         @Field("nickname") nickname: String,
         @Field("description") description: String,
         @Field("insignia") insignia: List<String>
-    ): Call<SimpleNetworkResponse>
+    ): Call<SimpleResponseEntity>
     /*POST
     @FormUrlEncoded
     @POST(ARTICLE_LIKE)

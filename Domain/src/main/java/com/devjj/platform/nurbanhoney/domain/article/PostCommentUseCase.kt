@@ -1,14 +1,14 @@
 package com.devjj.platform.nurbanhoney.domain.article
 
 import com.devjj.platform.nurbanhoney.domain.ArticleRepository
-import com.devjj.platform.nurbanhoney.domain.article.model.CommentResponseEntity
+import com.devjj.platform.nurbanhoney.domain.article.model.CommentResponse
 import com.devjj.platform.nurbanhoney.domain.interactor.UseCase
 import javax.inject.Inject
 
 class PostCommentUseCase
 @Inject constructor(
     private val repository: ArticleRepository
-) : UseCase<CommentResponseEntity, PostCommentUseCase.Params>() {
+) : UseCase<CommentResponse, PostCommentUseCase.Params>() {
     override suspend fun run(params: Params) =
         repository.postComment(params.board, params.token, params.comment, params.id)
 

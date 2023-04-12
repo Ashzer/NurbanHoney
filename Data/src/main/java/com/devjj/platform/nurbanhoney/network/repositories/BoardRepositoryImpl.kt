@@ -1,7 +1,7 @@
 package com.devjj.platform.nurbanhoney.network.repositories
 
 import com.devjj.platform.nurbanhoney.domain.BoardRepository
-import com.devjj.platform.nurbanhoney.domain.board.model.BoardEntity
+import com.devjj.platform.nurbanhoney.domain.board.model.Board
 import com.devjj.platform.nurbanhoney.errorhandler.Failure
 import com.devjj.platform.nurbanhoney.network.NetworkHandler
 import com.devjj.platform.nurbanhoney.network.request
@@ -13,7 +13,7 @@ class BoardRepositoryImpl
     private val boardService: BoardService,
     private val networkHandler: NetworkHandler
 ) : BoardRepository {
-    override fun getBoards(): Result<List<BoardEntity>> {
+    override fun getBoards(): Result<List<Board>> {
         return when (networkHandler.isNetworkAvailable()) {
             true -> request(
                 boardService.getBoards(),

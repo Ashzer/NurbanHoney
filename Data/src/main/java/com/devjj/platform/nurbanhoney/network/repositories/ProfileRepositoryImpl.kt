@@ -4,8 +4,8 @@ import com.devjj.platform.nurbanhoney.domain.ProfileRepository
 import com.devjj.platform.nurbanhoney.domain.profile.model.*
 import com.devjj.platform.nurbanhoney.errorhandler.Failure
 import com.devjj.platform.nurbanhoney.network.NetworkHandler
-import com.devjj.platform.nurbanhoney.network.entities.ProfileNetworkResponse
-import com.devjj.platform.nurbanhoney.network.entities.SimpleNetworkResponse
+import com.devjj.platform.nurbanhoney.network.entities.ProfileEntity
+import com.devjj.platform.nurbanhoney.network.entities.SimpleResponseEntity
 import com.devjj.platform.nurbanhoney.network.request
 import com.devjj.platform.nurbanhoney.network.service.ProfileService
 import javax.inject.Inject
@@ -15,12 +15,12 @@ class ProfileRepositoryImpl
     private val networkHandler: NetworkHandler,
     private val profileService: ProfileService
 ) : ProfileRepository {
-    override fun getProfile(token: String): Result<ProfileEntity> {
+    override fun getProfile(token: String): Result<Profile> {
         return when (networkHandler.isNetworkAvailable()) {
             true -> request(
                 profileService.getProfile(token),
                 { it.toProfile() },
-                ProfileNetworkResponse.empty
+                ProfileEntity.empty
             )
             false -> Result.failure(Failure.NetworkFailure)
         }
@@ -30,7 +30,7 @@ class ProfileRepositoryImpl
         token: String,
         offset: Int,
         limit: Int
-    ): Result<List<ProfileArticleEntity>> {
+    ): Result<List<ProfileArticle>> {
         return when (networkHandler.isNetworkAvailable()) {
             true -> request(
                 profileService.getMyArticles(
@@ -49,7 +49,7 @@ class ProfileRepositoryImpl
         token: String,
         offset: Int,
         limit: Int
-    ): Result<List<ProfileCommentEntity>> {
+    ): Result<List<ProfileComment>> {
         return when (networkHandler.isNetworkAvailable()) {
             true -> request(
                 profileService.getMyComments(
@@ -67,12 +67,12 @@ class ProfileRepositoryImpl
     override fun signOut(
         token: String,
         id: Int
-    ): Result<SignOutResponseEntity> {
+    ): Result<SignOutResponse> {
         return when (networkHandler.isNetworkAvailable()) {
             true -> request(
                 profileService.signOut(token, id),
                 { it.toSignOutResponse() },
-                SimpleNetworkResponse.empty
+                SimpleResponseEntity.empty
             )
             false -> Result.failure(Failure.NetworkFailure)
         }
@@ -83,7 +83,7 @@ class ProfileRepositoryImpl
         nickname: String,
         description: String,
         insignia: List<String>
-    ): Result<EditProfileResponseEntity> {
+    ): Result<EditProfileResponse> {
         return when (networkHandler.isNetworkAvailable()) {
             true -> request(
                 profileService.editProfile(
@@ -93,7 +93,7 @@ class ProfileRepositoryImpl
                     insignia
                 ),
                 { it.toEditProfileResponse() },
-                SimpleNetworkResponse.empty
+                SimpleResponseEntity.empty
             )
             false -> Result.failure(Failure.NetworkFailure)
         }

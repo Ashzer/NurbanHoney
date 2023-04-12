@@ -1,14 +1,14 @@
 package com.devjj.platform.nurbanhoney.domain.article
 
 import com.devjj.platform.nurbanhoney.domain.ArticleRepository
-import com.devjj.platform.nurbanhoney.domain.article.model.RatingsEntity
+import com.devjj.platform.nurbanhoney.domain.article.model.Ratings
 import com.devjj.platform.nurbanhoney.domain.interactor.UseCase
 import javax.inject.Inject
 
 class GetRatingsUseCase
 @Inject constructor(
     private val repository: ArticleRepository
-) : UseCase<RatingsEntity, GetRatingsUseCase.Params>() {
+) : UseCase<Ratings, GetRatingsUseCase.Params>() {
     override suspend fun run(params: Params) =
         repository.getRatings(params.board, params.token, params.articleId)
 

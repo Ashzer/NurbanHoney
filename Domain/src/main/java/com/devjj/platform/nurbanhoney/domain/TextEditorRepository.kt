@@ -1,8 +1,8 @@
 package com.devjj.platform.nurbanhoney.domain
 
-import com.devjj.platform.nurbanhoney.domain.textedit.model.ArticleResponseEntity
-import com.devjj.platform.nurbanhoney.domain.textedit.model.ImageResponseEntity
-import com.devjj.platform.nurbanhoney.domain.textedit.model.ImageUploadResultEntity
+import com.devjj.platform.nurbanhoney.domain.textedit.model.ArticleResponse
+import com.devjj.platform.nurbanhoney.domain.textedit.model.ImageResponse
+import com.devjj.platform.nurbanhoney.domain.textedit.model.ImageUploadResult
 import okhttp3.MultipartBody
 
 interface TextEditorRepository {
@@ -14,7 +14,7 @@ interface TextEditorRepository {
 		lossCut: Long,
 		thumbnail: String?,
 		content: String
-	): Result<ArticleResponseEntity>
+	): Result<ArticleResponse>
 
 	fun uploadArticle(
 		board: String,
@@ -23,7 +23,7 @@ interface TextEditorRepository {
 		uuid: String,
 		thumbnail: String?,
 		content: String
-	): Result<ArticleResponseEntity>
+	): Result<ArticleResponse>
 
 	fun modifyNurbanArticle(
 		board: String,
@@ -33,7 +33,7 @@ interface TextEditorRepository {
 		title: String,
 		lossCut: Long,
 		content: String
-	): Result<ArticleResponseEntity>
+	): Result<ArticleResponse>
 
 	fun modifyArticle(
 		board: String,
@@ -42,25 +42,25 @@ interface TextEditorRepository {
 		thumbnail: String?,
 		title: String,
 		content: String
-	): Result<ArticleResponseEntity>
+	): Result<ArticleResponse>
 
 	fun deleteArticle(
 		board: String,
 		token: String,
 		articleId: Int,
 		uuid: String
-	): Result<ArticleResponseEntity>
+	): Result<ArticleResponse>
 
 	fun uploadImage(
 		board: String,
 		token: String,
 		uuid: MultipartBody.Part,
 		image: MultipartBody.Part
-	): Result<ImageUploadResultEntity>
+	): Result<ImageUploadResult>
 
 	fun deleteImages(
 		board: String,
 		token: String,
 		uuid: String
-	): Result<ImageResponseEntity>
+	): Result<ImageResponse>
 }

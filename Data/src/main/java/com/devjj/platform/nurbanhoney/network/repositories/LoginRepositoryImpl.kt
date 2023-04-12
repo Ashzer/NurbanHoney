@@ -1,12 +1,12 @@
 package com.devjj.platform.nurbanhoney.network.repositories
 
 import com.devjj.platform.nurbanhoney.domain.LoginRepository
-import com.devjj.platform.nurbanhoney.domain.login.model.NurbanTokenEntity
-import com.devjj.platform.nurbanhoney.domain.login.model.TokenStatusEntity
+import com.devjj.platform.nurbanhoney.domain.login.model.NurbanToken
+import com.devjj.platform.nurbanhoney.domain.login.model.TokenStatus
 import com.devjj.platform.nurbanhoney.errorhandler.Failure
 import com.devjj.platform.nurbanhoney.network.NetworkHandler
-import com.devjj.platform.nurbanhoney.network.entities.LoginNetworkResponse
-import com.devjj.platform.nurbanhoney.network.entities.ValidationNetworkResponse
+import com.devjj.platform.nurbanhoney.network.entities.LoginInfoEntity
+import com.devjj.platform.nurbanhoney.network.entities.ValidateInfoEntity
 import com.devjj.platform.nurbanhoney.network.request
 import com.devjj.platform.nurbanhoney.network.service.LoginService
 import javax.inject.Inject
@@ -20,7 +20,7 @@ class LoginRepositoryImpl
     override fun getNurbanToken(
         type: String,
         kakaoKey: String
-    ): Result<NurbanTokenEntity> {
+    ): Result<NurbanToken> {
         return when (networkHandler.isNetworkAvailable()) {
             true -> request(
                 loginService.loginRequest(
@@ -28,18 +28,18 @@ class LoginRepositoryImpl
                     kakaoKey
                 ),
                 { it.toNurbanToken() },
-                LoginNetworkResponse.empty
+                LoginInfoEntity.empty
             )
             false -> Result.failure(Failure.NetworkFailure)
         }
     }
 
-    override fun isTokenValid(token: String): Result<TokenStatusEntity> {
+    override fun isTokenValid(token: String): Result<TokenStatus> {
         return when (networkHandler.isNetworkAvailable()) {
             true -> request(
                 loginService.validationCheck(token),
                 { it.toIsTokenValid() },
-                ValidationNetworkResponse.empty
+                ValidateInfoEntity.empty
             )
             false -> Result.failure(Failure.NetworkFailure)
         }

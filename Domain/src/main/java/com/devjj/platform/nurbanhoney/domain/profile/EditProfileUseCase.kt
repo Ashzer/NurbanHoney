@@ -2,13 +2,13 @@ package com.devjj.platform.nurbanhoney.domain.profile
 
 import com.devjj.platform.nurbanhoney.domain.ProfileRepository
 import com.devjj.platform.nurbanhoney.domain.interactor.UseCase
-import com.devjj.platform.nurbanhoney.domain.profile.model.EditProfileResponseEntity
+import com.devjj.platform.nurbanhoney.domain.profile.model.EditProfileResponse
 import javax.inject.Inject
 
 class EditProfileUseCase
 @Inject constructor(
     private val repository: ProfileRepository
-) : UseCase<EditProfileResponseEntity, EditProfileUseCase.Params>() {
+) : UseCase<EditProfileResponse, EditProfileUseCase.Params>() {
     override suspend fun run(params: Params) =
         repository.editProfile(params.token, params.nickname, params.description, params.insignia)
 

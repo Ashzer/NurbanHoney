@@ -1,13 +1,13 @@
 package com.devjj.platform.nurbanhoney.network.repositories
 
 import com.devjj.platform.nurbanhoney.domain.TextEditorRepository
-import com.devjj.platform.nurbanhoney.domain.textedit.model.ArticleResponseEntity
-import com.devjj.platform.nurbanhoney.domain.textedit.model.ImageResponseEntity
-import com.devjj.platform.nurbanhoney.domain.textedit.model.ImageUploadResultEntity
+import com.devjj.platform.nurbanhoney.domain.textedit.model.ArticleResponse
+import com.devjj.platform.nurbanhoney.domain.textedit.model.ImageResponse
+import com.devjj.platform.nurbanhoney.domain.textedit.model.ImageUploadResult
 import com.devjj.platform.nurbanhoney.errorhandler.Failure
 import com.devjj.platform.nurbanhoney.network.NetworkHandler
-import com.devjj.platform.nurbanhoney.network.entities.SimpleNetworkResponse
-import com.devjj.platform.nurbanhoney.network.entities.UploadImageNetworkResponse
+import com.devjj.platform.nurbanhoney.network.entities.SimpleResponseEntity
+import com.devjj.platform.nurbanhoney.network.entities.UploadedImageEntity
 import com.devjj.platform.nurbanhoney.network.request
 import com.devjj.platform.nurbanhoney.network.service.BoardService
 import okhttp3.MultipartBody
@@ -26,7 +26,7 @@ class TextEditorRepositoryImpl
 		lossCut: Long,
 		thumbnail: String?,
 		content: String
-	): Result<ArticleResponseEntity> {
+	): Result<ArticleResponse> {
 		return when (networkHandler.isNetworkAvailable()) {
 			true -> request(
 				boardService.uploadNurbanRequest(
@@ -39,7 +39,7 @@ class TextEditorRepositoryImpl
 					content
 				),
 				{ it.toArticleResponse() },
-				SimpleNetworkResponse.empty
+				SimpleResponseEntity.empty
 			)
 			false -> Result.failure(Failure.NetworkFailure)
 		}
@@ -52,7 +52,7 @@ class TextEditorRepositoryImpl
 		uuid: String,
 		thumbnail: String?,
 		content: String
-	): Result<ArticleResponseEntity> {
+	): Result<ArticleResponse> {
 		return when (networkHandler.isNetworkAvailable()) {
 			true -> request(
 				boardService.uploadRequest(
@@ -64,7 +64,7 @@ class TextEditorRepositoryImpl
 					content
 				),
 				{ it.toArticleResponse() },
-				SimpleNetworkResponse.empty
+				SimpleResponseEntity.empty
 			)
 			false -> Result.failure(Failure.NetworkFailure)
 		}
@@ -78,7 +78,7 @@ class TextEditorRepositoryImpl
 		title: String,
 		lossCut: Long,
 		content: String
-	): Result<ArticleResponseEntity> {
+	): Result<ArticleResponse> {
 		return when (networkHandler.isNetworkAvailable()) {
 			true -> request(
 				boardService.modifyNurbanRequest(
@@ -91,7 +91,7 @@ class TextEditorRepositoryImpl
 					content
 				),
 				{ it.toArticleResponse() },
-				SimpleNetworkResponse.empty
+				SimpleResponseEntity.empty
 			)
 			false -> Result.failure(Failure.NetworkFailure)
 		}
@@ -104,7 +104,7 @@ class TextEditorRepositoryImpl
 		thumbnail: String?,
 		title: String,
 		content: String
-	): Result<ArticleResponseEntity> {
+	): Result<ArticleResponse> {
 		return when (networkHandler.isNetworkAvailable()) {
 			true -> request(
 				boardService.modifyRequest(
@@ -116,7 +116,7 @@ class TextEditorRepositoryImpl
 					content
 				),
 				{ it.toArticleResponse() },
-				SimpleNetworkResponse.empty
+				SimpleResponseEntity.empty
 			)
 			false -> Result.failure(Failure.NetworkFailure)
 		}
@@ -127,14 +127,14 @@ class TextEditorRepositoryImpl
 		token: String,
 		articleId: Int,
 		uuid: String
-	): Result<ArticleResponseEntity> {
+	): Result<ArticleResponse> {
 		return when (networkHandler.isNetworkAvailable()) {
 			true -> request(
 				boardService.deleteArticle(
 					board, token, articleId, uuid
 				),
 				{ it.toArticleResponse() },
-				SimpleNetworkResponse.empty
+				SimpleResponseEntity.empty
 			)
 			false -> Result.failure(Failure.NetworkFailure)
 		}
@@ -145,14 +145,14 @@ class TextEditorRepositoryImpl
 		token: String,
 		uuid: MultipartBody.Part,
 		image: MultipartBody.Part
-	): Result<ImageUploadResultEntity> {
+	): Result<ImageUploadResult> {
 		return when (networkHandler.isNetworkAvailable()) {
 			true -> request(
 				boardService.uploadImage(
 					board, token, uuid, image
 				 ),
 				{ it.toImageUploadResult() },
-				UploadImageNetworkResponse.empty
+				UploadedImageEntity.empty
 			)
 			false -> Result.failure(Failure.NetworkFailure)
 		}
@@ -160,14 +160,14 @@ class TextEditorRepositoryImpl
 
 	override fun deleteImages(
 		board: String, token: String, uuid: String
-	): Result<ImageResponseEntity> {
+	): Result<ImageResponse> {
 		return when (networkHandler.isNetworkAvailable()) {
 			true -> request(
 				boardService.deleteImage(
 					board, token, uuid
 				),
 				{ it.toImageResponse() },
-				SimpleNetworkResponse.empty
+				SimpleResponseEntity.empty
 			)
 			false -> Result.failure(Failure.NetworkFailure)
 		}

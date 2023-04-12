@@ -2,13 +2,13 @@ package com.devjj.platform.nurbanhoney.domain.profile
 
 import com.devjj.platform.nurbanhoney.domain.ProfileRepository
 import com.devjj.platform.nurbanhoney.domain.interactor.UseCase
-import com.devjj.platform.nurbanhoney.domain.profile.model.ProfileCommentEntity
+import com.devjj.platform.nurbanhoney.domain.profile.model.ProfileComment
 import javax.inject.Inject
 
 class GetProfileCommentsUseCase
 @Inject constructor(
     private val repository: ProfileRepository
-) : UseCase<List<ProfileCommentEntity>, GetProfileCommentsUseCase.Params>() {
+) : UseCase<List<ProfileComment>, GetProfileCommentsUseCase.Params>() {
     override suspend fun run(params: Params) =
         repository.getMyComments(params.token, params.offset, params.limit)
 

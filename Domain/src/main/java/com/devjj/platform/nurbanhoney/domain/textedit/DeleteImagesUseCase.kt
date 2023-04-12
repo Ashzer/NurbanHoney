@@ -2,13 +2,13 @@ package com.devjj.platform.nurbanhoney.domain.textedit
 
 import com.devjj.platform.nurbanhoney.domain.TextEditorRepository
 import com.devjj.platform.nurbanhoney.domain.interactor.UseCase
-import com.devjj.platform.nurbanhoney.domain.textedit.model.ImageResponseEntity
+import com.devjj.platform.nurbanhoney.domain.textedit.model.ImageResponse
 import javax.inject.Inject
 
 class DeleteImagesUseCase
 @Inject constructor(
     private val repository: TextEditorRepository
-) : UseCase<ImageResponseEntity, DeleteImagesUseCase.Params>() {
+) : UseCase<ImageResponse, DeleteImagesUseCase.Params>() {
     override suspend fun run(params: Params) =
         repository.deleteImages(params.board, params.token, params.uuid)
 

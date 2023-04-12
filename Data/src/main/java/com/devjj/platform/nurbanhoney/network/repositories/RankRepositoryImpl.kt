@@ -1,8 +1,8 @@
 package com.devjj.platform.nurbanhoney.network.repositories
 
 import com.devjj.platform.nurbanhoney.domain.RankRepository
-import com.devjj.platform.nurbanhoney.domain.rank.model.RankEntity
-import com.devjj.platform.nurbanhoney.domain.rank.model.RankSimpleEntity
+import com.devjj.platform.nurbanhoney.domain.rank.model.Rank
+import com.devjj.platform.nurbanhoney.domain.rank.model.RankPreview
 import com.devjj.platform.nurbanhoney.errorhandler.Failure
 import com.devjj.platform.nurbanhoney.network.NetworkHandler
 import com.devjj.platform.nurbanhoney.network.request
@@ -14,7 +14,7 @@ class RankRepositoryImpl
     private val networkHandler: NetworkHandler,
     private val rankService: RankService
 ) : RankRepository {
-    override fun getRanks(): Result<List<RankEntity>> {
+    override fun getRanks(): Result<List<Rank>> {
         return when (networkHandler.isNetworkAvailable()) {
             true -> request(
                 rankService.getRanks(),
@@ -28,7 +28,7 @@ class RankRepositoryImpl
     override fun getTopRanks(
         offset: Int,
         limit: Int
-    ): Result<List<RankSimpleEntity>> {
+    ): Result<List<RankPreview>> {
         return when (networkHandler.isNetworkAvailable()) {
             true -> request(
                 rankService.getRanksTopThree(offset, limit),

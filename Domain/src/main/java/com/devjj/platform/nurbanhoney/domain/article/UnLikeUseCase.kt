@@ -1,14 +1,14 @@
 package com.devjj.platform.nurbanhoney.domain.article
 
 import com.devjj.platform.nurbanhoney.domain.ArticleRepository
-import com.devjj.platform.nurbanhoney.domain.article.model.RatingResponseEntity
+import com.devjj.platform.nurbanhoney.domain.article.model.RatingResponse
 import com.devjj.platform.nurbanhoney.domain.interactor.UseCase
 import javax.inject.Inject
 
 class UnLikeUseCase
 @Inject constructor(
     private val repository: ArticleRepository
-) : UseCase<RatingResponseEntity, UnLikeUseCase.Params>() {
+) : UseCase<RatingResponse, UnLikeUseCase.Params>() {
     override suspend fun run(params: Params) =
         repository.cancelLike(params.board, params.token, params.id)
 

@@ -1,29 +1,30 @@
 plugins {
-    `kotlin-dsl`
-    `kotlin-dsl-precompiled-script-plugins`
-    kotlin("jvm") version "1.3.50" apply false
+	`kotlin-dsl`
+	`kotlin-dsl-precompiled-script-plugins`
+	kotlin("jvm") version "1.3.50" apply false
 }
 repositories {
-    google()
-    mavenCentral()
-    gradlePluginPortal()
+	google()
+	mavenCentral()
+	gradlePluginPortal()
 }
 
 subprojects {
-    repositories {
-        google()
-        mavenCentral()
-        gradlePluginPortal()
-    }
+	repositories {
+		google()
+		mavenCentral()
+		gradlePluginPortal()
+	}
 
-    group = "org.devjj.platform.nurbanhoney"
-    version = "0.0.1"
+	group = "com.devjj.platform.nurbanhoney"
 
-    apply {
-        plugin("org.jetbrains.kotlin.jvm")
-    }
+	version = "0.0.1"
 
-    tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-        kotlinOptions.jvmTarget = "1.8"
-    }
+	apply {
+		plugin("org.jetbrains.kotlin.jvm")
+	}
+
+	tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
+		kotlinOptions.jvmTarget = "1.8"
+	}
 }

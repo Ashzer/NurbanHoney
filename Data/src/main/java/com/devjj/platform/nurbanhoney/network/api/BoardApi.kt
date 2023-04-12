@@ -1,8 +1,8 @@
 package com.devjj.platform.nurbanhoney.network.api
 
-import com.devjj.platform.nurbanhoney.network.entities.BoardNetworkResponse
-import com.devjj.platform.nurbanhoney.network.entities.SimpleNetworkResponse
-import com.devjj.platform.nurbanhoney.network.entities.UploadImageNetworkResponse
+import com.devjj.platform.nurbanhoney.network.entities.BoardEntity
+import com.devjj.platform.nurbanhoney.network.entities.SimpleResponseEntity
+import com.devjj.platform.nurbanhoney.network.entities.UploadedImageEntity
 import okhttp3.MultipartBody
 import retrofit2.Call
 import retrofit2.http.*
@@ -15,7 +15,7 @@ internal interface BoardApi {
     }
 
     @GET(BASE_BOARD)
-    fun getBoards(): Call<List<BoardNetworkResponse>>
+    fun getBoards(): Call<List<BoardEntity>>
 
     @FormUrlEncoded
     @POST("$BASE_BOARD/{board}$ARTICLE")
@@ -27,7 +27,7 @@ internal interface BoardApi {
         @Field("lossCut") lossCut: Long,
         @Field("thumbnail") thumbnail: String?,
         @Field("content") content: String
-    ): Call<SimpleNetworkResponse>
+    ): Call<SimpleResponseEntity>
 
     @FormUrlEncoded
     @POST("$BASE_BOARD/{board}$ARTICLE")
@@ -38,7 +38,7 @@ internal interface BoardApi {
         @Field("uuid") uuid: String,
         @Field("thumbnail") thumbnail: String?,
         @Field("content") content: String
-    ): Call<SimpleNetworkResponse>
+    ): Call<SimpleResponseEntity>
 
     @FormUrlEncoded
     @PATCH("$BASE_BOARD/{board}$ARTICLE")
@@ -50,7 +50,7 @@ internal interface BoardApi {
         @Field("title") title: String,
         @Field("lossCut") lossCut: Long,
         @Field("content") content: String
-    ): Call<SimpleNetworkResponse>
+    ): Call<SimpleResponseEntity>
 
     @FormUrlEncoded
     @PATCH("$BASE_BOARD/{board}$ARTICLE")
@@ -61,7 +61,7 @@ internal interface BoardApi {
         @Field("thumbnail") thumbnail: String?,
         @Field("title") title: String,
         @Field("content") content: String
-    ): Call<SimpleNetworkResponse>
+    ): Call<SimpleResponseEntity>
 
     @Multipart
     @POST("$BASE_BOARD/{board}$ARTICLE$UPLOAD_IMG")
@@ -70,14 +70,14 @@ internal interface BoardApi {
         @Header("token") token: String,
         @Part uuid: MultipartBody.Part,
         @Part image: MultipartBody.Part
-    ): Call<UploadImageNetworkResponse>
+    ): Call<UploadedImageEntity>
 
     @DELETE("$BASE_BOARD/{board}$ARTICLE$UPLOAD_IMG")
     fun deleteImage(
         @Path("board") board: String,
         @Header("token") token: String,
         @Query("uuid") uuid: String
-    ): Call<SimpleNetworkResponse>
+    ): Call<SimpleResponseEntity>
 
     @DELETE("$BASE_BOARD/{board}$ARTICLE")
     fun deleteArticle(
@@ -85,5 +85,5 @@ internal interface BoardApi {
         @Header("token") token: String,
         @Query("id") articleId: Int,
         @Query("uuid") uuid: String
-    ): Call<SimpleNetworkResponse>
+    ): Call<SimpleResponseEntity>
 }
