@@ -54,8 +54,8 @@ class ApplicationModule {
 
     private fun createClient(): OkHttpClient {
         val okHttpClientBuilder: OkHttpClient.Builder = OkHttpClient.Builder()
-        val loggingInterceptor = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.HEADERS)
-        okHttpClientBuilder.addInterceptor(loggingInterceptor)
+        val body = HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
+        okHttpClientBuilder.addInterceptor(body)
 
         return okHttpClientBuilder.build()
     }

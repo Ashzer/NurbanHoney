@@ -16,7 +16,7 @@ import com.devjj.platform.nurbanhoney.R
 import com.devjj.platform.nurbanhoney.core.navigation.Routes
 
 @Composable
-fun SplashScreen(navController: NavHostController) {
+fun SplashPage(navController: NavHostController) {
     Box(
         modifier = Modifier
             .fillMaxSize()

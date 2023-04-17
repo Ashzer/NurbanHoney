@@ -8,7 +8,7 @@ plugins {
 
 android {
     namespace = libs.versions.namespace.get()
-    compileSdk =  Integer.parseInt(libs.versions.compileSdk.get())
+    compileSdk = Integer.parseInt(libs.versions.compileSdk.get())
 
     defaultConfig {
         applicationId = libs.versions.applicationnId.get()
@@ -53,7 +53,6 @@ android {
             excludes += "META-INF/gradle/incremental.annotation.processors"
         }
     }
-
 }
 
 dependencies {

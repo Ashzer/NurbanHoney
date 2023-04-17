@@ -13,7 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import androidx.navigation.NavHostController
+import androidx.navigation.NavController
 import com.devjj.platform.nurbanhoney.R
 import com.devjj.platform.nurbanhoney.core.extension.AlignLeft
 import com.devjj.platform.nurbanhoney.core.navigation.Routes
@@ -80,7 +80,7 @@ fun DrawerContent(
 }
 
 @Composable
-fun DrawBottomNavigation(navController: NavHostController) {
+fun DrawBottomNavigation(navController: NavController) {
     BottomAppBar(modifier = Modifier.border(width = 1.dp, color = Color(0xFFD5D5D5))) {
         BottomNavigationItem(
             selected = true,

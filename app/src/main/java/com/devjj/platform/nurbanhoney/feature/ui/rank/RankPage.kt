@@ -1,8 +1,11 @@
-package com.devjj.platform.nurbanhoney.feature.ui
+package com.devjj.platform.nurbanhoney.feature.ui.rank
 
 import android.widget.Toast
 import androidx.compose.foundation.layout.Box
-import androidx.compose.material.*
+import androidx.compose.material.MaterialTheme
+import androidx.compose.material.Scaffold
+import androidx.compose.material.TextField
+import androidx.compose.material.rememberScaffoldState
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.graphics.Color
@@ -17,7 +20,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 @Composable
-fun ProfileScreen(navController: NavHostController) {
+fun RankPage(navController: NavHostController) {
     val scaffoldState = rememberScaffoldState()
     val coroutineScope = rememberCoroutineScope()
     val contextForToast = LocalContext.current.applicationContext
@@ -42,7 +45,7 @@ fun ProfileScreen(navController: NavHostController) {
                 content = { paddingValues ->
                     AlignLeft {
                         Box {
-                            TextField(value = "profile screen $paddingValues", onValueChange = {})
+                            TextField(value = "rank screen $paddingValues", onValueChange = {})
                         }
                     }
                 },
