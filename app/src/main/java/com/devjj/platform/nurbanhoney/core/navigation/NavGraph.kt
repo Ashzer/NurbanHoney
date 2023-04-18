@@ -4,11 +4,10 @@ import android.widget.Toast
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavController
-import androidx.navigation.NavGraphBuilder
-import androidx.navigation.NavHostController
+import androidx.navigation.*
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.devjj.platform.nurbanhoney.domain.board.model.Board
 import com.devjj.platform.nurbanhoney.feature.ui.*
 import com.devjj.platform.nurbanhoney.feature.ui.article.ArticlePage
 import com.devjj.platform.nurbanhoney.feature.ui.article.ArticleSideEffect
@@ -25,9 +24,7 @@ fun SetupNavGraph(navController: NavHostController) {
 		navController = navController,
 		startDestination = Routes.Splash.route
 	) {
-		composable(route = Routes.Splash.route) {
-			SplashPage(navController = navController)
-		}
+		addSplash(navController = navController)
 		addHome(navController = navController)
 		addArticle(navController = navController)
 //        composable(route = Routes.Home.route) {
@@ -42,10 +39,17 @@ fun SetupNavGraph(navController: NavHostController) {
 	}
 }
 
+fun NavGraphBuilder.addSplash(navController: NavHostController) {
+	composable(route = Routes.Splash.route) {
+		SplashPage(navController = navController)
+	}
+}
+
 fun NavGraphBuilder.addHome(navController: NavController) {
 	composable(route = Routes.Home.route) {
 		val viewModel = hiltViewModel<HomeViewModel>()
 		val state by viewModel.collectAsState()
+
 		viewModel.collectSideEffect {
 			when (it) {
 				is HomeSideEffect.ShowToast -> {

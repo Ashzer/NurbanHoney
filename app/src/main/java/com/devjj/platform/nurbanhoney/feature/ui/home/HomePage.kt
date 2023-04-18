@@ -8,6 +8,7 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
@@ -19,6 +20,7 @@ import com.devjj.platform.nurbanhoney.core.platform.DrawBottomNavigation
 import com.devjj.platform.nurbanhoney.core.platform.DrawerContent
 import com.devjj.platform.nurbanhoney.core.platform.MainToolBar
 import com.devjj.platform.nurbanhoney.feature.ui.BoardsTab
+import com.devjj.platform.nurbanhoney.feature.ui.UiState
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -61,31 +63,45 @@ fun HomePage(
 								items(500) {
 									Card(
 										modifier = Modifier
-											.padding(
-												5.dp
-											)
+											.padding(5.dp)
 											.width(200.dp)
 											.height(120.dp),
-										backgroundColor = Color(
-											0x33F6B748
-										),
-										shape = RoundedCornerShape(
-											30.dp
-										)
-									) {}
+										backgroundColor = Color(0x33F6B748),
+										shape = RoundedCornerShape(30.dp)
+									){}
 								}
 							}
 
-							LazyColumn(content = {
-								state.articlePreviews?.let { previews ->
-									items(previews.size) {
-										ArticlePreview(previews[it]) { index ->
-											onArticleClicked(index)
-											Log.d("articles", "at id = $index has clicked")
+							Box(
+								modifier = Modifier
+									.fillMaxSize()
+									.padding(paddingValues)
+							) {
+								LazyColumn(content = {
+									state.articlePreviews?.let { previews ->
+										items(previews.size) {
+											ArticlePreview(previews[it]) { index ->
+												onArticleClicked(index)
+												Log.d("articles", "at id = $index has clicked")
+											}
 										}
 									}
+								})
+
+								when (state.state) {
+									UiState.Loading -> {
+										LoadingIndicator(modifier = Modifier.fillMaxSize())
+									}
+									is UiState.Failed -> {
+										ErrorMessage(
+											message = state.state.message,
+											modifier = Modifier.fillMaxSize()
+										)
+									}
+									else -> Unit
 								}
-							})
+							}
+
 						}
 						paddingValues.calculateTopPadding()
 					}
@@ -138,5 +154,24 @@ fun MainTopBar(
 		AlignLeft {
 			BoardsTab(state) { onTabSelected(it) }
 		}
+	}
+}
+
+@Composable
+fun LoadingIndicator(modifier: Modifier = Modifier) {
+	Box(modifier = modifier) {
+		CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
+	}
+}
+
+@Composable
+fun ErrorMessage(message: String, modifier: Modifier = Modifier) {
+	Box(modifier = modifier) {
+		Text(
+			text = message,
+			style = MaterialTheme.typography.h5,
+			color = MaterialTheme.colors.error,
+			modifier = Modifier.align(Alignment.Center)
+		)
 	}
 }

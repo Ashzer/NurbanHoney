@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.devjj.platform.nurbanhoney.core.platform.BaseViewModel
 import com.devjj.platform.nurbanhoney.domain.article.GetArticleUseCase
 import com.devjj.platform.nurbanhoney.domain.article.model.Article
+import com.devjj.platform.nurbanhoney.domain.board.model.Board
 import com.devjj.platform.nurbanhoney.feature.ui.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
@@ -66,4 +67,3 @@ class ArticleViewModel
 		}
 	}
 }
-
