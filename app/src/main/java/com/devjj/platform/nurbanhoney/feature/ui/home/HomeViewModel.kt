@@ -44,7 +44,7 @@ class HomeViewModel
 	private fun getBoards() {
 		intent {
 			viewModelScope.launch(Dispatchers.IO) {
-				reduce { state.copy(state = UiState.Loading) }
+				reduce { state.copy(state = HomeUiState.BoardsLoading) }
 				getBoardUseCase(UseCase.None()) { it.fold(::handleBoards, ::handleFailure) }
 			}
 		}
@@ -60,7 +60,7 @@ class HomeViewModel
 			viewModelScope.launch(Dispatchers.IO) {
 				reduce {
 					state.copy(
-						state = UiState.Loading,
+						state = HomeUiState.ArticlePreviewsLoading,
 						selectedBoardIndex = state.boards?.map { it.address }?.indexOf(boardName)
 							?: 0
 					)
@@ -82,7 +82,7 @@ class HomeViewModel
 		Log.d("handleArticle", articlePreviews.toString())
 		reduce {
 //			blockingIntent { Thread.sleep(1000) }
-			state.copy(state = UiState.Success, articlePreviews = articlePreviews)
+			state.copy(state = HomeUiState.ArticlePreviewsSuccess, articlePreviews = articlePreviews)
 		}
 	}
 
@@ -90,17 +90,17 @@ class HomeViewModel
 		intent {
 			reduce {
 				getArticle()
-				state.copy(state = UiState.Success, boards = boards)
+				state.copy(state = HomeUiState.BoardsSuccess, boards = boards)
 			}
 		}
 
 	private fun handleFailure(failure: Throwable) =
-		intent { reduce { state.copy(state = UiState.Failed("Error")) } }
+		intent { reduce { state.copy(state = HomeUiState.Failed("Error")) } }
 
 	fun onTabSelected(index: Int) {
 		intent {
 
-			if (state.state != UiState.Loading) {
+			if (state.state != HomeUiState.ArticlePreviewsLoading) {
 				if (index != state.selectedBoardIndex) {
 					getArticle(boardName = state.boards?.get(index)?.address ?: "")
 				}
@@ -117,7 +117,7 @@ class HomeViewModel
 		intent {
 			postSideEffect(
 				HomeSideEffect.ShowArticleDetail(
-					state.boards?.get(state.selectedBoardIndex)?.address ?: "",
+					state.selectedBoardIndex?.let { state.boards?.get(it)?.address } ?: "",
 					id
 				)
 			)

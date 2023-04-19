@@ -3,8 +3,7 @@ package com.devjj.platform.nurbanhoney.feature.ui
 import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.ScrollableTabRow
 import androidx.compose.material.Tab
@@ -12,6 +11,7 @@ import androidx.compose.material.TabRowDefaults
 import androidx.compose.material.TabRowDefaults.tabIndicatorOffset
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
@@ -26,25 +26,37 @@ fun BoardsTab(
 	onTabSelected: (Int) -> Unit
 ) {
 	Log.d("BoardsTab", "${state.boards}")
-	ScrollableTabRow(
-		selectedTabIndex = state.selectedBoardIndex,
-		edgePadding = 0.dp,
-		indicator = { }
-	) {
-		state.boards?.forEachIndexed { tabIndex, tab ->
-			Log.d("BoardsTab", "$tabIndex : $tab")
-			val selected = state.selectedBoardIndex == tabIndex
-			Tab(
-				selected = selected,
-				onClick = { onTabSelected(tabIndex) },
-				text = {
-					Text(
-						text = tab.name,
-						color = Color(if (selected) 0xFFF6B748 else 0xFFD4D4D4),
-						fontSize = 15.sp
-					)
-				}
-			)
+	state.selectedBoardIndex?.let {
+		ScrollableTabRow(
+			selectedTabIndex = it,
+			edgePadding = 0.dp,
+			indicator = { tabPositions ->
+				TabRowDefaults.Indicator(
+					modifier = Modifier.tabIndicatorOffset(
+						currentTabPosition = tabPositions[it],
+					), color = Color(0xFFF6B748)
+				)
+			}
+		) {
+			state.boards?.forEachIndexed { tabIndex, tab ->
+				Log.d("BoardsTab", "$tabIndex : $tab")
+				val selected = state.selectedBoardIndex == tabIndex
+				Tab(
+					selected = selected,
+					onClick = { onTabSelected(tabIndex) },
+					text = {
+						Text(
+							text = tab.name,
+							color = Color(
+								if (selected) 0xFFF6B748
+								else 0xFFD4D4D4
+							),
+							fontSize = 15.sp
+						)
+					},
+					modifier = Modifier.wrapContentWidth(align = Alignment.CenterHorizontally)
+				)
+			}
 		}
 	}
 }

@@ -89,10 +89,10 @@ fun HomePage(
 								})
 
 								when (state.state) {
-									UiState.Loading -> {
+									is HomeUiState.ArticlePreviewsLoading -> {
 										LoadingIndicator(modifier = Modifier.fillMaxSize())
 									}
-									is UiState.Failed -> {
+									is HomeUiState.Failed -> {
 										ErrorMessage(
 											message = state.state.message,
 											modifier = Modifier.fillMaxSize()
