@@ -1,0 +1,31 @@
+if (UserApiClient.instance.isKakaoTalkLoginAvailable(this)) {
+    //로그인
+	UserApiClient.instance.loginWithKakaoTalk(this) { token, error ->
+		if (error != null) {
+			Log.e("KAKAO_API", "로그인 실패", error)
+		} else if (token != null) {
+			Log.i("KAKAO_API", "로그인 성공 ${token.accessToken}")
+		}
+	}
+
+    //재동의 해야함
+	UserApiClient.instance.unlink { error ->
+		if (error != null) {
+			Log.e("KAKAO_API", "연결 끊기 실패", error)
+		} else {
+			Log.i("KAKAO_API", "연결 끊기 성공. SDK에서 토큰 삭제 됨")
+		}
+	}
+
+    //동의한건 남아있음
+	UserApiClient.instance.logout { error ->
+		if (error != null) {
+			Log.e("KAKAO_API", "로그아웃 실패. SDK에서 토큰 삭제됨", error)
+		} else {
+			Log.i("KAKAO_API", "로그아웃 성공. SDK에서 토큰 삭제됨")
+		}
+	}
+
+}else{
+	Log.d("KAKAO_API", "카카오톡 설치 안됨")
+}

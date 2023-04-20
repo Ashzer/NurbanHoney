@@ -110,6 +110,8 @@ dependencies {
     implementation(libs.coil.compose)
 
     implementation(libs.bundles.orbit)
+
+    implementation(libs.kakaoLogin)
 }
 
 kapt {

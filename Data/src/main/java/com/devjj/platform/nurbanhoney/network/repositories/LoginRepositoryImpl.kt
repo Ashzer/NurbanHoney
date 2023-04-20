@@ -19,13 +19,13 @@ class LoginRepositoryImpl
 
     override fun getNurbanToken(
         type: String,
-        kakaoKey: String
+        key: String
     ): Result<NurbanToken> {
         return when (networkHandler.isNetworkAvailable()) {
             true -> request(
                 loginService.loginRequest(
                     type,
-                    kakaoKey
+                    key
                 ),
                 { it.toNurbanToken() },
                 LoginInfoEntity.empty

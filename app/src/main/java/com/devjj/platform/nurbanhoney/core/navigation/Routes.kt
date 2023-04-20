@@ -14,6 +14,7 @@ sealed class Routes(val route: String) {
 		fun createRoute(board: String, id: Int) = "article/$board/$id"
 	}
 
+	object Login : Routes(route = "login")
 	object Rank : Routes(route = "rank")
 	object Profile : Routes(route = "option")
 }

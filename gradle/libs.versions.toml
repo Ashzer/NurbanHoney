@@ -28,6 +28,8 @@ okhttpBom = "4.10.0"
 retrofit = "2.9.0"
 coilCompose = "2.3.0"
 threetenabp = "1.4.6"
+#kakao
+kakao = "2.13.0"
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "gradlePlugin" }
@@ -88,6 +90,8 @@ retrofit-converter-gson = { module = "com.squareup.retrofit2:converter-gson", ve
 coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coilCompose" }
 #threetenabp
 threetenabp = { module = "com.jakewharton.threetenabp:threetenabp", version.ref = "threetenabp" }
+#kakao
+kakaoLogin = { module = "com.kakao.sdk:v2-user", version.ref = "kakao" }
 
 [bundles]
 orbit = ["orbit-core", "orbit-viewModel", "orbit-compose", "orbit-test"]
