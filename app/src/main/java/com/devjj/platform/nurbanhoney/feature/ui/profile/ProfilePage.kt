@@ -23,6 +23,7 @@ fun ProfilePage(state: ProfileState ,navController: NavController) {
     val coroutineScope = rememberCoroutineScope()
     val contextForToast = LocalContext.current.applicationContext
     val drawerState = scaffoldState.drawerState
+
     AlignRight {
         MaterialTheme {
             Scaffold(
@@ -62,6 +63,15 @@ fun ProfilePage(state: ProfileState ,navController: NavController) {
                     }
                 }
             )
+        }
+    }
+}
+
+@Composable
+fun BasePage(content: @Composable () -> Unit) {
+    AlignRight {
+        MaterialTheme {
+            content()
         }
     }
 }

@@ -31,7 +31,7 @@ internal interface ArticleApi {
     @GET("$BASE_BOARD/{board}$ARTICLE")
     fun getArticle(
         @Path("board") board: String,
-        @Header("token") token: String,
+        @Header("Authorization") token: String,
         @Query("id") id: Int
     ): Call<ArticleEntity>
 
@@ -39,14 +39,14 @@ internal interface ArticleApi {
     @POST("$BASE_BOARD/{board}$ARTICLE$LIKE")
     fun postLike(
         @Path("board") board: String,
-        @Header("token") token: String,
+        @Header("Authorization") token: String,
         @Field("articleId") id: Int
     ): Call<SimpleResponseEntity>
 
     @DELETE("$BASE_BOARD/{board}$ARTICLE$LIKE")
     fun cancelLike(
         @Path("board") board: String,
-        @Header("token") token: String,
+        @Header("Authorization") token: String,
         @Query("articleId") id: Int
     ): Call<SimpleResponseEntity>
 
@@ -54,21 +54,21 @@ internal interface ArticleApi {
     @POST("$BASE_BOARD/{board}$ARTICLE$DISLIKE")
     fun postDislike(
         @Path("board") board: String,
-        @Header("token") token: String,
+        @Header("Authorization") token: String,
         @Field("articleId") id: Int
     ): Call<SimpleResponseEntity>
 
     @DELETE("$BASE_BOARD/{board}$ARTICLE$DISLIKE")
     fun cancelDislike(
         @Path("board") board: String,
-        @Header("token") token: String,
+        @Header("Authorization") token: String,
         @Query("articleId") id: Int
     ): Call<SimpleResponseEntity>
 
     @GET("$BASE_BOARD/{board}$ARTICLE$RATING")
     fun getRatings(
         @Path("board") board: String,
-        @Header("token") token: String,
+        @Header("Authorization") token: String,
         @Query("articleId") articleId: Int
     ): Call<RatingsEntity>
 
@@ -76,7 +76,7 @@ internal interface ArticleApi {
     @POST("$BASE_BOARD/{board}$ARTICLE$COMMENTS")
     fun postComment(
         @Path("board") board: String,
-        @Header("token") token: String,
+        @Header("Authorization") token: String,
         @Field("content") comment: String,
         @Field("articleId") id: Int
     ): Call<SimpleResponseEntity>
@@ -92,7 +92,7 @@ internal interface ArticleApi {
     @DELETE("$BASE_BOARD/{board}$ARTICLE$COMMENTS")
     fun deleteComment(
         @Path("board") board: String,
-        @Header("token") token: String,
+        @Header("Authorization") token: String,
         @Query("id") id: Int,
         @Query("articleId") articleId: Int
     ): Call<SimpleResponseEntity>
@@ -101,7 +101,7 @@ internal interface ArticleApi {
     @PATCH("$BASE_BOARD/{board}$ARTICLE$COMMENTS")
     fun updateComment(
         @Path("board") board: String,
-        @Header("token") token: String,
+        @Header("Authorization") token: String,
         @Field("id") id: Int,
         @Field("content") content: String
     ): Call<SimpleResponseEntity>

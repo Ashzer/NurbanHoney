@@ -1,14 +1,20 @@
 package com.devjj.platform.nurbanhoney.core.navigation
 
+import android.content.Context
 import android.widget.Toast
+import androidx.compose.compiler.plugins.kotlin.lower.changedParamCount
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.platform.LocalLifecycleOwner
+import androidx.datastore.preferences.core.edit
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.*
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.devjj.platform.nurbanhoney.domain.board.model.Board
-import com.devjj.platform.nurbanhoney.domain.profile.model.Profile
+import com.devjj.platform.nurbanhoney.core.extension.tokenDataStore
+import com.devjj.platform.nurbanhoney.core.platform.getNurbanToken
+import com.devjj.platform.nurbanhoney.core.platform.setNurbanToken
 import com.devjj.platform.nurbanhoney.feature.ui.*
 import com.devjj.platform.nurbanhoney.feature.ui.article.ArticlePage
 import com.devjj.platform.nurbanhoney.feature.ui.article.ArticleSideEffect
@@ -23,6 +29,9 @@ import com.devjj.platform.nurbanhoney.feature.ui.profile.ProfilePage
 import com.devjj.platform.nurbanhoney.feature.ui.profile.ProfileSideEffect
 import com.devjj.platform.nurbanhoney.feature.ui.profile.ProfileViewModel
 import com.devjj.platform.nurbanhoney.feature.ui.rank.RankPage
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
 import org.orbitmvi.orbit.compose.collectAsState
 import org.orbitmvi.orbit.compose.collectSideEffect
 
@@ -102,8 +111,14 @@ fun NavGraphBuilder.addRank(navController: NavController) {
 
 fun NavGraphBuilder.addProfile(navController: NavController) {
 	composable(route = Routes.Profile.route) {
+		val coroutineScope = rememberCoroutineScope()
 		val viewModel = hiltViewModel<ProfileViewModel>()
 		val state by viewModel.collectAsState()
+		getNurbanToken(navController.context).let {
+			coroutineScope.launch {
+				viewModel.fetchData(it.first() ?: "")
+			}
+		}
 		viewModel.collectSideEffect {
 			when (it) {
 				is ProfileSideEffect.RequestLogin -> {
@@ -112,12 +127,14 @@ fun NavGraphBuilder.addProfile(navController: NavController) {
 				}
 			}
 		}
+
 		ProfilePage(state = state, navController = navController)
 	}
 }
 
 fun NavGraphBuilder.addLogin(navController: NavController) {
 	composable(route = Routes.Login.route) {
+		val coroutineScope = rememberCoroutineScope()
 		val viewModel = hiltViewModel<LoginViewModel>()
 		val state by viewModel.collectAsState()
 		viewModel.collectSideEffect {
@@ -131,6 +148,16 @@ fun NavGraphBuilder.addLogin(navController: NavController) {
 				}
 			}
 		}
+
+		viewModel.nurbanToken.observe(LocalLifecycleOwner.current) {
+			it?.let {
+				coroutineScope.launch {
+					setNurbanToken(context = navController.context, token = it)
+					viewModel.backStack()
+				}
+			}
+		}
+
 		LoginPage(
 			state = state,
 			navController = navController,

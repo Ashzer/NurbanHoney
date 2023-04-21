@@ -19,5 +19,5 @@ internal interface LoginApi {
     ): Call<LoginInfoEntity>
 
     @GET(VALIDATION)
-    fun validationCheck(@Header("token") token: String): Call<ValidateInfoEntity>
+    fun validationCheck(@Header("Authorization") token: String): Call<ValidateInfoEntity>
 }

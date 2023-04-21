@@ -1,6 +1,6 @@
 package com.devjj.platform.nurbanhoney.network.entities
 
-import com.devjj.platform.nurbanhoney.LocalDateTimeUtils
+import com.devjj.platform.nurbanhoney.extension.LocalDateTimeUtils
 import com.devjj.platform.nurbanhoney.domain.profile.model.ProfileArticle
 import com.devjj.platform.nurbanhoney.extension.empty
 import com.google.gson.annotations.SerializedName

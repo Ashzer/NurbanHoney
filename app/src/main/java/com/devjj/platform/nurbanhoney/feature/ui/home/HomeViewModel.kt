@@ -95,7 +95,7 @@ class HomeViewModel
 		}
 
 	private fun handleFailure(failure: Throwable) =
-		intent { reduce { state.copy(state = HomeUiState.Failed("Error")) } }
+		intent { reduce { state.copy(state = HomeUiState.Failed("Error = ${failure.javaClass}")) } }
 
 	fun onTabSelected(index: Int) {
 		intent {

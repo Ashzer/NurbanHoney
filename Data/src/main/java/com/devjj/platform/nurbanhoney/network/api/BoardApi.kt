@@ -21,7 +21,7 @@ internal interface BoardApi {
     @POST("$BASE_BOARD/{board}$ARTICLE")
     fun uploadNurbanRequest(
         @Path("board") board: String,
-        @Header("token") token: String,
+        @Header("Authorization") token: String,
         @Field("title") title: String,
         @Field("uuid") uuid: String,
         @Field("lossCut") lossCut: Long,
@@ -33,7 +33,7 @@ internal interface BoardApi {
     @POST("$BASE_BOARD/{board}$ARTICLE")
     fun uploadRequest(
         @Path("board") board: String,
-        @Header("token") token: String,
+        @Header("Authorization") token: String,
         @Field("title") title: String,
         @Field("uuid") uuid: String,
         @Field("thumbnail") thumbnail: String?,
@@ -44,7 +44,7 @@ internal interface BoardApi {
     @PATCH("$BASE_BOARD/{board}$ARTICLE")
     fun modifyNurbanRequest(
         @Path("board") board: String,
-        @Header("token") token: String,
+        @Header("Authorization") token: String,
         @Field("id") articleId: Int,
         @Field("thumbnail") thumbnail: String?,
         @Field("title") title: String,
@@ -56,7 +56,7 @@ internal interface BoardApi {
     @PATCH("$BASE_BOARD/{board}$ARTICLE")
     fun modifyRequest(
         @Path("board") board: String,
-        @Header("token") token: String,
+        @Header("Authorization") token: String,
         @Field("id") articleId: Int,
         @Field("thumbnail") thumbnail: String?,
         @Field("title") title: String,
@@ -67,7 +67,7 @@ internal interface BoardApi {
     @POST("$BASE_BOARD/{board}$ARTICLE$UPLOAD_IMG")
     fun uploadImage(
         @Path("board") board: String,
-        @Header("token") token: String,
+        @Header("Authorization") token: String,
         @Part uuid: MultipartBody.Part,
         @Part image: MultipartBody.Part
     ): Call<UploadedImageEntity>
@@ -75,14 +75,14 @@ internal interface BoardApi {
     @DELETE("$BASE_BOARD/{board}$ARTICLE$UPLOAD_IMG")
     fun deleteImage(
         @Path("board") board: String,
-        @Header("token") token: String,
+        @Header("Authorization") token: String,
         @Query("uuid") uuid: String
     ): Call<SimpleResponseEntity>
 
     @DELETE("$BASE_BOARD/{board}$ARTICLE")
     fun deleteArticle(
         @Path("board") board: String,
-        @Header("token") token: String,
+        @Header("Authorization") token: String,
         @Query("id") articleId: Int,
         @Query("uuid") uuid: String
     ): Call<SimpleResponseEntity>

@@ -110,8 +110,14 @@ dependencies {
     implementation(libs.coil.compose)
 
     implementation(libs.bundles.orbit)
-
+    //kakao login
     implementation(libs.kakaoLogin)
+
+    //preference datastore
+    implementation(libs.preference.datastore)
+    // threetenabp
+    implementation(libs.threetenabp)
+
 }
 
 kapt {

@@ -13,7 +13,7 @@ fun <T, R> request(
         when (response.isSuccessful) {
             true -> Result.success(transform((response.body() ?: default)))
             false -> when (response.code()) {
-                403 -> Result.failure(Failure.TokenFailure)
+                401, 403 -> Result.failure(Failure.TokenFailure)
                 else -> Result.failure(Failure.ServerFailure)
             }
         }

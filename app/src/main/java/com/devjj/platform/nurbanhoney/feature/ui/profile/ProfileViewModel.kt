@@ -23,19 +23,19 @@ class ProfileViewModel
 	val getProfileUseCase: GetProfileUseCase
 ) : ContainerHost<ProfileState, ProfileSideEffect>, BaseViewModel() {
 	override val container = container<ProfileState, ProfileSideEffect>(ProfileState())
+//
+//	init {
+//		fetchData()
+//	}
 
-	init {
-		fetchData()
+	fun fetchData(token :String) {
+		getProfile(token)
 	}
 
-	private fun fetchData() {
-		getProfile()
-	}
-
-	private fun getProfile() {
+	private fun getProfile(token :String) {
 
 		viewModelScope.launch(Dispatchers.IO) {
-			getProfileUseCase(GetProfileUseCase.Params("token")) {
+			getProfileUseCase(GetProfileUseCase.Params(token)) {
 				it.fold(
 					::handleProfile,
 					::handleFailure
@@ -52,7 +52,7 @@ class ProfileViewModel
 
 	private fun handleFailure(failure: Throwable) {
 		intent {
-			Log.d("ProfileViewModel", "handleFailure: ${failure.message}")
+			Log.d("ProfileViewModel", "handleFailure: ${failure.javaClass}")
 			when (failure) {
 				is Failure.TokenFailure -> {
 					postSideEffect(ProfileSideEffect.RequestLogin)

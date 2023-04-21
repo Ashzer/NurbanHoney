@@ -1,4 +1,4 @@
-package com.devjj.platform.nurbanhoney
+package com.devjj.platform.nurbanhoney.extension
 
 import org.threeten.bp.LocalDateTime
 import org.threeten.bp.format.DateTimeFormatter
@@ -10,9 +10,14 @@ class LocalDateTimeUtils {
         fun parse(date: String?): LocalDateTime =
             LocalDateTime.parse(date, parsingPattern)
         private val displayPattern: DateTimeFormatter =
-            DateTimeFormatter.ofPattern("yy년 MM월 dd일 HH:mm:ss")
-        fun toString(date: LocalDateTime?) = date?.format(
+            DateTimeFormatter.ofPattern("MM월 dd일 HH:mm:ss")
+        fun LocalDateTime.toString(date: LocalDateTime?) = this.format(
             displayPattern
+        ).toString()
+
+        fun LocalDateTime.toFormattedString() =this.format(
+            LocalDateTimeUtils.displayPattern
         ).toString()
     }
 }
+

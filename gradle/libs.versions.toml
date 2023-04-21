@@ -30,6 +30,8 @@ coilCompose = "2.3.0"
 threetenabp = "1.4.6"
 #kakao
 kakao = "2.13.0"
+#preference datastore
+preferenceDatastore = "1.0.0"
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "gradlePlugin" }
@@ -92,6 +94,8 @@ coil-compose = { module = "io.coil-kt:coil-compose", version.ref = "coilCompose"
 threetenabp = { module = "com.jakewharton.threetenabp:threetenabp", version.ref = "threetenabp" }
 #kakao
 kakaoLogin = { module = "com.kakao.sdk:v2-user", version.ref = "kakao" }
+#Preference datastore
+preference-datastore = { module = "androidx.datastore:datastore-preferences", version.ref = "preferenceDatastore" }
 
 [bundles]
 orbit = ["orbit-core", "orbit-viewModel", "orbit-compose", "orbit-test"]

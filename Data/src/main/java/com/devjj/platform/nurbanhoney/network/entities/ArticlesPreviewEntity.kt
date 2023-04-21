@@ -1,8 +1,10 @@
 package com.devjj.platform.nurbanhoney.network.entities
 
+import com.devjj.platform.nurbanhoney.extension.LocalDateTimeUtils
 import com.devjj.platform.nurbanhoney.domain.article.model.ArticlePreview
 import com.devjj.platform.nurbanhoney.domain.board.model.Board
 import com.google.gson.annotations.SerializedName
+import org.threeten.bp.LocalDateTime
 
 data class ArticlesPreviewEntity(
     @SerializedName("id") val id: Int,
@@ -32,7 +34,7 @@ data class ArticlesPreviewEntity(
         user?.profile ?: "",
         user?.nickname ?: "Empty Nickname",
         likeCount,
-        createdAt
+        if (createdAt.isEmpty()) LocalDateTime.now() else LocalDateTimeUtils.parse(createdAt),
         // user?.insignia ?: "No insignia"
     )
 }
