@@ -12,7 +12,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.devjj.platform.nurbanhoney.domain.article.model.ArticlePreview
-import com.devjj.platform.nurbanhoney.extension.LocalDateTimeUtils.Companion.toFormattedString
 
 @Composable
 fun ArticlePreview(articlePreview: ArticlePreview, onClick: (Int) -> Unit) {
@@ -46,7 +45,7 @@ fun ArticlePreview(articlePreview: ArticlePreview, onClick: (Int) -> Unit) {
 			Row(modifier = Modifier.fillMaxWidth(1f), horizontalArrangement = Arrangement.Start) {
 				Text(text = articlePreview.author, fontSize = 10.sp)
 				Spacer(modifier = Modifier.width(10.dp))
-				Text(text = articlePreview.createdAt.toFormattedString(), fontSize = 10.sp)
+				Text(text = articlePreview.createdAt.toString(), fontSize = 10.sp)
 				Spacer(modifier = Modifier.width(10.dp))
 				Text(text = "추천", fontSize = 10.sp)
 				Spacer(modifier = Modifier.width(10.dp))

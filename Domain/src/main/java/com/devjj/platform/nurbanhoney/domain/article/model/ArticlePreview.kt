@@ -1,7 +1,7 @@
 package com.devjj.platform.nurbanhoney.domain.article.model
 
 import com.devjj.platform.nurbanhoney.domain.board.model.Board
-import org.threeten.bp.LocalDateTime
+import com.devjj.platform.nurbanhoney.extension.DateTime
 
 data class ArticlePreview(
     val id: Int,
@@ -12,7 +12,7 @@ data class ArticlePreview(
     val badge: String,
     val author: String,
     val likeCount: Int,
-    val createdAt: LocalDateTime,
+    val createdAt: DateTime,
     // val medals: String
     // val medals : List<String>
 )

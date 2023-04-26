@@ -1,6 +1,6 @@
 package com.devjj.platform.nurbanhoney.network.entities
 
-import com.devjj.platform.nurbanhoney.extension.LocalDateTimeUtils
+import com.devjj.platform.nurbanhoney.extension.DateTime
 import com.devjj.platform.nurbanhoney.domain.profile.model.ProfileComment
 import com.devjj.platform.nurbanhoney.extension.empty
 import com.google.gson.annotations.SerializedName
@@ -31,7 +31,7 @@ data class ProfileCommentEntity(
         id,
         content,
         articleInfo.articleId,
-        if (createAt.isNullOrEmpty()) null else LocalDateTimeUtils.parse(createAt),
+        if (createAt.isNullOrEmpty()) DateTime.now else DateTime(createAt),
         board.toBoardEntity(),
         articleInfo.title
     )

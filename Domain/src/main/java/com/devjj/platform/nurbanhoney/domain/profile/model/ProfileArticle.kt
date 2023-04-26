@@ -1,8 +1,8 @@
 package com.devjj.platform.nurbanhoney.domain.profile.model
 
 import com.devjj.platform.nurbanhoney.domain.board.model.Board
+import com.devjj.platform.nurbanhoney.extension.DateTime
 import com.devjj.platform.nurbanhoney.extension.empty
-import org.threeten.bp.LocalDateTime
 
 data class ProfileArticle(
     val id: Int,
@@ -10,10 +10,10 @@ data class ProfileArticle(
     val thumbnail: String,
     val title: String,
     val commentCount: Int,
-    val createAt: LocalDateTime?
+    val createAt: DateTime
 ) {
     companion object {
         val empty =
-            ProfileArticle(0, Board.empty, String.empty(), String.empty(), 0, null)
+            ProfileArticle(0, Board.empty, String.empty(), String.empty(), 0, DateTime.now)
     }
 }
