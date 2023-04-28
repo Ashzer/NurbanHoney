@@ -4,12 +4,7 @@ import org.threeten.bp.LocalDateTime
 import org.threeten.bp.format.DateTimeFormatter
 
 class DateTime constructor(date: String) {
-	private val dateTime : LocalDateTime
-
-	init {
-		dateTime = parse(date)
-	}
-
+	private val dateTime : LocalDateTime by lazy{ parse(date)}
 	override fun toString() = dateTime.format(displayPattern).toString()
 
 	private val parsingPattern =

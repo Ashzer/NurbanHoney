@@ -9,13 +9,11 @@ import com.devjj.platform.nurbanhoney.domain.article.model.ArticlePreview
 import com.devjj.platform.nurbanhoney.domain.board.GetBoardUseCase
 import com.devjj.platform.nurbanhoney.domain.board.model.Board
 import com.devjj.platform.nurbanhoney.domain.interactor.UseCase
-import com.devjj.platform.nurbanhoney.feature.ui.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.orbitmvi.orbit.ContainerHost
 import org.orbitmvi.orbit.annotation.OrbitExperimental
-import org.orbitmvi.orbit.syntax.simple.blockingIntent
 import org.orbitmvi.orbit.syntax.simple.intent
 import org.orbitmvi.orbit.syntax.simple.postSideEffect
 import org.orbitmvi.orbit.syntax.simple.reduce
@@ -95,7 +93,10 @@ class HomeViewModel
 		}
 
 	private fun handleFailure(failure: Throwable) =
-		intent { reduce { state.copy(state = HomeUiState.Failed("Error = ${failure.javaClass}")) } }
+		intent { reduce {
+			Log.d("handleFailure", "Error = ${failure.javaClass}")
+			state.copy(state = HomeUiState.Failed("Error = ${failure.javaClass}"))
+		} }
 
 	fun onTabSelected(index: Int) {
 		intent {

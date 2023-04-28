@@ -1,27 +1,25 @@
 package com.devjj.platform.nurbanhoney.core.navigation
 
-import android.content.Context
 import android.widget.Toast
-import androidx.compose.compiler.plugins.kotlin.lower.changedParamCount
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.platform.LocalLifecycleOwner
-import androidx.datastore.preferences.core.edit
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.*
+import androidx.navigation.NavController
+import androidx.navigation.NavGraphBuilder
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.devjj.platform.nurbanhoney.core.extension.tokenDataStore
 import com.devjj.platform.nurbanhoney.core.platform.getNurbanToken
 import com.devjj.platform.nurbanhoney.core.platform.setNurbanToken
-import com.devjj.platform.nurbanhoney.feature.ui.*
+import com.devjj.platform.nurbanhoney.feature.ui.SplashPage
 import com.devjj.platform.nurbanhoney.feature.ui.article.ArticlePage
 import com.devjj.platform.nurbanhoney.feature.ui.article.ArticleSideEffect
 import com.devjj.platform.nurbanhoney.feature.ui.article.ArticleViewModel
-import com.devjj.platform.nurbanhoney.feature.ui.home.HomeViewModel
 import com.devjj.platform.nurbanhoney.feature.ui.home.HomePage
 import com.devjj.platform.nurbanhoney.feature.ui.home.HomeSideEffect
+import com.devjj.platform.nurbanhoney.feature.ui.home.HomeViewModel
 import com.devjj.platform.nurbanhoney.feature.ui.login.LoginPage
 import com.devjj.platform.nurbanhoney.feature.ui.login.LoginSideEffect
 import com.devjj.platform.nurbanhoney.feature.ui.login.LoginViewModel
@@ -29,7 +27,8 @@ import com.devjj.platform.nurbanhoney.feature.ui.profile.ProfilePage
 import com.devjj.platform.nurbanhoney.feature.ui.profile.ProfileSideEffect
 import com.devjj.platform.nurbanhoney.feature.ui.profile.ProfileViewModel
 import com.devjj.platform.nurbanhoney.feature.ui.rank.RankPage
-import kotlinx.coroutines.Dispatchers
+import com.devjj.platform.nurbanhoney.feature.ui.rank.RankSideEffect
+import com.devjj.platform.nurbanhoney.feature.ui.rank.RankViewModel
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import org.orbitmvi.orbit.compose.collectAsState
@@ -105,7 +104,17 @@ fun NavGraphBuilder.addArticle(navController: NavController) {
 
 fun NavGraphBuilder.addRank(navController: NavController) {
 	composable(route = Routes.Rank.route) {
-		RankPage(navController = navController)
+		val coroutineScope = rememberCoroutineScope()
+		val viewModel = hiltViewModel<RankViewModel>()
+		val state by viewModel.collectAsState()
+		viewModel.collectSideEffect {
+			when (it) {
+				is RankSideEffect.ShowToast -> {
+					Toast.makeText(navController.context, it.message, Toast.LENGTH_SHORT).show()
+				}
+			}
+		}
+		RankPage(state = state, navController = navController)
 	}
 }
 

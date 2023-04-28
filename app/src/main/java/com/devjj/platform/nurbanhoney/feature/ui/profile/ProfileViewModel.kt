@@ -1,7 +1,6 @@
 package com.devjj.platform.nurbanhoney.feature.ui.profile
 
 import android.util.Log
-import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.viewModelScope
 import com.devjj.platform.nurbanhoney.core.platform.BaseViewModel
 import com.devjj.platform.nurbanhoney.domain.profile.GetProfileUseCase
@@ -67,18 +66,3 @@ class ProfileViewModel
 
 }
 
-data class ProfileState(
-	val state: ProfileUiState = ProfileUiState.Loading,
-	val profile: Profile? = null
-)
-
-sealed class ProfileSideEffect {
-	object RequestLogin : ProfileSideEffect()
-}
-
-sealed class ProfileUiState {
-	object Loading : ProfileUiState()
-	object Success : ProfileUiState()
-	object TokenFailed : ProfileUiState()
-	data class Failed(val message: String) : ProfileUiState()
-}

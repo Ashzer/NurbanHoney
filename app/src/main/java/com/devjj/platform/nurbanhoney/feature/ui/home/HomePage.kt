@@ -1,5 +1,6 @@
 package com.devjj.platform.nurbanhoney.feature.ui.home
 
+import android.content.Context
 import android.util.Log
 import android.widget.Toast
 import androidx.compose.foundation.layout.*
@@ -8,7 +9,6 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.runtime.*
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
@@ -16,11 +16,9 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.devjj.platform.nurbanhoney.core.extension.AlignLeft
 import com.devjj.platform.nurbanhoney.core.extension.AlignRight
-import com.devjj.platform.nurbanhoney.core.platform.DrawBottomNavigation
-import com.devjj.platform.nurbanhoney.core.platform.DrawerContent
-import com.devjj.platform.nurbanhoney.core.platform.MainToolBar
+import com.devjj.platform.nurbanhoney.core.platform.*
 import com.devjj.platform.nurbanhoney.feature.ui.BoardsTab
-import com.devjj.platform.nurbanhoney.feature.ui.UiState
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
@@ -82,7 +80,6 @@ fun HomePage(
 										items(previews.size) {
 											ArticlePreview(previews[it]) { index ->
 												onArticleClicked(index)
-												Log.d("articles", "at id = $index has clicked")
 											}
 										}
 									}
@@ -158,20 +155,52 @@ fun MainTopBar(
 }
 
 @Composable
-fun LoadingIndicator(modifier: Modifier = Modifier) {
-	Box(modifier = modifier) {
-		CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
-	}
-}
+fun BasePage(
+	scaffoldState: ScaffoldState,
+	coroutineScope: CoroutineScope,
+	navController : NavController,
+	drawerState: DrawerState,
+	context : Context,
+	content: @Composable () -> Unit
+) {
+	AlignRight {
+		MaterialTheme {
+			Scaffold(
+				scaffoldState = scaffoldState,
+				backgroundColor = Color.Blue,
 
-@Composable
-fun ErrorMessage(message: String, modifier: Modifier = Modifier) {
-	Box(modifier = modifier) {
-		Text(
-			text = message,
-			style = MaterialTheme.typography.h5,
-			color = MaterialTheme.colors.error,
-			modifier = Modifier.align(Alignment.Center)
-		)
+				// Align left
+				topBar = {
+					AlignLeft {
+						MainToolBar(scaffoldState.drawerState, coroutineScope)
+					}
+				},
+				bottomBar = {
+					AlignLeft {
+						DrawBottomNavigation(navController)
+					}
+				},
+				content = { paddingValues ->
+					paddingValues
+					AlignLeft {
+
+					}
+				},
+				drawerContent = {
+					AlignLeft {
+						DrawerContent { itemLabel ->
+							Toast
+								.makeText(context, itemLabel, Toast.LENGTH_SHORT)
+								.show()
+							coroutineScope.launch {
+								// delay for the ripple effect
+								delay(timeMillis = 250)
+								drawerState.close()
+							}
+						}
+					}
+				}
+			)
+		}
 	}
 }

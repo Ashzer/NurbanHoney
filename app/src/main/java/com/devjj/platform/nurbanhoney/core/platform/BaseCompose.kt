@@ -2,6 +2,7 @@ package com.devjj.platform.nurbanhoney.core.platform
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.offset
 import androidx.compose.material.*
@@ -132,6 +133,25 @@ fun DrawBottomNavigation(navController: NavController) {
                     contentDescription = null
                 )
             }
+        )
+    }
+}
+
+@Composable
+fun LoadingIndicator(modifier: Modifier = Modifier) {
+    Box(modifier = modifier) {
+        CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
+    }
+}
+
+@Composable
+fun ErrorMessage(message: String, modifier: Modifier = Modifier) {
+    Box(modifier = modifier) {
+        Text(
+            text = message,
+            style = MaterialTheme.typography.h5,
+            color = MaterialTheme.colors.error,
+            modifier = Modifier.align(Alignment.Center)
         )
     }
 }
