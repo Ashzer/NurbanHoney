@@ -48,7 +48,7 @@ class HomeViewModel
 		}
 	}
 
-	private fun getArticle(
+	public fun getArticles(
 		boardName: String = "nurban",
 		flag: Int = 0,
 		offset: Int = 0,
@@ -87,7 +87,7 @@ class HomeViewModel
 	private fun handleBoards(boards: List<Board>) =
 		intent {
 			reduce {
-				getArticle()
+				getArticles()
 				state.copy(state = HomeUiState.BoardsSuccess, boards = boards)
 			}
 		}
@@ -103,7 +103,7 @@ class HomeViewModel
 
 			if (state.state != HomeUiState.ArticlePreviewsLoading) {
 				if (index != state.selectedBoardIndex) {
-					getArticle(boardName = state.boards?.get(index)?.address ?: "")
+					postSideEffect(HomeSideEffect.GetArticles(state.boards?.get(index)?.address ?: ""))
 				}
 				reduce {
 					Log.d("onTabSelected-before", state.selectedBoardIndex.toString())

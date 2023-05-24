@@ -180,8 +180,8 @@ fun BasePage(
 						DrawBottomNavigation(navController)
 					}
 				},
-				content = { paddingValues ->
-					paddingValues
+				content = {
+					it
 					AlignLeft {
 
 					}

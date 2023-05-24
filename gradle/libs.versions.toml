@@ -32,6 +32,8 @@ threetenabp = "1.4.6"
 kakao = "2.13.0"
 #preference datastore
 preferenceDatastore = "1.0.0"
+#rich-editor-compose
+richEditorCompose = "0.2.0"
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "gradlePlugin" }
@@ -96,6 +98,8 @@ threetenabp = { module = "com.jakewharton.threetenabp:threetenabp", version.ref 
 kakaoLogin = { module = "com.kakao.sdk:v2-user", version.ref = "kakao" }
 #Preference datastore
 preference-datastore = { module = "androidx.datastore:datastore-preferences", version.ref = "preferenceDatastore" }
+#rich text
+richEditor-compose = { module = "com.mohamedrejeb.richeditor:richeditor-compose", version.ref = "richEditorCompose" }
 
 [bundles]
 orbit = ["orbit-core", "orbit-viewModel", "orbit-compose", "orbit-test"]

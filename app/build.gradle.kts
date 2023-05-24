@@ -118,6 +118,9 @@ dependencies {
     // threetenabp
     implementation(libs.threetenabp)
 
+    //rich text
+    implementation(libs.richEditor.compose)
+
 }
 
 kapt {

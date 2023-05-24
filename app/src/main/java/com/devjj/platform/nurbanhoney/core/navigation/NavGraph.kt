@@ -71,6 +71,9 @@ fun NavGraphBuilder.addHome(navController: NavController) {
 
 		viewModel.collectSideEffect {
 			when (it) {
+				is HomeSideEffect.GetArticles -> {
+					viewModel.getArticles(it.boardName)
+				}
 				is HomeSideEffect.ShowToast -> {
 					Toast.makeText(navController.context, it.message, Toast.LENGTH_SHORT).show()
 				}
