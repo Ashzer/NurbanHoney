@@ -32,23 +32,26 @@ class HomeViewModel
 //	private val boards by lazy{ savedStateHandle.get<List<Board>>("boards") ?: listOf()}
 
 	init {
-		fetchData()
+		intent { reduce { state.copy(state = HomeUiState.BoardsLoading) } }
+		fetchBoards()
 	}
 
-	private fun fetchData() {
-		getBoards()
+	private fun fetchBoards(){
+		intent {
+			postSideEffect(HomeSideEffect.GetBoards)
+		}
+
 	}
 
-	private fun getBoards() {
+	fun getBoards() {
 		intent {
 			viewModelScope.launch(Dispatchers.IO) {
-				reduce { state.copy(state = HomeUiState.BoardsLoading) }
 				getBoardUseCase(UseCase.None()) { it.fold(::handleBoards, ::handleFailure) }
 			}
 		}
 	}
 
-	public fun getArticles(
+	fun getArticles(
 		boardName: String = "nurban",
 		flag: Int = 0,
 		offset: Int = 0,
@@ -80,7 +83,10 @@ class HomeViewModel
 		Log.d("handleArticle", articlePreviews.toString())
 		reduce {
 //			blockingIntent { Thread.sleep(1000) }
-			state.copy(state = HomeUiState.ArticlePreviewsSuccess, articlePreviews = articlePreviews)
+			state.copy(
+				state = HomeUiState.ArticlePreviewsSuccess,
+				articlePreviews = articlePreviews
+			)
 		}
 	}
 
@@ -93,17 +99,23 @@ class HomeViewModel
 		}
 
 	private fun handleFailure(failure: Throwable) =
-		intent { reduce {
-			Log.d("handleFailure", "Error = ${failure.javaClass}")
-			state.copy(state = HomeUiState.Failed("Error = ${failure.javaClass}"))
-		} }
+		intent {
+			reduce {
+				Log.d("handleFailure", "Error = ${failure.javaClass}")
+				state.copy(state = HomeUiState.Failed("Error = ${failure.javaClass}"))
+			}
+		}
 
 	fun onTabSelected(index: Int) {
 		intent {
 
 			if (state.state != HomeUiState.ArticlePreviewsLoading) {
 				if (index != state.selectedBoardIndex) {
-					postSideEffect(HomeSideEffect.GetArticles(state.boards?.get(index)?.address ?: ""))
+					postSideEffect(
+						HomeSideEffect.GetArticles(
+							state.boards?.get(index)?.address ?: ""
+						)
+					)
 				}
 				reduce {
 					Log.d("onTabSelected-before", state.selectedBoardIndex.toString())

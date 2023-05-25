@@ -20,6 +20,7 @@ import javax.inject.Inject
 class ProfileViewModel
 @Inject constructor(
 	val getProfileUseCase: GetProfileUseCase
+
 ) : ContainerHost<ProfileState, ProfileSideEffect>, BaseViewModel() {
 	override val container = container<ProfileState, ProfileSideEffect>(ProfileState())
 //

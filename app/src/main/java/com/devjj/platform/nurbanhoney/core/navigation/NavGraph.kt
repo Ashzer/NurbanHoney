@@ -71,6 +71,9 @@ fun NavGraphBuilder.addHome(navController: NavController) {
 
 		viewModel.collectSideEffect {
 			when (it) {
+				is HomeSideEffect.GetBoards ->{
+					viewModel.getBoards()
+				}
 				is HomeSideEffect.GetArticles -> {
 					viewModel.getArticles(it.boardName)
 				}
@@ -101,13 +104,13 @@ fun NavGraphBuilder.addArticle(navController: NavController) {
 				}
 			}
 		}
+		Routes.Article.route
 		ArticlePage(state = state, navController = navController)
 	}
 }
 
 fun NavGraphBuilder.addRank(navController: NavController) {
 	composable(route = Routes.Rank.route) {
-		val coroutineScope = rememberCoroutineScope()
 		val viewModel = hiltViewModel<RankViewModel>()
 		val state by viewModel.collectAsState()
 		viewModel.collectSideEffect {

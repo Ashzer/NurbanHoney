@@ -6,6 +6,7 @@ import com.devjj.platform.nurbanhoney.feature.ui.UiState
 
 data class ArticleState(
 	val state: UiState = UiState.Loading,
-	val article: Article? = null,
+	val board : String = "",
+	val article: Article = Article.empty,
 	val comments: List<Comment> = listOf()
 )

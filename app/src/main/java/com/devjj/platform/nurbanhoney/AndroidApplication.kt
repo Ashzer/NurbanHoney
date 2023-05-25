@@ -8,12 +8,7 @@ import androidx.datastore.preferences.core.stringPreferencesKey
 import com.devjj.platform.nurbanhoney.core.extension.tokenDataStore
 import com.kakao.sdk.common.KakaoSdk
 import dagger.hilt.android.HiltAndroidApp
-import com.kakao.sdk.common.util.Utility
-import com.kakao.sdk.user.UserApiClient
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
@@ -25,22 +20,22 @@ class AndroidApplication : Application() {
 	}
 }
 
-interface UserTokenRepository {
-	fun getUserToken(): Flow<String?>
-	suspend fun setUserToken(token: String)
+interface NurbanTokenRepository {
+	fun getNurbanToken(): Result<Flow<String?>>
+	suspend fun setNurbanToken(token: String)
 }
 
 class UserTokenRepositoryImpl
-@Inject constructor(private val context: Context) : UserTokenRepository {
-	override fun getUserToken(): Flow<String?> {
-		return context.tokenDataStore.data.map { preferences ->
+@Inject constructor(private val context: Context) : NurbanTokenRepository {
+	override fun getNurbanToken(): Result<Flow<String?>> {
+		return Result.success(context.tokenDataStore.data.map { preferences ->
 			val key = preferences[stringPreferencesKey("token")]
 			Log.d("getUserToken", "key : $key")
 			key
-		}
+		})
 	}
 
-	override suspend fun setUserToken(token: String) {
+	override suspend fun setNurbanToken(token: String) {
 		context.tokenDataStore.edit { preferences ->
 			preferences[stringPreferencesKey("token")] = token
 		}

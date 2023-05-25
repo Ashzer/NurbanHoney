@@ -28,6 +28,9 @@ class ArticleViewModel
 	private val id by lazy { savedStateHandle.get<String>("id")?.toInt() ?: 0 }
 
 	init {
+		intent {
+			reduce { state.copy(state = UiState.Loading, board = board) }
+		}
 		getArticle()
 	}
 

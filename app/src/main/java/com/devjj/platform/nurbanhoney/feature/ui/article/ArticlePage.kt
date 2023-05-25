@@ -1,5 +1,6 @@
 package com.devjj.platform.nurbanhoney.feature.ui.article
 
+import android.util.Log
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -32,7 +33,6 @@ fun ArticlePage(state: ArticleState, navController: NavController) {
 	val context = LocalContext.current.applicationContext
 	val drawerState = scaffoldState.drawerState
 
-	var richTextValue by remember { mutableStateOf(RichTextValue("Hello world")) }
 
 	AlignRight {
 		MaterialTheme {
@@ -41,15 +41,16 @@ fun ArticlePage(state: ArticleState, navController: NavController) {
 				backgroundColor = Color.Transparent,
 				topBar = {
 					AlignLeft {
-						ArticleTopBar(scaffoldState,coroutineScope)
+						ArticleTopBar(scaffoldState, coroutineScope)
 					}
 				},
 				content = { paddingValues ->
 					paddingValues
 					AlignLeft {
 						Column {
-							ArticleTitle()
-							ArticleBody(richTextValue)
+							ArticleTitle(state.article.title, state.article.nickname)
+							if(state.board == "nurban") ArticleLossCut(state.article.lossCut)
+							ArticleBody(state.article.content)
 						}
 					}
 				}
@@ -60,7 +61,7 @@ fun ArticlePage(state: ArticleState, navController: NavController) {
 }
 
 @Composable
-fun	ArticleTopBar(scaffoldState: ScaffoldState, coroutineScope: CoroutineScope){
+fun ArticleTopBar(scaffoldState: ScaffoldState, coroutineScope: CoroutineScope) {
 	MainToolBar(
 		scaffoldState.drawerState,
 		coroutineScope
@@ -68,33 +69,42 @@ fun	ArticleTopBar(scaffoldState: ScaffoldState, coroutineScope: CoroutineScope){
 }
 
 @Composable
-fun ArticleTitle() {
+fun ArticleTitle(title: String, writer: String) {
 
 	Column() {
 		Row {
 			Text(text = "제목")
 			Spacer(modifier = Modifier.size(10.dp))
-			Text(text = "제목을 입력해주세요.")
+			Text(text = title)
 		}
 		Row {
 			Text(text = "작성자")
 			Spacer(modifier = Modifier.size(10.dp))
-			Text(text = "작성자를 입력해주세요.")
+			Text(text = writer)
 			LazyRow(content = {
 
 			})
 		}
 	}
+}
+
+@Composable
+fun ArticleLossCut(lossCut: Int?) {
+	Row {
+		Text(text = "손절")
+		Spacer(modifier = Modifier.size(10.dp))
+		Text(lossCut.toString())
+	}
 
 }
 
 @Composable
-fun ArticleBody(richTextValue: RichTextValue) {
-	RichText(richText = richTextValue)
+fun ArticleBody(content: String) {
+	RichText(richText = RichTextValue(content))
 }
 
 @Preview
 @Composable
 fun ArticlePagePreview() {
-	ArticleTitle()
+	ArticleTitle("제목 샘플", "작성자 샘플")
 }
