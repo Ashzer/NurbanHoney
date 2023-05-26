@@ -28,12 +28,11 @@ class ProfileViewModel
 //		fetchData()
 //	}
 
-	fun fetchData(token :String) {
+	fun fetchData(token: String) {
 		getProfile(token)
 	}
 
-	private fun getProfile(token :String) {
-
+	private fun getProfile(token: String) {
 		viewModelScope.launch(Dispatchers.IO) {
 			getProfileUseCase(GetProfileUseCase.Params(token)) {
 				it.fold(
