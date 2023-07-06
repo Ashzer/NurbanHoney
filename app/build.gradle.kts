@@ -129,8 +129,9 @@ dependencies {
 
 protobuf {
 	protoc {
-//		libs.protobuf
+
 		artifact = "com.google.protobuf:protoc:3.19.4"
+//		artifact = libs.protobuf.toString()
 	}
 
 	generateProtoTasks {
